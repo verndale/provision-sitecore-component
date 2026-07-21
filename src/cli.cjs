@@ -7,7 +7,7 @@
  * Usage:
  *   provision-sitecore-component [plan] <manifest.json> [--no-tsx] [--force-tsx] [--config <path>]
  *   provision-sitecore-component check  <manifest.json> [--config <path>]
- *   provision-sitecore-component push   <manifest.json> [--no-tsx] [--force-tsx] [--config <path>]
+ *   provision-sitecore-component push   <manifest.json> [--yes] [--no-tsx] [--force-tsx] [--config <path>]
  *
  * Modes:
  *   plan  (default) offline: validate the manifest, write <slug>.plan.json next to it,
@@ -15,7 +15,9 @@
  *   check online, read-only: preflight the plan against the CMS and print per-op
  *         decisions (create / update / no-op / conflict). Never mutates.
  *   push  online, mutating: execute the plan (create-or-update, add-only, never
- *         deletes), then emit the TSX pair like plan mode.
+ *         deletes), then emit the TSX pair like plan mode. Gated: on a terminal it
+ *         asks for confirmation; non-interactively it refuses without --yes, which
+ *         records the in-session step-6 gate approval (SKILL.md).
  *
  * Config resolution: --config <path> → ./provision.config.json → ./build.config.json
  * (key sitecoreProvisioning; requires stackAdapter "sitecore-ai") → {} (paths must
@@ -26,7 +28,9 @@
  */
 
 const fs = require("node:fs");
+const os = require("node:os");
 const path = require("node:path");
+const readline = require("node:readline");
 
 const { validateManifest } = require("./validate-manifest.cjs");
 const { buildMutationPlan, serializePlan } = require("./build-plan.cjs");
@@ -41,12 +45,13 @@ function fail(message, cause, next) {
 }
 
 function parseArgs(argv) {
-  const args = { mode: "plan", manifestPath: null, noTsx: false, forceTsx: false, configPath: null };
+  const args = { mode: "plan", manifestPath: null, noTsx: false, forceTsx: false, configPath: null, yes: false };
   const positional = [];
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === "--no-tsx") args.noTsx = true;
     else if (arg === "--force-tsx") args.forceTsx = true;
+    else if (arg === "--yes") args.yes = true;
     else if (arg === "--config") {
       i += 1;
       if (!argv[i]) return { error: "--config requires a path argument." };
@@ -116,9 +121,7 @@ function loadConfig(cwd, configPath) {
   return { config: {} };
 }
 
-/** Minimal .env loader (KEY=VALUE lines; existing process env wins). No dependency. */
-function loadDotEnv(cwd, env) {
-  const file = path.join(cwd, ".env");
+function applyEnvFile(file, env) {
   if (!fs.existsSync(file)) return;
   for (const line of fs.readFileSync(file, "utf8").split("\n")) {
     const match = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$/);
@@ -127,6 +130,27 @@ function loadDotEnv(cwd, env) {
     if (env[key] !== undefined) continue;
     env[key] = match[2].replace(/^["']|["']$/g, "");
   }
+}
+
+/**
+ * Minimal .env loader (KEY=VALUE lines; existing process env wins). No dependency.
+ * Resolution order: process env → ./.env (per-repo override) → the per-machine
+ * ~/.config/provision-sitecore-component/.env written by setup.sh.
+ */
+function loadDotEnv(cwd, env) {
+  applyEnvFile(path.join(cwd, ".env"), env);
+  applyEnvFile(path.join(os.homedir(), ".config", "provision-sitecore-component", ".env"), env);
+}
+
+/** Interactive push confirmation (prompt on stderr so stdout stays parseable). */
+function confirmPush(component) {
+  return new Promise((resolve) => {
+    const rl = readline.createInterface({ input: process.stdin, output: process.stderr });
+    rl.question(`push mutates a shared CMS environment (component "${component}"). Proceed? [y/N] `, (answer) => {
+      rl.close();
+      resolve(/^y(es)?$/i.test(answer.trim()));
+    });
+  });
 }
 
 function emitTsxPair(manifest, resolved, cwd, { forceTsx }) {
@@ -152,9 +176,9 @@ function emitTsxPair(manifest, resolved, cwd, { forceTsx }) {
 async function main() {
   const parsed = parseArgs(process.argv.slice(2));
   if (parsed.error) {
-    fail(parsed.error, "Expected: provision-sitecore-component [plan|check|push] <manifest.json> [--no-tsx] [--force-tsx] [--config <path>].", "Fix the invocation and re-run.");
+    fail(parsed.error, "Expected: provision-sitecore-component [plan|check|push] <manifest.json> [--yes] [--no-tsx] [--force-tsx] [--config <path>].", "Fix the invocation and re-run.");
   }
-  const { mode, manifestPath, noTsx, forceTsx, configPath } = parsed.args;
+  const { mode, manifestPath, noTsx, forceTsx, configPath, yes } = parsed.args;
   const cwd = process.cwd();
 
   const configResult = loadConfig(cwd, configPath);
@@ -183,6 +207,19 @@ async function main() {
   process.stdout.write(`wrote ${path.relative(cwd, planFile)}\n`);
 
   if (mode === "check" || mode === "push") {
+    if (mode === "push" && !yes) {
+      if (!process.stdin.isTTY) {
+        fail(
+          "push requires confirmation.",
+          "push mutates a shared CMS environment, and this shell is non-interactive; the step-6 gate approval must be recorded explicitly (SKILL.md).",
+          "Re-run with --yes after the in-session gate approval, or run push from an interactive terminal."
+        );
+      }
+      if (!(await confirmPush(manifest.component))) {
+        process.stdout.write("push cancelled.\n");
+        process.exit(0);
+      }
+    }
     loadDotEnv(cwd, process.env);
     try {
       const outcome = await runPlan(plan, {

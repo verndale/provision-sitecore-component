@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# Deliver-and-handoff: refuse pushes from agent shells (AGENTS.md, Hard boundaries).
+node scripts/hooks/agent-commit-guard.cjs || exit 1

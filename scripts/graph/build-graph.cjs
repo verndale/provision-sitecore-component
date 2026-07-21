@@ -95,7 +95,7 @@ function typeOf(r) {
 
   if (/^src\/[^/]+\.cjs$/.test(r)) return "source";
   if (/^test\/[^/]+\.cjs$/.test(r)) return "test";
-  if (/^scripts\/(wiki|release|graph|evals)\/.+\.cjs$/.test(r)) return "automation";
+  if (/^scripts\/(wiki|release|graph|evals|hooks)\/.+\.cjs$/.test(r)) return "automation";
 
   if (r.startsWith("wiki/")) {
     if (r.endsWith(".md") === false) return null;

@@ -22,6 +22,10 @@ Node 24+ (`.nvmrc`), pnpm 10 via Corepack. `pnpm install` wires husky; the hooks
 
 Skill files under `skills/` follow the ai-orchestration authoring standard — the vendored spec lives at [skills/_meta/_skill-sections.md](skills/_meta/_skill-sections.md) and `test/skills-lint.test.cjs` enforces the checkable parts (frontmatter shape, body length, `## Contents` on long files, link hygiene). Don't edit the vendored `_meta` / `retry-contract.md` copies here; re-sync them from ai-orchestration.
 
+## Agent guardrails
+
+The repo's hard boundaries are mechanically enforced for Claude Code and Codex sessions: the checked-in [.claude/settings.json](.claude/settings.json) and [.codex/hooks.json](.codex/hooks.json) run `scripts/hooks/pretooluse-guard.cjs` as a PreToolUse hook (first use prompts a one-time hook/trust approval in each tool), husky's pre-commit/pre-push refuse agent-shell commits (`ALLOW_AGENT_COMMIT=1` is the human escape hatch), and the CLI itself gates `push` behind `--yes`/a TTY confirm. `setup.sh` additionally registers the same guard user-level so the skill's boundaries follow developers into consumer repos. Policy lives in `scripts/hooks/guard-core.cjs` and is pinned by `test/hooks.test.cjs` + `test/hooks-install.test.cjs` + `test/push-gate.test.cjs` — change guard and tests together. The guard is drift prevention for honest agents, not a sandbox; CI remains the backstop.
+
 ## Releases
 
 semantic-release on `main`: Conventional Commits drive the version (`feat` → minor, `fix` → patch, breaking → major), CHANGELOG.md and the GitHub Release are generated, no npm publish. Don't bump versions by hand.

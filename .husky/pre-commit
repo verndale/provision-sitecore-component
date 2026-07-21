@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
+# Deliver-and-handoff: refuse commits from agent shells (AGENTS.md, Hard boundaries).
+node scripts/hooks/agent-commit-guard.cjs || exit 1
+
 node scripts/wiki/pre-commit-journal.cjs
 
 # Keep the committed knowledge graph in sync with current repo state. The build is

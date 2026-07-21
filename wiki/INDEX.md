@@ -25,6 +25,7 @@ Writing protocol (when to capture, templates, automation): [MECHANICS.md](MECHAN
 
 <!-- One line per entry, newest first: - YYYY-MM-DD — [Title](journal/<file>.md) — hook. -->
 
+- 2026-07-21 — [Skill-shipped guardrails (Claude Code + Codex)](journal/2026-07-21-skill-shipped-guardrails.md) — the skill's hard boundaries became mechanical: a shared PreToolUse guard installed by setup.sh for both tools, a CLI push confirmation, husky agent-commit blocks, and a per-machine credential bootstrap.
 - 2026-07-21 — [Agent operating docs (AGENTS.md, CLAUDE.md)](journal/2026-07-21-agents-and-claude-md.md) — a root-level AGENTS.md brief plus a CLAUDE.md that re-exports it, indexed into the knowledge graph as root-doc nodes.
 - 2026-07-21 — [Skill eval scenarios and CI](journal/2026-07-21-skill-eval-scenarios-and-ci.md) — ported ai-orchestration's scenario-eval harness (validator + policy + 8 scenarios) and wired it into CI so a skill-behavior regression fails the build.
 - 2026-07-21 — [Initial CLI, skill, and repo tooling](journal/2026-07-21-initial-cli-skill-and-repo-tooling.md) — the manifest-driven provisioning tool, its skill, tests, and the ai-commit/ai-pr/semantic-release/wiki tooling, in one delivery.
