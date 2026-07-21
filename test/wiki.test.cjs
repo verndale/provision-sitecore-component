@@ -105,7 +105,9 @@ test("merge sync fills pr: pending in this repo's seeded journal (temp copy)", a
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   fs.cpSync(WIKI, path.join(dir, "wiki"), { recursive: true });
 
-  const journalName = journalFiles[0];
+  const journalName = journalFiles.find(
+    (n) => fm.readField(fs.readFileSync(path.join(WIKI, "journal", n), "utf8"), "pr") === "pending",
+  );
   const ctx = {
     number: 1,
     title: "feat: scaffold provision-sitecore-component",
