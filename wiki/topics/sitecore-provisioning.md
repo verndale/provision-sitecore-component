@@ -17,6 +17,7 @@ How one reviewed manifest drives both the CMS side (templates, fields, rendering
 
 ## Decisions
 
+- 2026-07-21 — feat(provision-sitecore-component): Implement PreToolUse guard for enhan ([PR #10](https://github.com/verndale/provision-sitecore-component/pull/10))
 - 2026-07-21 — Guardrails ship with the skill: a shared PreToolUse guard registered user-level for Claude Code and Codex by setup.sh (plus checked-in project configs), a CLI-level push confirmation (`--yes` records the step-6 gate), husky agent-commit blocks, and a per-machine credential file — enforcement travels to consumer repos instead of living only here. ([journal](../journal/2026-07-21-skill-shipped-guardrails.md))
 - 2026-07-21 — fix(provision-sitecore-component): Update byte count and sort file lists ([PR #7](https://github.com/verndale/provision-sitecore-component/pull/7))
 - 2026-07-21 — feat(evals): Add skill evaluation scenarios and CI workflow ([PR #3](https://github.com/verndale/provision-sitecore-component/pull/3))
