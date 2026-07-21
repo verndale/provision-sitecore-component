@@ -1,3 +1,33 @@
+# v1.2.2 — 2026-07-21
+
+## Summary (AI, bounded)
+- Fixed the provision-sitecore-component by updating graph data and improving test coverage (67f1890).
+- Synchronized wiki content including journal, topics, and plans (07bd9df).
+- Merged pull request #8 to update wiki synchronization processes (59b5bd2).
+
+## Highlights
+- commit: Merge pull request #8 from verndale/bot/wiki-sync/7 (59b5bd2)
+- fix(provision-sitecore-component): Update graph data and improve test coverage (67f1890)
+- docs(wiki): sync journal, topics, and plans for #7 (07bd9df)
+
+## Breaking changes
+- None
+
+## Changes by type
+### Fixes
+- fix(provision-sitecore-component): Update graph data and improve test coverage (67f1890)
+
+### Docs
+- docs(wiki): sync journal, topics, and plans for #7 (07bd9df)
+
+### Other (unknown)
+- commit: Merge pull request #8 from verndale/bot/wiki-sync/7 (59b5bd2)
+
+## Full commit list
+- 59b5bd2 commit: Merge pull request #8 from verndale/bot/wiki-sync/7
+- 67f1890 fix(provision-sitecore-component): Update graph data and improve test coverage
+- 07bd9df docs(wiki): sync journal, topics, and plans for #7
+
 # v1.2.1 — 2026-07-21
 
 ## Summary (AI, bounded)
