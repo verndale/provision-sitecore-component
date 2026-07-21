@@ -1,3 +1,37 @@
+# v1.4.0 — 2026-07-21
+
+## Summary (AI, bounded)
+- Enhanced the knowledge graph with lifecycle hooks in the provision-sitecore-component (commit 44ff058).
+- Synchronized wiki content including journal, topics, and plans (commit 472fbaf).
+- Merged key pull requests to integrate graph hooks and wiki synchronization (commits d74348b and d6e469c).
+- No breaking changes introduced in this release.
+
+## Highlights
+- commit: Merge pull request #13 from verndale/feat/12-graph-hooks-in-graph (d74348b)
+- feat(provision-sitecore-component): Enhance knowledge graph with lifecycle hooks (44ff058)
+- commit: Merge pull request #11 from verndale/bot/wiki-sync/10 (d6e469c)
+- docs(wiki): sync journal, topics, and plans for #10 (472fbaf)
+
+## Breaking changes
+- None
+
+## Changes by type
+### Features
+- feat(provision-sitecore-component): Enhance knowledge graph with lifecycle hooks (44ff058)
+
+### Docs
+- docs(wiki): sync journal, topics, and plans for #10 (472fbaf)
+
+### Other (unknown)
+- commit: Merge pull request #11 from verndale/bot/wiki-sync/10 (d6e469c)
+- commit: Merge pull request #13 from verndale/feat/12-graph-hooks-in-graph (d74348b)
+
+## Full commit list
+- d74348b commit: Merge pull request #13 from verndale/feat/12-graph-hooks-in-graph
+- 44ff058 feat(provision-sitecore-component): Enhance knowledge graph with lifecycle hooks
+- d6e469c commit: Merge pull request #11 from verndale/bot/wiki-sync/10
+- 472fbaf docs(wiki): sync journal, topics, and plans for #10
+
 # v1.3.0 — 2026-07-21
 
 ## Summary (AI, bounded)
