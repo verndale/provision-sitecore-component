@@ -1,3 +1,28 @@
+# v1.3.0 — 2026-07-21
+
+## Summary (AI, bounded)
+- Implemented a PreToolUse guard in the provision-sitecore-component to enhance security (commit e4c929d).
+- Merged pull request #10 adding skill shipped guardrails (commit c2ef125).
+- No breaking changes introduced in this release.
+
+## Highlights
+- commit: Merge pull request #10 from verndale/feat/skill-shipped-guardrails (c2ef125)
+- feat(provision-sitecore-component): Implement PreToolUse guard for enhanced security (e4c929d)
+
+## Breaking changes
+- None
+
+## Changes by type
+### Features
+- feat(provision-sitecore-component): Implement PreToolUse guard for enhanced security (e4c929d)
+
+### Other (unknown)
+- commit: Merge pull request #10 from verndale/feat/skill-shipped-guardrails (c2ef125)
+
+## Full commit list
+- c2ef125 commit: Merge pull request #10 from verndale/feat/skill-shipped-guardrails
+- e4c929d feat(provision-sitecore-component): Implement PreToolUse guard for enhanced security
+
 # v1.2.2 — 2026-07-21
 
 ## Summary (AI, bounded)
