@@ -34,7 +34,7 @@ const CONNECTIONS_DIR_ID = "wiki/connections";
 const isConnectionsView = (id) => id === CONNECTIONS_INDEX_ID || id.startsWith(`${CONNECTIONS_DIR_ID}/`);
 
 // Root docs promoted to their own node type.
-const ROOT_DOCS = new Set(["README.md", "CONTRIBUTING.md"]);
+const ROOT_DOCS = new Set(["README.md", "CONTRIBUTING.md", "AGENTS.md", "CLAUDE.md"]);
 // Non-.cjs automation entrypoints included by explicit path.
 const AUTOMATION_FILES = new Set(["setup.sh"]);
 
