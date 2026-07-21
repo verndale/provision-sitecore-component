@@ -2,7 +2,7 @@
 date: 2026-07-21
 topics: [skill-evals]
 plan: plans/2026-07-21-add-skill-eval-scenarios-validator-ci-issue-1.md
-pr: pending
+pr: https://github.com/verndale/provision-sitecore-component/pull/3
 ---
 # Skill eval scenarios and CI
 
