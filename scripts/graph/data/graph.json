@@ -1,0 +1,1062 @@
+{
+  "counts": {
+    "nodes": 47,
+    "edges": 80,
+    "byType": {
+      "root-doc": 2,
+      "automation": 17,
+      "skill-readme": 1,
+      "reference": 6,
+      "skill": 1,
+      "source": 7,
+      "test": 7,
+      "wiki-index": 3,
+      "wiki-journal": 1,
+      "wiki-plan": 1,
+      "wiki-topic": 1
+    },
+    "byEdgeType": {
+      "covers": 5,
+      "links-to": 28,
+      "plan": 1,
+      "references": 6,
+      "requires": 38,
+      "topic": 2
+    }
+  },
+  "nodes": [
+    {
+      "id": "CONTRIBUTING.md",
+      "label": "Contributing",
+      "type": "root-doc",
+      "dir": ".",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 1814,
+      "degree": 2
+    },
+    {
+      "id": "README.md",
+      "label": "provision-sitecore-component",
+      "type": "root-doc",
+      "dir": ".",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 11099,
+      "degree": 7
+    },
+    {
+      "id": "scripts/graph/build-graph.cjs",
+      "label": "build-graph.cjs",
+      "type": "automation",
+      "dir": "scripts/graph",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 20511,
+      "degree": 4
+    },
+    {
+      "id": "scripts/graph/routing.cjs",
+      "label": "routing.cjs",
+      "type": "automation",
+      "dir": "scripts/graph",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 11971,
+      "degree": 2
+    },
+    {
+      "id": "scripts/graph/serve.cjs",
+      "label": "serve.cjs",
+      "type": "automation",
+      "dir": "scripts/graph",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 1871,
+      "degree": 0
+    },
+    {
+      "id": "scripts/release/semantic-release-structured-notes.cjs",
+      "label": "semantic-release-structured-notes.cjs",
+      "type": "automation",
+      "dir": "scripts/release",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 7507,
+      "degree": 0
+    },
+    {
+      "id": "scripts/wiki/archive-plan.cjs",
+      "label": "archive-plan.cjs",
+      "type": "automation",
+      "dir": "scripts/wiki",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 7293,
+      "degree": 3
+    },
+    {
+      "id": "scripts/wiki/ci-journal-warn.cjs",
+      "label": "ci-journal-warn.cjs",
+      "type": "automation",
+      "dir": "scripts/wiki",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 1592,
+      "degree": 1
+    },
+    {
+      "id": "scripts/wiki/find-unarchived-plans.cjs",
+      "label": "find-unarchived-plans.cjs",
+      "type": "automation",
+      "dir": "scripts/wiki",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 5663,
+      "degree": 2
+    },
+    {
+      "id": "scripts/wiki/lib/ai.cjs",
+      "label": "ai.cjs",
+      "type": "automation",
+      "dir": "scripts/wiki/lib",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 5231,
+      "degree": 1
+    },
+    {
+      "id": "scripts/wiki/lib/codex-plans.cjs",
+      "label": "codex-plans.cjs",
+      "type": "automation",
+      "dir": "scripts/wiki/lib",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 5117,
+      "degree": 2
+    },
+    {
+      "id": "scripts/wiki/lib/frontmatter.cjs",
+      "label": "frontmatter.cjs",
+      "type": "automation",
+      "dir": "scripts/wiki/lib",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 3801,
+      "degree": 3
+    },
+    {
+      "id": "scripts/wiki/lib/substantive.cjs",
+      "label": "substantive.cjs",
+      "type": "automation",
+      "dir": "scripts/wiki/lib",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 2044,
+      "degree": 4
+    },
+    {
+      "id": "scripts/wiki/lib/wiki-io.cjs",
+      "label": "wiki-io.cjs",
+      "type": "automation",
+      "dir": "scripts/wiki/lib",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 3921,
+      "degree": 2
+    },
+    {
+      "id": "scripts/wiki/navigate.cjs",
+      "label": "navigate.cjs",
+      "type": "automation",
+      "dir": "scripts/wiki",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 1292,
+      "degree": 2
+    },
+    {
+      "id": "scripts/wiki/on-merge-sync.cjs",
+      "label": "on-merge-sync.cjs",
+      "type": "automation",
+      "dir": "scripts/wiki",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 10355,
+      "degree": 5
+    },
+    {
+      "id": "scripts/wiki/pre-commit-journal.cjs",
+      "label": "pre-commit-journal.cjs",
+      "type": "automation",
+      "dir": "scripts/wiki",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 3646,
+      "degree": 2
+    },
+    {
+      "id": "scripts/wiki/refresh-issue-state.cjs",
+      "label": "refresh-issue-state.cjs",
+      "type": "automation",
+      "dir": "scripts/wiki",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 3517,
+      "degree": 0
+    },
+    {
+      "id": "setup.sh",
+      "label": "setup.sh",
+      "type": "automation",
+      "dir": ".",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 3515,
+      "degree": 0
+    },
+    {
+      "id": "skills/provision-sitecore-component/README.md",
+      "label": "provision-sitecore-component — operator docs",
+      "type": "skill-readme",
+      "dir": "skills/provision-sitecore-component",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 2459,
+      "degree": 4
+    },
+    {
+      "id": "skills/provision-sitecore-component/references/authoring-api.md",
+      "label": "Authoring API contract",
+      "type": "reference",
+      "dir": "skills/provision-sitecore-component/references",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 5857,
+      "degree": 4
+    },
+    {
+      "id": "skills/provision-sitecore-component/references/confluence-import.md",
+      "label": "Confluence spec import",
+      "type": "reference",
+      "dir": "skills/provision-sitecore-component/references",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 3884,
+      "degree": 1
+    },
+    {
+      "id": "skills/provision-sitecore-component/references/manifest-contract.md",
+      "label": "Component manifest contract",
+      "type": "reference",
+      "dir": "skills/provision-sitecore-component/references",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 6981,
+      "degree": 4
+    },
+    {
+      "id": "skills/provision-sitecore-component/references/retry-contract.md",
+      "label": "Bounded retry & self-correction contract (shared)",
+      "type": "reference",
+      "dir": "skills/provision-sitecore-component/references",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 7737,
+      "degree": 2
+    },
+    {
+      "id": "skills/provision-sitecore-component/references/tsx-template.md",
+      "label": "TSX scaffold contract",
+      "type": "reference",
+      "dir": "skills/provision-sitecore-component/references",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 3823,
+      "degree": 1
+    },
+    {
+      "id": "skills/provision-sitecore-component/references/type-mapping.md",
+      "label": "Field type mapping",
+      "type": "reference",
+      "dir": "skills/provision-sitecore-component/references",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 3294,
+      "degree": 2
+    },
+    {
+      "id": "skills/provision-sitecore-component/SKILL.md",
+      "label": "provision-sitecore-component",
+      "type": "skill",
+      "dir": "skills/provision-sitecore-component",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 7402,
+      "degree": 12
+    },
+    {
+      "id": "src/build-plan.cjs",
+      "label": "build-plan.cjs",
+      "type": "source",
+      "dir": "src",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 13544,
+      "degree": 6
+    },
+    {
+      "id": "src/cli.cjs",
+      "label": "cli.cjs",
+      "type": "source",
+      "dir": "src",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 8785,
+      "degree": 5
+    },
+    {
+      "id": "src/emit-tsx.cjs",
+      "label": "emit-tsx.cjs",
+      "type": "source",
+      "dir": "src",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 6644,
+      "degree": 6
+    },
+    {
+      "id": "src/executor.cjs",
+      "label": "executor.cjs",
+      "type": "source",
+      "dir": "src",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 22876,
+      "degree": 4
+    },
+    {
+      "id": "src/type-map.cjs",
+      "label": "type-map.cjs",
+      "type": "source",
+      "dir": "src",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 4047,
+      "degree": 2
+    },
+    {
+      "id": "src/util.cjs",
+      "label": "util.cjs",
+      "type": "source",
+      "dir": "src",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 790,
+      "degree": 4
+    },
+    {
+      "id": "src/validate-manifest.cjs",
+      "label": "validate-manifest.cjs",
+      "type": "source",
+      "dir": "src",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 14288,
+      "degree": 4
+    },
+    {
+      "id": "test/executor.test.cjs",
+      "label": "executor.test.cjs",
+      "type": "test",
+      "dir": "test",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 14257,
+      "degree": 4
+    },
+    {
+      "id": "test/graph.test.cjs",
+      "label": "graph.test.cjs",
+      "type": "test",
+      "dir": "test",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 2682,
+      "degree": 2
+    },
+    {
+      "id": "test/helpers.cjs",
+      "label": "helpers.cjs",
+      "type": "test",
+      "dir": "test",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 6280,
+      "degree": 3
+    },
+    {
+      "id": "test/plan-emit.test.cjs",
+      "label": "plan-emit.test.cjs",
+      "type": "test",
+      "dir": "test",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 4570,
+      "degree": 4
+    },
+    {
+      "id": "test/skills-lint.test.cjs",
+      "label": "skills-lint.test.cjs",
+      "type": "test",
+      "dir": "test",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 4932,
+      "degree": 0
+    },
+    {
+      "id": "test/validate.test.cjs",
+      "label": "validate.test.cjs",
+      "type": "test",
+      "dir": "test",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 3333,
+      "degree": 3
+    },
+    {
+      "id": "test/wiki.test.cjs",
+      "label": "wiki.test.cjs",
+      "type": "test",
+      "dir": "test",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 6577,
+      "degree": 4
+    },
+    {
+      "id": "wiki/INDEX.md",
+      "label": "Context Wiki",
+      "type": "wiki-index",
+      "dir": "wiki",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 2547,
+      "degree": 6
+    },
+    {
+      "id": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
+      "label": "Initial CLI, skill, and repo tooling",
+      "type": "wiki-journal",
+      "dir": "wiki/journal",
+      "topics": [
+        "sitecore-provisioning",
+        "repo-tooling"
+      ],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 3068,
+      "degree": 4
+    },
+    {
+      "id": "wiki/MECHANICS.md",
+      "label": "Wiki Mechanics",
+      "type": "wiki-index",
+      "dir": "wiki",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 8345,
+      "degree": 6
+    },
+    {
+      "id": "wiki/plans/2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md",
+      "label": "Plan: provision-sitecore-component — standalone repo (CLI + skill)",
+      "type": "wiki-plan",
+      "dir": "wiki/plans",
+      "topics": [
+        "sitecore-provisioning"
+      ],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 18864,
+      "degree": 4
+    },
+    {
+      "id": "wiki/plans/INDEX.md",
+      "label": "Plan Audit",
+      "type": "wiki-index",
+      "dir": "wiki/plans",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 1067,
+      "degree": 3
+    },
+    {
+      "id": "wiki/topics/sitecore-provisioning.md",
+      "label": "Sitecore component provisioning — Design History",
+      "type": "wiki-topic",
+      "dir": "wiki/topics",
+      "topics": [],
+      "aliases": [
+        "component provisioning",
+        "manifest",
+        "Authoring API push",
+        "TSX scaffold",
+        "CMS template creation"
+      ],
+      "prs": [],
+      "issues": [],
+      "bytes": 3628,
+      "degree": 14
+    }
+  ],
+  "edges": [
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "skills/provision-sitecore-component/SKILL.md",
+      "type": "covers"
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "src/build-plan.cjs",
+      "type": "covers"
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "src/cli.cjs",
+      "type": "covers"
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "src/emit-tsx.cjs",
+      "type": "covers"
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "src/executor.cjs",
+      "type": "covers"
+    },
+    {
+      "source": "CONTRIBUTING.md",
+      "target": "wiki/MECHANICS.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "README.md",
+      "target": "CONTRIBUTING.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "README.md",
+      "target": "skills/provision-sitecore-component/references/authoring-api.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "README.md",
+      "target": "skills/provision-sitecore-component/references/manifest-contract.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "README.md",
+      "target": "skills/provision-sitecore-component/references/type-mapping.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "README.md",
+      "target": "wiki/INDEX.md",
+      "type": "links-to",
+      "count": 2,
+      "anchors": []
+    },
+    {
+      "source": "README.md",
+      "target": "wiki/MECHANICS.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "skills/provision-sitecore-component/README.md",
+      "target": "README.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "skills/provision-sitecore-component/README.md",
+      "target": "skills/provision-sitecore-component/references/authoring-api.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "skills/provision-sitecore-component/README.md",
+      "target": "skills/provision-sitecore-component/SKILL.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "skills/provision-sitecore-component/SKILL.md",
+      "target": "skills/provision-sitecore-component/README.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "skills/provision-sitecore-component/SKILL.md",
+      "target": "skills/provision-sitecore-component/references/authoring-api.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "skills/provision-sitecore-component/SKILL.md",
+      "target": "skills/provision-sitecore-component/references/manifest-contract.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "skills/provision-sitecore-component/SKILL.md",
+      "target": "skills/provision-sitecore-component/references/retry-contract.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/INDEX.md",
+      "target": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/INDEX.md",
+      "target": "wiki/MECHANICS.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/INDEX.md",
+      "target": "wiki/plans/INDEX.md",
+      "type": "links-to",
+      "count": 2,
+      "anchors": []
+    },
+    {
+      "source": "wiki/INDEX.md",
+      "target": "wiki/topics/sitecore-provisioning.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/MECHANICS.md",
+      "target": "scripts/graph/build-graph.cjs",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/MECHANICS.md",
+      "target": "wiki/INDEX.md",
+      "type": "links-to",
+      "count": 2,
+      "anchors": []
+    },
+    {
+      "source": "wiki/MECHANICS.md",
+      "target": "wiki/plans/INDEX.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/plans/INDEX.md",
+      "target": "wiki/plans/2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "skills/provision-sitecore-component/references/manifest-contract.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "src/build-plan.cjs",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "src/emit-tsx.cjs",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "src/executor.cjs",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
+      "type": "links-to",
+      "count": 2,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "wiki/plans/2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md",
+      "type": "links-to",
+      "count": 3,
+      "anchors": []
+    },
+    {
+      "source": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
+      "target": "wiki/plans/2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md",
+      "type": "plan"
+    },
+    {
+      "source": "skills/provision-sitecore-component/SKILL.md",
+      "target": "skills/provision-sitecore-component/references/authoring-api.md",
+      "type": "references"
+    },
+    {
+      "source": "skills/provision-sitecore-component/SKILL.md",
+      "target": "skills/provision-sitecore-component/references/confluence-import.md",
+      "type": "references"
+    },
+    {
+      "source": "skills/provision-sitecore-component/SKILL.md",
+      "target": "skills/provision-sitecore-component/references/manifest-contract.md",
+      "type": "references"
+    },
+    {
+      "source": "skills/provision-sitecore-component/SKILL.md",
+      "target": "skills/provision-sitecore-component/references/retry-contract.md",
+      "type": "references"
+    },
+    {
+      "source": "skills/provision-sitecore-component/SKILL.md",
+      "target": "skills/provision-sitecore-component/references/tsx-template.md",
+      "type": "references"
+    },
+    {
+      "source": "skills/provision-sitecore-component/SKILL.md",
+      "target": "skills/provision-sitecore-component/references/type-mapping.md",
+      "type": "references"
+    },
+    {
+      "source": "scripts/graph/build-graph.cjs",
+      "target": "scripts/wiki/lib/frontmatter.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "scripts/wiki/archive-plan.cjs",
+      "target": "scripts/wiki/lib/codex-plans.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "scripts/wiki/archive-plan.cjs",
+      "target": "scripts/wiki/lib/wiki-io.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "scripts/wiki/ci-journal-warn.cjs",
+      "target": "scripts/wiki/lib/substantive.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "scripts/wiki/find-unarchived-plans.cjs",
+      "target": "scripts/wiki/archive-plan.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "scripts/wiki/find-unarchived-plans.cjs",
+      "target": "scripts/wiki/lib/codex-plans.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "scripts/wiki/navigate.cjs",
+      "target": "scripts/graph/build-graph.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "scripts/wiki/navigate.cjs",
+      "target": "scripts/graph/routing.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "scripts/wiki/on-merge-sync.cjs",
+      "target": "scripts/wiki/lib/ai.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "scripts/wiki/on-merge-sync.cjs",
+      "target": "scripts/wiki/lib/frontmatter.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "scripts/wiki/on-merge-sync.cjs",
+      "target": "scripts/wiki/lib/substantive.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "scripts/wiki/on-merge-sync.cjs",
+      "target": "scripts/wiki/lib/wiki-io.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "scripts/wiki/pre-commit-journal.cjs",
+      "target": "scripts/wiki/lib/substantive.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "src/build-plan.cjs",
+      "target": "src/util.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "src/cli.cjs",
+      "target": "src/build-plan.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "src/cli.cjs",
+      "target": "src/emit-tsx.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "src/cli.cjs",
+      "target": "src/executor.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "src/cli.cjs",
+      "target": "src/validate-manifest.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "src/emit-tsx.cjs",
+      "target": "src/type-map.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "src/emit-tsx.cjs",
+      "target": "src/util.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "src/validate-manifest.cjs",
+      "target": "src/util.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/executor.test.cjs",
+      "target": "src/build-plan.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/executor.test.cjs",
+      "target": "src/executor.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/executor.test.cjs",
+      "target": "src/validate-manifest.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/executor.test.cjs",
+      "target": "test/helpers.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/graph.test.cjs",
+      "target": "scripts/graph/build-graph.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/graph.test.cjs",
+      "target": "scripts/graph/routing.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/plan-emit.test.cjs",
+      "target": "src/build-plan.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/plan-emit.test.cjs",
+      "target": "src/emit-tsx.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/plan-emit.test.cjs",
+      "target": "src/validate-manifest.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/plan-emit.test.cjs",
+      "target": "test/helpers.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/validate.test.cjs",
+      "target": "src/type-map.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/validate.test.cjs",
+      "target": "src/util.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/validate.test.cjs",
+      "target": "test/helpers.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/wiki.test.cjs",
+      "target": "scripts/wiki/lib/frontmatter.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/wiki.test.cjs",
+      "target": "scripts/wiki/lib/substantive.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/wiki.test.cjs",
+      "target": "scripts/wiki/on-merge-sync.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "test/wiki.test.cjs",
+      "target": "scripts/wiki/pre-commit-journal.cjs",
+      "type": "requires"
+    },
+    {
+      "source": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
+      "target": "wiki/topics/sitecore-provisioning.md",
+      "type": "topic"
+    },
+    {
+      "source": "wiki/plans/2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md",
+      "target": "wiki/topics/sitecore-provisioning.md",
+      "type": "topic"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+pnpm exec ai-commit prepare-commit-msg "$1" "$2"

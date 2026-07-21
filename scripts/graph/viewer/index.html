@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Knowledge Graph — provision-sitecore-component</title>
+    <link rel="stylesheet" href="/viewer/viewer.css" />
+  </head>
+  <body>
+    <aside id="controls">
+      <h1>Knowledge Graph</h1>
+      <p id="stats" class="muted">loading…</p>
+
+      <label class="field">
+        <span>Search</span>
+        <input id="search" type="search" placeholder="filter by name or path…" autocomplete="off" />
+      </label>
+
+      <div class="field route-controls">
+        <span>Shortest path</span>
+        <select id="route-from" aria-label="Route source"></select>
+        <select id="route-to" aria-label="Route target"></select>
+        <button id="show-route" type="button">Show route</button>
+        <p id="route-status" class="muted"></p>
+      </div>
+
+      <div class="field">
+        <div class="field-head">
+          <span>Node types</span>
+          <button id="toggle-all" type="button" class="linkbtn">toggle all</button>
+        </div>
+        <div id="legend"></div>
+      </div>
+
+      <button id="reset" type="button">Reset view</button>
+      <p class="muted hint">Click a node to focus its neighborhood. Scroll to zoom, drag to pan.</p>
+    </aside>
+
+    <main id="graph"></main>
+
+    <section id="panel" class="hidden">
+      <button id="panel-close" type="button" aria-label="Close">×</button>
+      <h2 id="p-label"></h2>
+      <section id="node-panel">
+        <p id="p-type" class="badge"></p>
+        <dl id="p-meta"></dl>
+        <h3>Connections</h3>
+        <ul id="p-neighbors"></ul>
+      </section>
+      <section id="route-panel" class="hidden">
+        <h3>Selected route</h3>
+        <ol id="p-route"></ol>
+      </section>
+    </section>
+
+    <script src="/viewer/vendor/graphology.umd.min.js"></script>
+    <script src="/viewer/vendor/graphology-library.min.js"></script>
+    <script src="/viewer/vendor/sigma.min.js"></script>
+    <script src="/viewer/routing.js"></script>
+    <script src="/viewer/viewer.js"></script>
+  </body>
+</html>

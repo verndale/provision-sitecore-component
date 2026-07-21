@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+node scripts/wiki/pre-commit-journal.cjs
+
+# Keep the committed knowledge graph in sync with current repo state. The build is
+# deterministic and fast (a no-op diff when nothing indexed changed), so rebuild
+# unconditionally and stage the result. Non-blocking: on build failure, warn and let
+# the commit proceed — the graph-freshness test in CI is the drift backstop. Skipped in CI.
+if [ -z "$CI" ]; then
+  if node scripts/graph/build-graph.cjs >/dev/null 2>&1; then
+    git add scripts/graph/data/graph.json wiki/connections.md wiki/connections
+  else
+    echo "warning: knowledge graph rebuild failed; committed graph.json may be stale (run pnpm graph:build)" >&2
+  fi
+fi

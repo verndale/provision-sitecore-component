@@ -1,0 +1,119 @@
+name: Sync context wiki
+
+# When a PR merges, reconcile the context wiki: fill `pr: pending` in journal
+# entries, draft a stub for a substantive PR that added none, append a topic
+# Decisions bullet, and complete a plans/INDEX.md row. Changes land as a bot PR
+# (never a direct push to main), so generated prose is reviewed and the release
+# bot's main push is never raced. Skips its own bot branches to avoid recursion.
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: wiki-sync-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  PR_NUMBER: ${{ github.event.pull_request.number }}
+
+jobs:
+  sync:
+    if: >-
+      github.event.pull_request.merged == true &&
+      !startsWith(github.event.pull_request.head.ref, 'bot/wiki-')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PR_BOT_TOKEN }}
+          persist-credentials: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.14.0"
+
+      - name: Enable pnpm via Corepack
+        run: corepack enable && corepack prepare pnpm@10.33.0 --activate
+
+      - name: Get pnpm store path
+        id: pnpm-cache
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build PR context
+        env:
+          GH_TOKEN: ${{ secrets.PR_BOT_TOKEN }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_MERGED_AT: ${{ github.event.pull_request.merged_at }}
+        run: |
+          files=$(gh api "repos/${{ github.repository }}/pulls/${PR_NUMBER}/files" --paginate --jq '[.[].filename]')
+          commits=$(gh api "repos/${{ github.repository }}/pulls/${PR_NUMBER}/commits" --paginate --jq '[.[] | {hash: .sha, subject: (.commit.message | split("\n")[0])}]')
+          jq -n \
+            --arg n "$PR_NUMBER" --arg t "$PR_TITLE" --arg b "$PR_BODY" \
+            --arg u "$PR_URL" --arg m "$PR_MERGED_AT" \
+            --argjson f "$files" --argjson c "$commits" \
+            '{number: ($n|tonumber), title: $t, body: $b, url: $u, mergedAt: $m, changedPaths: $f, commits: $c}' \
+            > ctx.json
+
+      - name: Sync wiki
+        id: sync
+        env:
+          WIKI_AI: ${{ vars.WIKI_AI }}
+          WIKI_AI_ENDPOINT: ${{ vars.WIKI_AI_ENDPOINT }}
+          WIKI_AI_MODEL: ${{ vars.WIKI_AI_MODEL }}
+          WIKI_AI_API_KEY: ${{ secrets.WIKI_AI_API_KEY }}
+          RELEASE_NOTES_AI_ENDPOINT: ${{ vars.RELEASE_NOTES_AI_ENDPOINT }}
+          RELEASE_NOTES_AI_MODEL: ${{ vars.RELEASE_NOTES_AI_MODEL }}
+          RELEASE_NOTES_AI_API_KEY: ${{ secrets.RELEASE_NOTES_AI_API_KEY }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "bot/wiki-sync/${PR_NUMBER}" origin/main
+          node scripts/wiki/on-merge-sync.cjs --context ctx.json
+          # Wiki files are knowledge-graph nodes/edges; rebuild the graph so the bot
+          # commit stays in sync (the graph-freshness test would otherwise fail this
+          # PR). No-op diff when the sync made no wiki change.
+          node scripts/graph/build-graph.cjs
+          git add wiki scripts/graph/data/graph.json
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No wiki changes for #${PR_NUMBER}."
+          else
+            git commit -m "docs(wiki): sync journal, topics, and plans for #${PR_NUMBER}"
+            git push --force origin "bot/wiki-sync/${PR_NUMBER}"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open or update PR
+        if: steps.sync.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.PR_BOT_TOKEN }}
+          PR_BASE_BRANCH: main
+          PR_HEAD_BRANCH: bot/wiki-sync/${{ github.event.pull_request.number }}
+          PR_DRAFT: "false"
+          PR_AI: ${{ vars.PR_AI }}
+          PR_AI_ENDPOINT: ${{ vars.PR_AI_ENDPOINT }}
+          PR_AI_MODEL: ${{ vars.PR_AI_MODEL }}
+          PR_AI_API_KEY: ${{ secrets.PR_AI_API_KEY }}
+        run: pnpm run pr:create

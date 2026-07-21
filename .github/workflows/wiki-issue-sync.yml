@@ -1,0 +1,92 @@
+name: Sync wiki issue state
+
+# Refreshes GitHub issue state cited in wiki topic pages: an issue listed under a
+# topic's `## Open threads` that has since closed gets a ` — closed` marker so the
+# section stops citing resolved issues. Opens a PR when anything changed; never
+# pushes to main. Runs daily and on demand.
+
+on:
+  schedule:
+    - cron: "45 11 * * *" # 06:45 America/New_York (EST)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: read
+
+concurrency:
+  group: wiki-issue-sync
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PR_BOT_TOKEN }}
+          persist-credentials: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.14.0"
+
+      - name: Enable pnpm via Corepack
+        run: corepack enable && corepack prepare pnpm@10.33.0 --activate
+
+      - name: Get pnpm store path
+        id: pnpm-cache
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Refresh issue state
+        id: refresh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B bot/wiki-issue-sync origin/main
+          node scripts/wiki/refresh-issue-state.cjs
+          # Topic pages are knowledge-graph nodes; rebuild the graph so the bot commit
+          # stays in sync. No-op diff when no issue state changed.
+          node scripts/graph/build-graph.cjs
+          git add wiki/topics wiki/connections.md wiki/connections scripts/graph/data/graph.json
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No issue-state changes."
+          else
+            git commit -m "docs(wiki): refresh cited issue state in topic pages"
+            git push --force origin bot/wiki-issue-sync
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open or update PR
+        if: steps.refresh.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.PR_BOT_TOKEN }}
+          PR_BASE_BRANCH: main
+          PR_HEAD_BRANCH: bot/wiki-issue-sync
+          PR_DRAFT: "false"
+          PR_AI: ${{ vars.PR_AI }}
+          PR_AI_ENDPOINT: ${{ vars.PR_AI_ENDPOINT }}
+          PR_AI_MODEL: ${{ vars.PR_AI_MODEL }}
+          PR_AI_API_KEY: ${{ secrets.PR_AI_API_KEY }}
+        run: pnpm run pr:create

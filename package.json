@@ -1,0 +1,37 @@
+{
+  "name": "@verndale/provision-sitecore-component",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Provision Sitecore XM Cloud components from a reviewed manifest: CMS templates, renderings, and bindings via the Authoring GraphQL API, plus the matching front-end TSX scaffold.",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=24.14.0"
+  },
+  "bin": {
+    "provision-sitecore-component": "src/cli.cjs"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "test": "node --test --test-reporter=spec test/*.test.cjs",
+    "graph:build": "node scripts/graph/build-graph.cjs",
+    "graph:view": "node scripts/graph/serve.cjs",
+    "lint:commits:last": "commitlint --config node_modules/@verndale/ai-commit/lib/commitlint-preset.cjs --from=HEAD~1 --to=HEAD",
+    "release:dry": "semantic-release --dry-run",
+    "commit": "ai-commit run",
+    "pr:create": "ai-pr"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.0.2",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.8",
+    "@semantic-release/npm": "^13.1.5",
+    "@semantic-release/release-notes-generator": "^14.1.1",
+    "@verndale/ai-commit": "^2.6.3",
+    "@verndale/ai-pr": "^1.3.5",
+    "husky": "^9.1.7",
+    "semantic-release": "^25.0.3",
+    "dotenv": "^16.4.7"
+  }
+}

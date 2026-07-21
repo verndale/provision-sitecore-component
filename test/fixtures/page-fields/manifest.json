@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "component": "PeopleDetailMasthead",
+  "slug": "people-detail-masthead",
+  "output": "src/components/people/people-detail-masthead",
+  "confluence": {
+    "url": "https://verndale.atlassian.net/wiki/spaces/~Joe.Fusco/pages/6997180543/CN+-+People+Detail+Masthead",
+    "pageId": "6997180543"
+  },
+  "templates": [
+    {
+      "role": "page",
+      "name": "People Detail Page",
+      "existing": true,
+      "sections": [
+        {
+          "name": "Masthead",
+          "fields": [
+            { "name": "personName", "title": "Person Name", "sitecoreType": "Single-Line Text", "required": true },
+            { "name": "personJobTitle", "title": "Person Job Title", "sitecoreType": "Single-Line Text", "required": true },
+            { "name": "profileImage", "title": "Profile Image", "sitecoreType": "Image", "required": true },
+            { "name": "roleStartDate", "title": "Role Start Date", "sitecoreType": "Date" },
+            { "name": "biographyText", "title": "Biography Text", "sitecoreType": "Rich Text", "required": true }
+          ]
+        }
+      ]
+    }
+  ],
+  "rendering": {
+    "name": "People Detail Masthead",
+    "componentName": "PeopleDetailMasthead"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "edgeCosts": {
+    "references": 1,
+    "requires": 1,
+    "topic": 1,
+    "plan": 1,
+    "covers": 1,
+    "links-to": 3
+  },
+  "hubPenalty": 0.5,
+  "excludedIntermediateTypes": ["root-doc", "wiki-index"],
+  "intents": {
+    "why": {
+      "preferredTargetTypes": ["wiki-topic", "wiki-journal", "wiki-plan"],
+      "preferredSourceTypes": ["wiki-topic", "wiki-journal", "wiki-plan", "skill", "skill-readme"],
+      "allowSourceAsTarget": true
+    },
+    "wiring": {
+      "preferredTargetTypes": ["reference", "source", "test", "automation", "skill"],
+      "preferredSourceTypes": ["source", "reference", "skill", "test", "automation"]
+    },
+    "impact": {
+      "preferredTargetTypes": ["skill", "reference", "source", "test", "automation"],
+      "preferredSourceTypes": ["skill", "reference", "source", "test", "automation"]
+    }
+  }
+}

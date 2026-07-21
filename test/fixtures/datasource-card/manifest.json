@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "component": "RelatedContentCard",
+  "slug": "related-content-card",
+  "output": "src/components/related-content/related-content-card",
+  "confluence": {
+    "url": "https://verndale.atlassian.net/wiki/spaces/CN/pages/6766788927/CN+-+Related+Content+Card",
+    "pageId": "6766788927"
+  },
+  "templates": [
+    {
+      "role": "datasource",
+      "name": "Related Content Card",
+      "sections": [
+        {
+          "name": "Content",
+          "fields": [
+            {
+              "name": "pageReference",
+              "title": "Page Reference",
+              "sitecoreType": "Droptree",
+              "required": true,
+              "source": "query:$site/*[@@name='Home']//*[@@templatename='Article Page']",
+              "helpText": "Selects the page used as the source for the card content."
+            },
+            {
+              "name": "cardTitleOverride",
+              "title": "Card Title Override",
+              "sitecoreType": "Single-Line Text",
+              "helpText": "Overrides the referenced page title for this card only."
+            },
+            { "name": "ctaLink", "title": "CTA Link", "sitecoreType": "General Link" },
+            { "name": "featured", "title": "Featured", "sitecoreType": "Checkbox" },
+            { "name": "displayOrder", "title": "Display Order", "sitecoreType": "Number" },
+            { "name": "customBadge", "title": "Custom Badge", "sitecoreType": "Custom Badge Picker" }
+          ]
+        }
+      ],
+      "insertOptions": ["_RelatedContentPageData", "/sitecore/templates/Project/CN/Components/Related Content Row"]
+    },
+    {
+      "role": "base",
+      "name": "_RelatedContentPageData",
+      "sections": [
+        {
+          "name": "Related Content",
+          "fields": [
+            { "name": "PageTitle", "title": "Page Title", "sitecoreType": "Single-Line Text", "required": true },
+            { "name": "PageSummary", "title": "Page Summary", "sitecoreType": "Multi-Line Text" },
+            { "name": "ThumbnailImage", "title": "Thumbnail Image", "sitecoreType": "Image" }
+          ]
+        }
+      ]
+    }
+  ],
+  "rendering": {
+    "name": "Related Content Card",
+    "componentName": "RelatedContentCard",
+    "datasourceTemplate": "Related Content Card",
+    "datasourceLocation": "query:$site/*[@@name='Data']/*[@@templatename='Related Content Row Folder']"
+  },
+  "placeholders": [{ "name": "related-content-row" }]
+}

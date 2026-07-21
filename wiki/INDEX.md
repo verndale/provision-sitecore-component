@@ -1,0 +1,35 @@
+# Context Wiki
+
+Why this repo is the way it is: executed plans, decisions, and change history. Read this index first; open only the pages it routes to.
+
+## How to navigate
+
+1. "Why is X like this / what's the design of X" → match X in Topics below; open that one page.
+2. "What changed when / history of X" → scan the Journal lines below; open only matching entries.
+3. "Was plan X implemented / what plans exist" → [plans/INDEX.md](plans/INDEX.md) is the audit table; archived plan files sit next to it.
+4. Full plan detail behind a change → follow the plan link inside the journal entry or topic page.
+5. "How does X wire to the rest / what exercises or historically explains X" → [connections.md](connections.md), a small index over the generated wiring map; open the one section it routes to — [tests↔source](connections/tests-source.md), [skill→references](connections/skills-references.md), [topics↔runtime](connections/topics-runtime.md), or [cross-subsystem seams](connections/seams.md). `pnpm graph:view` serves the interactive graph viewer.
+6. Cross-system "why", wiring, or impact question → agents silently use `scripts/wiki/navigate.cjs` (`--intent why|wiring|impact --query <term>`) before reading files; it returns a deterministic, minimal itinerary or reports an ambiguity. Developers do not need to run or remember this utility.
+7. No index hit or no route → grep `wiki/` for the term; then fall back to `git log` / `gh`. Never load the whole wiki.
+
+Writing protocol (when to capture, templates, automation): [MECHANICS.md](MECHANICS.md).
+
+## Topics
+
+<!-- One line per topic page: [Title](topics/<slug>.md) — hook. Keep alphabetical by slug. -->
+
+- [Sitecore component provisioning](topics/sitecore-provisioning.md) — one reviewed manifest driving both the CMS items (Authoring API, add-only reconcile) and the front-end TSX handoff scaffold.
+
+## Journal
+
+<!-- One line per entry, newest first: - YYYY-MM-DD — [Title](journal/<file>.md) — hook. -->
+
+- 2026-07-21 — [Initial CLI, skill, and repo tooling](journal/2026-07-21-initial-cli-skill-and-repo-tooling.md) — the manifest-driven provisioning tool, its skill, tests, and the ai-commit/ai-pr/semantic-release/wiki tooling, in one delivery.
+
+## Plans
+
+- [plans/INDEX.md](plans/INDEX.md) — the audit table of every agent plan and whether it shipped.
+
+## Connections
+
+- [connections.md](connections.md) — the generated wiring map (index + per-section pages under `connections/`). Machine-rendered from the knowledge graph; never hand-edited.

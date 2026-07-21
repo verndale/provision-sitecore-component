@@ -1,0 +1,672 @@
+{
+  "version": 1,
+  "component": "RelatedContentCard",
+  "slug": "related-content-card",
+  "generatedFrom": "manifest.json",
+  "resolvedPaths": {
+    "templateRoots": {
+      "datasource": "/sitecore/templates/Project/CN/Components",
+      "base": "/sitecore/templates/Project/CN/Pages/Base",
+      "page": "/sitecore/templates/Project/CN/Pages"
+    },
+    "renderingRoot": "/sitecore/layout/Renderings/Project/CN",
+    "placeholderSettingsRoot": "/sitecore/layout/Placeholder Settings/Project/CN",
+    "datasourceLocation": "query:$site/*[@@name='Data']"
+  },
+  "systemPaths": {
+    "jsonRenderingTemplate": "/sitecore/templates/Foundation/JavaScript Services/Json Rendering",
+    "templateSectionTemplate": "/sitecore/templates/System/Templates/Template section",
+    "templateFieldTemplate": "/sitecore/templates/System/Templates/Template field",
+    "requiredFieldRule": "/sitecore/system/Settings/Validation Rules/Field Rules/System/Required",
+    "placeholderSettingsTemplate": "/sitecore/templates/System/Layout/Placeholder"
+  },
+  "graphql": {
+    "ITEM_BY_PATH": "query GetItem($path: String!) { item(where: { database: \"master\", path: $path }) { itemId name path templateId } }",
+    "TEMPLATE_BY_PATH": "query GetTemplate($path: String!) { item(where: { database: \"master\", path: $path }) { itemId name ownFields { nodes { name type } } } }",
+    "FIELD_VALUE": "query GetFieldValue($path: String!, $field: String!) { item(where: { database: \"master\", path: $path }) { itemId field(name: $field) { value } } }",
+    "CREATE_ITEM_TEMPLATE": "mutation CreateTemplate($input: CreateItemTemplateInput!) { createItemTemplate(input: $input) { itemTemplate { templateId name } } }",
+    "CREATE_ITEM": "mutation CreateItem($input: CreateItemInput!) { createItem(input: $input) { item { itemId name path } } }",
+    "UPDATE_ITEM": "mutation UpdateItem($input: UpdateItemInput!) { updateItem(input: $input) { item { itemId path } } }"
+  },
+  "ops": [
+    {
+      "id": "resolve-system-items",
+      "kind": "resolveSystemItems",
+      "query": "ITEM_BY_PATH",
+      "resolves": {
+        "__TEMPLATE_SECTION_TEMPLATE_ID__": "/sitecore/templates/System/Templates/Template section",
+        "__TEMPLATE_FIELD_TEMPLATE_ID__": "/sitecore/templates/System/Templates/Template field",
+        "__REQUIRED_RULE_ID__": "/sitecore/system/Settings/Validation Rules/Field Rules/System/Required"
+      },
+      "note": "Well-known system items resolved by path; the executor binds each placeholder to the resolved itemId. The Required rule is only fetched when some field is required."
+    },
+    {
+      "id": "ensure-template-0",
+      "kind": "ensureTemplate",
+      "templateName": "Related Content Card",
+      "targetPath": "/sitecore/templates/Project/CN/Components/Related Content Card",
+      "existing": false,
+      "preflight": {
+        "query": "TEMPLATE_BY_PATH",
+        "variables": {
+          "path": "/sitecore/templates/Project/CN/Components/Related Content Card"
+        }
+      },
+      "whenAbsent": {
+        "mutation": "CREATE_ITEM_TEMPLATE",
+        "variables": {
+          "input": {
+            "name": "Related Content Card",
+            "parent": "__TEMPLATE_0_PARENT_ID__",
+            "sections": [
+              {
+                "name": "Content",
+                "fields": [
+                  {
+                    "name": "pageReference",
+                    "type": "Droptree"
+                  },
+                  {
+                    "name": "cardTitleOverride",
+                    "type": "Single-Line Text"
+                  },
+                  {
+                    "name": "ctaLink",
+                    "type": "General Link"
+                  },
+                  {
+                    "name": "featured",
+                    "type": "Checkbox"
+                  },
+                  {
+                    "name": "displayOrder",
+                    "type": "Number"
+                  },
+                  {
+                    "name": "customBadge",
+                    "type": "Custom Badge Picker"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "resolveParent": {
+          "query": "ITEM_BY_PATH",
+          "path": "/sitecore/templates/Project/CN/Components",
+          "into": "__TEMPLATE_0_PARENT_ID__"
+        }
+      },
+      "resolves": {
+        "__TEMPLATE_0_ID__": "itemId"
+      }
+    },
+    {
+      "id": "ensure-template-fields-0",
+      "kind": "ensureTemplateFields",
+      "templatePath": "/sitecore/templates/Project/CN/Components/Related Content Card",
+      "sections": [
+        {
+          "name": "Content",
+          "path": "/sitecore/templates/Project/CN/Components/Related Content Card/Content",
+          "fields": [
+            {
+              "name": "pageReference",
+              "type": "Droptree"
+            },
+            {
+              "name": "cardTitleOverride",
+              "type": "Single-Line Text"
+            },
+            {
+              "name": "ctaLink",
+              "type": "General Link"
+            },
+            {
+              "name": "featured",
+              "type": "Checkbox"
+            },
+            {
+              "name": "displayOrder",
+              "type": "Number"
+            },
+            {
+              "name": "customBadge",
+              "type": "Custom Badge Picker"
+            }
+          ]
+        }
+      ],
+      "reconcile": {
+        "addMissingSection": {
+          "mutation": "CREATE_ITEM",
+          "variables": {
+            "input": {
+              "name": "__SECTION_NAME__",
+              "templateId": "__TEMPLATE_SECTION_TEMPLATE_ID__",
+              "parent": "__TEMPLATE_0_ID__",
+              "language": "en"
+            }
+          }
+        },
+        "addMissingField": {
+          "mutation": "CREATE_ITEM",
+          "variables": {
+            "input": {
+              "name": "__FIELD_NAME__",
+              "templateId": "__TEMPLATE_FIELD_TEMPLATE_ID__",
+              "parent": "__SECTION_ID__",
+              "language": "en",
+              "fields": [
+                {
+                  "name": "Type",
+                  "value": "__FIELD_TYPE__"
+                }
+              ]
+            }
+          }
+        },
+        "onExtraCmsField": "report — never deleted",
+        "onTypeMismatch": "conflict — reported, never retyped"
+      }
+    },
+    {
+      "id": "configure-field-0-Content-pageReference",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Components/Related Content Card/Content/pageReference",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "Droptree"
+              },
+              {
+                "name": "Title",
+                "value": "Page Reference"
+              },
+              {
+                "name": "Source",
+                "value": "query:$site/*[@@name='Home']//*[@@templatename='Article Page']"
+              },
+              {
+                "name": "__Short description",
+                "value": "Selects the page used as the source for the card content."
+              }
+            ]
+          }
+        }
+      },
+      "required": {
+        "appendRuleTo": [
+          "Validate Button",
+          "Workflow"
+        ],
+        "ruleIdPlaceholder": "__REQUIRED_RULE_ID__",
+        "note": "Read-modify-write: the Required rule id is appended to each validation-bar field only when missing (add-only; existing rules are preserved)."
+      }
+    },
+    {
+      "id": "configure-field-0-Content-cardTitleOverride",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Components/Related Content Card/Content/cardTitleOverride",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "Single-Line Text"
+              },
+              {
+                "name": "Title",
+                "value": "Card Title Override"
+              },
+              {
+                "name": "__Short description",
+                "value": "Overrides the referenced page title for this card only."
+              }
+            ]
+          }
+        }
+      },
+      "required": null
+    },
+    {
+      "id": "configure-field-0-Content-ctaLink",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Components/Related Content Card/Content/ctaLink",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "General Link"
+              },
+              {
+                "name": "Title",
+                "value": "CTA Link"
+              }
+            ]
+          }
+        }
+      },
+      "required": null
+    },
+    {
+      "id": "configure-field-0-Content-featured",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Components/Related Content Card/Content/featured",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "Checkbox"
+              },
+              {
+                "name": "Title",
+                "value": "Featured"
+              }
+            ]
+          }
+        }
+      },
+      "required": null
+    },
+    {
+      "id": "configure-field-0-Content-displayOrder",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Components/Related Content Card/Content/displayOrder",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "Number"
+              },
+              {
+                "name": "Title",
+                "value": "Display Order"
+              }
+            ]
+          }
+        }
+      },
+      "required": null
+    },
+    {
+      "id": "configure-field-0-Content-customBadge",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Components/Related Content Card/Content/customBadge",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "Custom Badge Picker"
+              },
+              {
+                "name": "Title",
+                "value": "Custom Badge"
+              }
+            ]
+          }
+        }
+      },
+      "required": null
+    },
+    {
+      "id": "ensure-template-1",
+      "kind": "ensureTemplate",
+      "templateName": "_RelatedContentPageData",
+      "targetPath": "/sitecore/templates/Project/CN/Pages/Base/_RelatedContentPageData",
+      "existing": false,
+      "preflight": {
+        "query": "TEMPLATE_BY_PATH",
+        "variables": {
+          "path": "/sitecore/templates/Project/CN/Pages/Base/_RelatedContentPageData"
+        }
+      },
+      "whenAbsent": {
+        "mutation": "CREATE_ITEM_TEMPLATE",
+        "variables": {
+          "input": {
+            "name": "_RelatedContentPageData",
+            "parent": "__TEMPLATE_1_PARENT_ID__",
+            "sections": [
+              {
+                "name": "Related Content",
+                "fields": [
+                  {
+                    "name": "PageTitle",
+                    "type": "Single-Line Text"
+                  },
+                  {
+                    "name": "PageSummary",
+                    "type": "Multi-Line Text"
+                  },
+                  {
+                    "name": "ThumbnailImage",
+                    "type": "Image"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "resolveParent": {
+          "query": "ITEM_BY_PATH",
+          "path": "/sitecore/templates/Project/CN/Pages/Base",
+          "into": "__TEMPLATE_1_PARENT_ID__"
+        }
+      },
+      "resolves": {
+        "__TEMPLATE_1_ID__": "itemId"
+      }
+    },
+    {
+      "id": "ensure-template-fields-1",
+      "kind": "ensureTemplateFields",
+      "templatePath": "/sitecore/templates/Project/CN/Pages/Base/_RelatedContentPageData",
+      "sections": [
+        {
+          "name": "Related Content",
+          "path": "/sitecore/templates/Project/CN/Pages/Base/_RelatedContentPageData/Related Content",
+          "fields": [
+            {
+              "name": "PageTitle",
+              "type": "Single-Line Text"
+            },
+            {
+              "name": "PageSummary",
+              "type": "Multi-Line Text"
+            },
+            {
+              "name": "ThumbnailImage",
+              "type": "Image"
+            }
+          ]
+        }
+      ],
+      "reconcile": {
+        "addMissingSection": {
+          "mutation": "CREATE_ITEM",
+          "variables": {
+            "input": {
+              "name": "__SECTION_NAME__",
+              "templateId": "__TEMPLATE_SECTION_TEMPLATE_ID__",
+              "parent": "__TEMPLATE_1_ID__",
+              "language": "en"
+            }
+          }
+        },
+        "addMissingField": {
+          "mutation": "CREATE_ITEM",
+          "variables": {
+            "input": {
+              "name": "__FIELD_NAME__",
+              "templateId": "__TEMPLATE_FIELD_TEMPLATE_ID__",
+              "parent": "__SECTION_ID__",
+              "language": "en",
+              "fields": [
+                {
+                  "name": "Type",
+                  "value": "__FIELD_TYPE__"
+                }
+              ]
+            }
+          }
+        },
+        "onExtraCmsField": "report — never deleted",
+        "onTypeMismatch": "conflict — reported, never retyped"
+      }
+    },
+    {
+      "id": "configure-field-1-Related Content-PageTitle",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Pages/Base/_RelatedContentPageData/Related Content/PageTitle",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "Single-Line Text"
+              },
+              {
+                "name": "Title",
+                "value": "Page Title"
+              }
+            ]
+          }
+        }
+      },
+      "required": {
+        "appendRuleTo": [
+          "Validate Button",
+          "Workflow"
+        ],
+        "ruleIdPlaceholder": "__REQUIRED_RULE_ID__",
+        "note": "Read-modify-write: the Required rule id is appended to each validation-bar field only when missing (add-only; existing rules are preserved)."
+      }
+    },
+    {
+      "id": "configure-field-1-Related Content-PageSummary",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Pages/Base/_RelatedContentPageData/Related Content/PageSummary",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "Multi-Line Text"
+              },
+              {
+                "name": "Title",
+                "value": "Page Summary"
+              }
+            ]
+          }
+        }
+      },
+      "required": null
+    },
+    {
+      "id": "configure-field-1-Related Content-ThumbnailImage",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Pages/Base/_RelatedContentPageData/Related Content/ThumbnailImage",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "Image"
+              },
+              {
+                "name": "Title",
+                "value": "Thumbnail Image"
+              }
+            ]
+          }
+        }
+      },
+      "required": null
+    },
+    {
+      "id": "ensure-standard-values-0",
+      "kind": "ensureStandardValues",
+      "templatePath": "/sitecore/templates/Project/CN/Components/Related Content Card",
+      "standardValuesPath": "/sitecore/templates/Project/CN/Components/Related Content Card/__Standard Values",
+      "whenAbsent": {
+        "mutation": "CREATE_ITEM",
+        "variables": {
+          "input": {
+            "name": "__Standard Values",
+            "templateId": "__TEMPLATE_0_ID__",
+            "parent": "__TEMPLATE_0_ID__",
+            "language": "en"
+          }
+        }
+      },
+      "insertOptions": {
+        "field": "__Masters",
+        "paths": [
+          "/sitecore/templates/Project/CN/Pages/Base/_RelatedContentPageData",
+          "/sitecore/templates/Project/CN/Components/Related Content Row"
+        ],
+        "note": "Read-modify-write: each insert-option template id is appended to __Masters only when missing (add-only)."
+      }
+    },
+    {
+      "id": "ensure-rendering",
+      "kind": "ensureRendering",
+      "targetPath": "/sitecore/layout/Renderings/Project/CN/Related Content Card",
+      "preflight": {
+        "query": "ITEM_BY_PATH",
+        "variables": {
+          "path": "/sitecore/layout/Renderings/Project/CN/Related Content Card"
+        }
+      },
+      "resolveTemplate": {
+        "query": "TEMPLATE_BY_PATH",
+        "path": "/sitecore/templates/Foundation/JavaScript Services/Json Rendering",
+        "into": "__JSON_RENDERING_TEMPLATE_ID__",
+        "verifyFields": [
+          "componentName",
+          "Datasource Template",
+          "Datasource Location"
+        ],
+        "note": "Introspection preflight: the Json Rendering template is resolved by path and its field surface verified before any mutation; a mismatch aborts with remediation instead of guessing."
+      },
+      "whenAbsent": {
+        "mutation": "CREATE_ITEM",
+        "variables": {
+          "input": {
+            "name": "Related Content Card",
+            "templateId": "__JSON_RENDERING_TEMPLATE_ID__",
+            "parent": "__RENDERING_ROOT_ID__",
+            "language": "en"
+          }
+        },
+        "resolveParent": {
+          "query": "ITEM_BY_PATH",
+          "path": "/sitecore/layout/Renderings/Project/CN",
+          "into": "__RENDERING_ROOT_ID__"
+        }
+      },
+      "resolves": {
+        "__RENDERING_ID__": "itemId"
+      }
+    },
+    {
+      "id": "set-rendering-bindings",
+      "kind": "setRenderingBindings",
+      "always": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__RENDERING_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "componentName",
+                "value": "RelatedContentCard"
+              },
+              {
+                "name": "Datasource Template",
+                "value": "/sitecore/templates/Project/CN/Components/Related Content Card"
+              },
+              {
+                "name": "Datasource Location",
+                "value": "query:$site/*[@@name='Data']/*[@@templatename='Related Content Row Folder']"
+              }
+            ]
+          }
+        }
+      },
+      "note": "Idempotent set — bindings are written on every push."
+    },
+    {
+      "id": "ensure-placeholder-settings-0",
+      "kind": "ensurePlaceholderSettings",
+      "targetPath": "/sitecore/layout/Placeholder Settings/Project/CN/related-content-row",
+      "preflight": {
+        "query": "ITEM_BY_PATH",
+        "variables": {
+          "path": "/sitecore/layout/Placeholder Settings/Project/CN/related-content-row"
+        }
+      },
+      "resolveTemplate": {
+        "query": "ITEM_BY_PATH",
+        "path": "/sitecore/templates/System/Layout/Placeholder",
+        "into": "__PLACEHOLDER_SETTINGS_TEMPLATE_ID__"
+      },
+      "whenAbsent": {
+        "mutation": "CREATE_ITEM",
+        "variables": {
+          "input": {
+            "name": "related-content-row",
+            "templateId": "__PLACEHOLDER_SETTINGS_TEMPLATE_ID__",
+            "parent": "__PLACEHOLDER_ROOT_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Placeholder Key",
+                "value": "related-content-row"
+              }
+            ]
+          }
+        },
+        "resolveParent": {
+          "query": "ITEM_BY_PATH",
+          "path": "/sitecore/layout/Placeholder Settings/Project/CN",
+          "into": "__PLACEHOLDER_ROOT_ID__"
+        }
+      },
+      "allowedControls": {
+        "field": "Allowed Controls",
+        "append": "__RENDERING_ID__",
+        "note": "Read-modify-write: the rendering id is appended to Allowed Controls only when missing (add-only; existing controls are preserved)."
+      }
+    }
+  ],
+  "manualFollowUps": [
+    "Register the rendering in the site's Available Renderings / Pages toolbox (not automated in v1).",
+    "Create and assign a rendering parameters template if this component needs one (not automated in v1)."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "templateRoots": {
+    "datasource": "/sitecore/templates/Project/CN/Components",
+    "base": "/sitecore/templates/Project/CN/Pages/Base",
+    "page": "/sitecore/templates/Project/CN/Pages"
+  },
+  "renderingRoot": "/sitecore/layout/Renderings/Project/CN",
+  "placeholderSettingsRoot": "/sitecore/layout/Placeholder Settings/Project/CN",
+  "datasourceLocation": "query:$site/*[@@name='Data']",
+  "componentPropsImport": "lib/component-props"
+}

@@ -1,0 +1,346 @@
+{
+  "version": 1,
+  "component": "PeopleDetailMasthead",
+  "slug": "people-detail-masthead",
+  "generatedFrom": "manifest.json",
+  "resolvedPaths": {
+    "templateRoots": {
+      "datasource": "/sitecore/templates/Project/CN/Components",
+      "base": "/sitecore/templates/Project/CN/Pages/Base",
+      "page": "/sitecore/templates/Project/CN/Pages"
+    },
+    "renderingRoot": "/sitecore/layout/Renderings/Project/CN",
+    "placeholderSettingsRoot": "/sitecore/layout/Placeholder Settings/Project/CN",
+    "datasourceLocation": "query:$site/*[@@name='Data']"
+  },
+  "systemPaths": {
+    "jsonRenderingTemplate": "/sitecore/templates/Foundation/JavaScript Services/Json Rendering",
+    "templateSectionTemplate": "/sitecore/templates/System/Templates/Template section",
+    "templateFieldTemplate": "/sitecore/templates/System/Templates/Template field",
+    "requiredFieldRule": "/sitecore/system/Settings/Validation Rules/Field Rules/System/Required",
+    "placeholderSettingsTemplate": "/sitecore/templates/System/Layout/Placeholder"
+  },
+  "graphql": {
+    "ITEM_BY_PATH": "query GetItem($path: String!) { item(where: { database: \"master\", path: $path }) { itemId name path templateId } }",
+    "TEMPLATE_BY_PATH": "query GetTemplate($path: String!) { item(where: { database: \"master\", path: $path }) { itemId name ownFields { nodes { name type } } } }",
+    "FIELD_VALUE": "query GetFieldValue($path: String!, $field: String!) { item(where: { database: \"master\", path: $path }) { itemId field(name: $field) { value } } }",
+    "CREATE_ITEM_TEMPLATE": "mutation CreateTemplate($input: CreateItemTemplateInput!) { createItemTemplate(input: $input) { itemTemplate { templateId name } } }",
+    "CREATE_ITEM": "mutation CreateItem($input: CreateItemInput!) { createItem(input: $input) { item { itemId name path } } }",
+    "UPDATE_ITEM": "mutation UpdateItem($input: UpdateItemInput!) { updateItem(input: $input) { item { itemId path } } }"
+  },
+  "ops": [
+    {
+      "id": "resolve-system-items",
+      "kind": "resolveSystemItems",
+      "query": "ITEM_BY_PATH",
+      "resolves": {
+        "__TEMPLATE_SECTION_TEMPLATE_ID__": "/sitecore/templates/System/Templates/Template section",
+        "__TEMPLATE_FIELD_TEMPLATE_ID__": "/sitecore/templates/System/Templates/Template field",
+        "__REQUIRED_RULE_ID__": "/sitecore/system/Settings/Validation Rules/Field Rules/System/Required"
+      },
+      "note": "Well-known system items resolved by path; the executor binds each placeholder to the resolved itemId. The Required rule is only fetched when some field is required."
+    },
+    {
+      "id": "ensure-template-0",
+      "kind": "ensureTemplate",
+      "templateName": "People Detail Page",
+      "targetPath": "/sitecore/templates/Project/CN/Pages/People Detail Page",
+      "existing": true,
+      "preflight": {
+        "query": "TEMPLATE_BY_PATH",
+        "variables": {
+          "path": "/sitecore/templates/Project/CN/Pages/People Detail Page"
+        }
+      },
+      "whenAbsent": {
+        "error": "Template marked existing was not found at /sitecore/templates/Project/CN/Pages/People Detail Page. Fix the manifest (existing/parent root) or create the template first."
+      },
+      "resolves": {
+        "__TEMPLATE_0_ID__": "itemId"
+      }
+    },
+    {
+      "id": "ensure-template-fields-0",
+      "kind": "ensureTemplateFields",
+      "templatePath": "/sitecore/templates/Project/CN/Pages/People Detail Page",
+      "sections": [
+        {
+          "name": "Masthead",
+          "path": "/sitecore/templates/Project/CN/Pages/People Detail Page/Masthead",
+          "fields": [
+            {
+              "name": "personName",
+              "type": "Single-Line Text"
+            },
+            {
+              "name": "personJobTitle",
+              "type": "Single-Line Text"
+            },
+            {
+              "name": "profileImage",
+              "type": "Image"
+            },
+            {
+              "name": "roleStartDate",
+              "type": "Date"
+            },
+            {
+              "name": "biographyText",
+              "type": "Rich Text"
+            }
+          ]
+        }
+      ],
+      "reconcile": {
+        "addMissingSection": {
+          "mutation": "CREATE_ITEM",
+          "variables": {
+            "input": {
+              "name": "__SECTION_NAME__",
+              "templateId": "__TEMPLATE_SECTION_TEMPLATE_ID__",
+              "parent": "__TEMPLATE_0_ID__",
+              "language": "en"
+            }
+          }
+        },
+        "addMissingField": {
+          "mutation": "CREATE_ITEM",
+          "variables": {
+            "input": {
+              "name": "__FIELD_NAME__",
+              "templateId": "__TEMPLATE_FIELD_TEMPLATE_ID__",
+              "parent": "__SECTION_ID__",
+              "language": "en",
+              "fields": [
+                {
+                  "name": "Type",
+                  "value": "__FIELD_TYPE__"
+                }
+              ]
+            }
+          }
+        },
+        "onExtraCmsField": "report — never deleted",
+        "onTypeMismatch": "conflict — reported, never retyped"
+      }
+    },
+    {
+      "id": "configure-field-0-Masthead-personName",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Pages/People Detail Page/Masthead/personName",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "Single-Line Text"
+              },
+              {
+                "name": "Title",
+                "value": "Person Name"
+              }
+            ]
+          }
+        }
+      },
+      "required": {
+        "appendRuleTo": [
+          "Validate Button",
+          "Workflow"
+        ],
+        "ruleIdPlaceholder": "__REQUIRED_RULE_ID__",
+        "note": "Read-modify-write: the Required rule id is appended to each validation-bar field only when missing (add-only; existing rules are preserved)."
+      }
+    },
+    {
+      "id": "configure-field-0-Masthead-personJobTitle",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Pages/People Detail Page/Masthead/personJobTitle",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "Single-Line Text"
+              },
+              {
+                "name": "Title",
+                "value": "Person Job Title"
+              }
+            ]
+          }
+        }
+      },
+      "required": {
+        "appendRuleTo": [
+          "Validate Button",
+          "Workflow"
+        ],
+        "ruleIdPlaceholder": "__REQUIRED_RULE_ID__",
+        "note": "Read-modify-write: the Required rule id is appended to each validation-bar field only when missing (add-only; existing rules are preserved)."
+      }
+    },
+    {
+      "id": "configure-field-0-Masthead-profileImage",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Pages/People Detail Page/Masthead/profileImage",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "Image"
+              },
+              {
+                "name": "Title",
+                "value": "Profile Image"
+              }
+            ]
+          }
+        }
+      },
+      "required": {
+        "appendRuleTo": [
+          "Validate Button",
+          "Workflow"
+        ],
+        "ruleIdPlaceholder": "__REQUIRED_RULE_ID__",
+        "note": "Read-modify-write: the Required rule id is appended to each validation-bar field only when missing (add-only; existing rules are preserved)."
+      }
+    },
+    {
+      "id": "configure-field-0-Masthead-roleStartDate",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Pages/People Detail Page/Masthead/roleStartDate",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "Date"
+              },
+              {
+                "name": "Title",
+                "value": "Role Start Date"
+              }
+            ]
+          }
+        }
+      },
+      "required": null
+    },
+    {
+      "id": "configure-field-0-Masthead-biographyText",
+      "kind": "configureField",
+      "fieldPath": "/sitecore/templates/Project/CN/Pages/People Detail Page/Masthead/biographyText",
+      "set": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__FIELD_ITEM_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "Type",
+                "value": "Rich Text"
+              },
+              {
+                "name": "Title",
+                "value": "Biography Text"
+              }
+            ]
+          }
+        }
+      },
+      "required": {
+        "appendRuleTo": [
+          "Validate Button",
+          "Workflow"
+        ],
+        "ruleIdPlaceholder": "__REQUIRED_RULE_ID__",
+        "note": "Read-modify-write: the Required rule id is appended to each validation-bar field only when missing (add-only; existing rules are preserved)."
+      }
+    },
+    {
+      "id": "ensure-rendering",
+      "kind": "ensureRendering",
+      "targetPath": "/sitecore/layout/Renderings/Project/CN/People Detail Masthead",
+      "preflight": {
+        "query": "ITEM_BY_PATH",
+        "variables": {
+          "path": "/sitecore/layout/Renderings/Project/CN/People Detail Masthead"
+        }
+      },
+      "resolveTemplate": {
+        "query": "TEMPLATE_BY_PATH",
+        "path": "/sitecore/templates/Foundation/JavaScript Services/Json Rendering",
+        "into": "__JSON_RENDERING_TEMPLATE_ID__",
+        "verifyFields": [
+          "componentName",
+          "Datasource Template",
+          "Datasource Location"
+        ],
+        "note": "Introspection preflight: the Json Rendering template is resolved by path and its field surface verified before any mutation; a mismatch aborts with remediation instead of guessing."
+      },
+      "whenAbsent": {
+        "mutation": "CREATE_ITEM",
+        "variables": {
+          "input": {
+            "name": "People Detail Masthead",
+            "templateId": "__JSON_RENDERING_TEMPLATE_ID__",
+            "parent": "__RENDERING_ROOT_ID__",
+            "language": "en"
+          }
+        },
+        "resolveParent": {
+          "query": "ITEM_BY_PATH",
+          "path": "/sitecore/layout/Renderings/Project/CN",
+          "into": "__RENDERING_ROOT_ID__"
+        }
+      },
+      "resolves": {
+        "__RENDERING_ID__": "itemId"
+      }
+    },
+    {
+      "id": "set-rendering-bindings",
+      "kind": "setRenderingBindings",
+      "always": {
+        "mutation": "UPDATE_ITEM",
+        "variables": {
+          "input": {
+            "itemId": "__RENDERING_ID__",
+            "language": "en",
+            "fields": [
+              {
+                "name": "componentName",
+                "value": "PeopleDetailMasthead"
+              }
+            ]
+          }
+        }
+      },
+      "note": "Idempotent set — bindings are written on every push."
+    }
+  ],
+  "manualFollowUps": [
+    "Register the rendering in the site's Available Renderings / Pages toolbox (not automated in v1).",
+    "Create and assign a rendering parameters template if this component needs one (not automated in v1)."
+  ]
+}

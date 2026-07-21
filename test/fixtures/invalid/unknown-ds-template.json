@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "component": "AwardCard",
+  "slug": "award-card",
+  "output": "src/components/award-card",
+  "templates": [
+    { "role": "datasource", "name": "Award Card", "sections": [{ "name": "Content", "fields": [{ "name": "heading", "title": "Heading", "sitecoreType": "Single-Line Text" }] }] }
+  ],
+  "rendering": { "name": "Award Card", "datasourceTemplate": "Card That Does Not Exist" }
+}

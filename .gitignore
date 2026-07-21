@@ -1,0 +1,11 @@
+.DS_Store
+.env
+/node_modules
+
+# Per-developer IDE discovery dirs (local settings, skill symlinks, MCP config)
+.cursor/
+.claude/
+.agents/
+
+# Test scratch output
+/test/.tmp/
