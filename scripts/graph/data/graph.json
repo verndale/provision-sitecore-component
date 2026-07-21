@@ -1,8 +1,9 @@
 {
   "counts": {
-    "nodes": 65,
-    "edges": 119,
+    "nodes": 74,
+    "edges": 131,
     "byType": {
+      "hook": 7,
       "root-doc": 4,
       "automation": 22,
       "skill-readme": 1,
@@ -11,20 +12,105 @@
       "source": 7,
       "test": 11,
       "wiki-index": 3,
-      "wiki-journal": 4,
-      "wiki-plan": 4,
+      "wiki-journal": 5,
+      "wiki-plan": 5,
       "wiki-topic": 2
     },
     "byEdgeType": {
       "covers": 7,
-      "links-to": 50,
-      "plan": 4,
+      "invokes": 7,
+      "links-to": 54,
+      "plan": 5,
       "references": 6,
       "requires": 46,
       "topic": 6
     }
   },
   "nodes": [
+    {
+      "id": ".claude/settings.json",
+      "label": "settings.json",
+      "type": "hook",
+      "dir": ".claude",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 619,
+      "degree": 2
+    },
+    {
+      "id": ".codex/hooks.json",
+      "label": "hooks.json",
+      "type": "hook",
+      "dir": ".codex",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 468,
+      "degree": 2
+    },
+    {
+      "id": ".husky/commit-msg",
+      "label": "commit-msg",
+      "type": "hook",
+      "dir": ".husky",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 55,
+      "degree": 0
+    },
+    {
+      "id": ".husky/pre-commit",
+      "label": "pre-commit",
+      "type": "hook",
+      "dir": ".husky",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 833,
+      "degree": 3
+    },
+    {
+      "id": ".husky/pre-push",
+      "label": "pre-push",
+      "type": "hook",
+      "dir": ".husky",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 155,
+      "degree": 1
+    },
+    {
+      "id": ".husky/prepare-commit-msg",
+      "label": "prepare-commit-msg",
+      "type": "hook",
+      "dir": ".husky",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 67,
+      "degree": 0
+    },
+    {
+      "id": ".releaserc.cjs",
+      "label": ".releaserc.cjs",
+      "type": "hook",
+      "dir": ".",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 1617,
+      "degree": 1
+    },
     {
       "id": "AGENTS.md",
       "label": "Agent guide",
@@ -59,7 +145,7 @@
       "prs": [],
       "issues": [],
       "bytes": 2723,
-      "degree": 3
+      "degree": 5
     },
     {
       "id": "README.md",
@@ -70,7 +156,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 12152,
+      "bytes": 12168,
       "degree": 8
     },
     {
@@ -94,8 +180,8 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 20549,
-      "degree": 4
+      "bytes": 23451,
+      "degree": 5
     },
     {
       "id": "scripts/graph/routing.cjs",
@@ -131,7 +217,7 @@
       "prs": [],
       "issues": [],
       "bytes": 2014,
-      "degree": 1
+      "degree": 3
     },
     {
       "id": "scripts/hooks/guard-core.cjs",
@@ -167,7 +253,7 @@
       "prs": [],
       "issues": [],
       "bytes": 4002,
-      "degree": 2
+      "degree": 4
     },
     {
       "id": "scripts/release/semantic-release-structured-notes.cjs",
@@ -179,7 +265,7 @@
       "prs": [],
       "issues": [],
       "bytes": 7507,
-      "degree": 0
+      "degree": 1
     },
     {
       "id": "scripts/wiki/archive-plan.cjs",
@@ -311,7 +397,7 @@
       "prs": [],
       "issues": [],
       "bytes": 3646,
-      "degree": 2
+      "degree": 3
     },
     {
       "id": "scripts/wiki/refresh-issue-state.cjs",
@@ -658,8 +744,8 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 3532,
-      "degree": 11
+      "bytes": 3850,
+      "degree": 12
     },
     {
       "id": "wiki/journal/2026-07-21-agents-and-claude-md.md",
@@ -675,6 +761,18 @@
       ],
       "issues": [],
       "bytes": 2183,
+      "degree": 2
+    },
+    {
+      "id": "wiki/journal/2026-07-21-graph-hook-nodes.md",
+      "label": "Lifecycle hooks as first-class knowledge-graph nodes",
+      "type": "wiki-journal",
+      "dir": "wiki/journal",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 2930,
       "degree": 2
     },
     {
@@ -735,7 +833,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 8345,
+      "bytes": 8386,
       "degree": 6
     },
     {
@@ -773,6 +871,18 @@
       ],
       "bytes": 13049,
       "degree": 3
+    },
+    {
+      "id": "wiki/plans/2026-07-21-plan-model-lifecycle-hooks-as-first-class-knowledge-graph-no.md",
+      "label": "Plan — Model lifecycle hooks as first-class knowledge-graph nodes",
+      "type": "wiki-plan",
+      "dir": "wiki/plans",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 10399,
+      "degree": 2
     },
     {
       "id": "wiki/plans/2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md",
@@ -820,8 +930,8 @@
         "10"
       ],
       "issues": [],
-      "bytes": 1873,
-      "degree": 6
+      "bytes": 2062,
+      "degree": 7
     },
     {
       "id": "wiki/topics/sitecore-provisioning.md",
@@ -903,6 +1013,41 @@
       "type": "covers"
     },
     {
+      "source": ".claude/settings.json",
+      "target": "scripts/hooks/pretooluse-guard.cjs",
+      "type": "invokes"
+    },
+    {
+      "source": ".codex/hooks.json",
+      "target": "scripts/hooks/pretooluse-guard.cjs",
+      "type": "invokes"
+    },
+    {
+      "source": ".husky/pre-commit",
+      "target": "scripts/graph/build-graph.cjs",
+      "type": "invokes"
+    },
+    {
+      "source": ".husky/pre-commit",
+      "target": "scripts/hooks/agent-commit-guard.cjs",
+      "type": "invokes"
+    },
+    {
+      "source": ".husky/pre-commit",
+      "target": "scripts/wiki/pre-commit-journal.cjs",
+      "type": "invokes"
+    },
+    {
+      "source": ".husky/pre-push",
+      "target": "scripts/hooks/agent-commit-guard.cjs",
+      "type": "invokes"
+    },
+    {
+      "source": ".releaserc.cjs",
+      "target": "scripts/release/semantic-release-structured-notes.cjs",
+      "type": "invokes"
+    },
+    {
       "source": "AGENTS.md",
       "target": "CONTRIBUTING.md",
       "type": "links-to",
@@ -975,6 +1120,20 @@
     {
       "source": "CLAUDE.md",
       "target": "AGENTS.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "CONTRIBUTING.md",
+      "target": ".claude/settings.json",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "CONTRIBUTING.md",
+      "target": ".codex/hooks.json",
       "type": "links-to",
       "count": 1,
       "anchors": []
@@ -1086,6 +1245,13 @@
     },
     {
       "source": "wiki/INDEX.md",
+      "target": "wiki/journal/2026-07-21-graph-hook-nodes.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/INDEX.md",
       "target": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
       "type": "links-to",
       "count": 1,
@@ -1164,6 +1330,13 @@
     {
       "source": "wiki/plans/INDEX.md",
       "target": "wiki/plans/2026-07-21-add-skill-eval-scenarios-validator-ci-issue-1.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/plans/INDEX.md",
+      "target": "wiki/plans/2026-07-21-plan-model-lifecycle-hooks-as-first-class-knowledge-graph-no.md",
       "type": "links-to",
       "count": 1,
       "anchors": []
@@ -1255,6 +1428,11 @@
     {
       "source": "wiki/journal/2026-07-21-agents-and-claude-md.md",
       "target": "wiki/plans/2026-07-21-add-agents-md-and-claude-md-issue-2.md",
+      "type": "plan"
+    },
+    {
+      "source": "wiki/journal/2026-07-21-graph-hook-nodes.md",
+      "target": "wiki/plans/2026-07-21-plan-model-lifecycle-hooks-as-first-class-knowledge-graph-no.md",
       "type": "plan"
     },
     {

@@ -7,7 +7,7 @@
 // scripts/graph/build-graph.cjs with discovery adapted to this repo's layout.
 //
 // Nodes  = knowledge units: the skill and its references, source modules, test
-//          suites, automation scripts, wiki pages, root docs — one node per file.
+//          suites, automation scripts, lifecycle hooks, wiki pages, root docs — one node per file.
 // Edges  = relationships already latent in the content:
 //   links-to   relative markdown link between two node files (count = weight)
 //   references the skill's SKILL.md -> each file under its own references/ tree
@@ -15,6 +15,7 @@
 //   plan       a wiki journal entry -> its archived plan (from frontmatter `plan:`)
 //   covers     a wiki topic -> the runtime surfaces declared in its `covers:` metadata
 //   requires   a .cjs node -> another .cjs node it require()s (relative paths only)
+//   invokes    a hook node -> an in-repo script it runs (git, release, agent-guard hooks)
 //
 // Everything is derived deterministically from the files — no guessing, no LLM.
 // Output is timestamp-free so a rebuild only diffs when the content graph changes.
@@ -37,9 +38,26 @@ const isConnectionsView = (id) => id === CONNECTIONS_INDEX_ID || id.startsWith(`
 const ROOT_DOCS = new Set(["README.md", "CONTRIBUTING.md", "AGENTS.md", "CLAUDE.md"]);
 // Non-.cjs automation entrypoints included by explicit path.
 const AUTOMATION_FILES = new Set(["setup.sh"]);
+// Lifecycle hook config surfaces — git hooks, the release plugin chain, and the agent
+// PreToolUse guards. Extensionless (.husky/*), dot-dir (.claude/.codex), or repo-root
+// (.releaserc.cjs) files the generic walk() can't reach, so included by explicit path.
+const HOOK_FILES = new Set([
+  ".husky/pre-commit",
+  ".husky/pre-push",
+  ".husky/commit-msg",
+  ".husky/prepare-commit-msg",
+  ".releaserc.cjs",
+  ".claude/settings.json",
+  ".codex/hooks.json",
+]);
 
 const LINK_RE = /\[[^\]]*\]\(([^)]+)\)/g;
 const REQUIRE_RE = /require\(\s*["'](\.{1,2}\/[^"']+)["']\s*\)/g;
+// In-repo scripts a hook runs: `node scripts/….cjs` (husky, .codex/hooks.json) or a
+// './scripts/….cjs' / "$CLAUDE_PROJECT_DIR/scripts/….cjs" reference (.releaserc.cjs,
+// .claude/settings.json). The captured repo path is resolved against known nodes, so an
+// `invokes` edge is grounded in the file — external tooling (ai-commit) yields no match.
+const HOOK_INVOKE_RE = /(scripts\/[A-Za-z0-9._/-]+\.cjs)/g;
 const FENCE_RE = /^```/;
 const H1_RE = /^#\s+(.+?)\s*$/;
 const PR_RE = /github\.com\/[^/]+\/[^/]+\/pull\/(\d+)/g;
@@ -85,6 +103,7 @@ function walk(target, exts) {
 function typeOf(r) {
   if (ROOT_DOCS.has(r)) return "root-doc";
   if (AUTOMATION_FILES.has(r)) return "automation";
+  if (HOOK_FILES.has(r)) return "hook";
 
   if (r.startsWith("skills/")) {
     if (r.endsWith("/SKILL.md")) return "skill";
@@ -164,7 +183,10 @@ function build({ repoRoot = REPO_ROOT } = {}) {
     ...[...AUTOMATION_FILES].map((d) => path.join(repoRoot, d)),
   ];
 
-  const absFiles = [...new Set(roots.flatMap((rt) => walk(rt, [".md", ".cjs", ".sh"])))];
+  // Hook config surfaces can't be reached by walk() (dot-dirs, extensionless, non-.md/.cjs/.sh),
+  // so include them by explicit path when present.
+  const hookFiles = [...HOOK_FILES].map((h) => path.join(repoRoot, h)).filter((abs) => fs.existsSync(abs));
+  const absFiles = [...new Set([...roots.flatMap((rt) => walk(rt, [".md", ".cjs", ".sh"])), ...hookFiles])];
 
   const nodes = new Map(); // id -> node
   const fileText = new Map(); // id -> raw text
@@ -263,6 +285,16 @@ function build({ repoRoot = REPO_ROOT } = {}) {
     }
   }
 
+  // 7. invokes — a hook node -> the in-repo script(s) it runs. Git hooks and the agent-guard
+  //    configs name scripts via `node scripts/…`; the release config lists a local plugin path.
+  //    External tooling (ai-commit, @semantic-release/*) has no node, so those hooks get no edge.
+  for (const [id, text] of fileText) {
+    if (nodes.get(id)?.type !== "hook") continue;
+    for (const target of uniqueMatches(text, HOOK_INVOKE_RE)) {
+      if (nodes.has(target) && target !== id) edges.push({ source: id, target, type: "invokes" });
+    }
+  }
+
   // Degree.
   for (const e of edges) {
     if (nodes.has(e.source)) nodes.get(e.source).degree += 1;
@@ -332,7 +364,7 @@ function areaOf(id) {
 }
 
 // Render the curated wiring as a set of human/agent-readable markdown pages: a small
-// index at wiki/connections.md that routes to four per-section files under
+// index at wiki/connections.md that routes to five per-section files under
 // wiki/connections/. Node links from a section file resolve to the repo root via
 // `../../<id>`; the index's links use `../<id>`. Deterministic + timestamp-free.
 function renderConnections(graph) {
@@ -414,6 +446,25 @@ function renderConnections(graph) {
     return finish(out);
   };
 
+  // Hooks → the scripts they run
+  const hooksScripts = () => {
+    const out = head(
+      "Hooks and the scripts they run",
+      "Each git hook (`.husky/`), the release hook chain (`.releaserc.cjs`), and the agent PreToolUse guards (`.claude/settings.json`, `.codex/hooks.json`) — and the in-repo scripts it invokes.",
+    );
+    const hooks = graph.nodes.filter((n) => n.type === "hook").sort((a, b) => a.id.localeCompare(b.id));
+    const invokes = edgesOf("invokes");
+    for (const h of hooks) {
+      const scripts = invokes.filter((e) => e.source === h.id).map((e) => e.target).sort();
+      out.push(
+        scripts.length
+          ? `- ${link(h.id)} → ${scripts.map(link).join(", ")}`
+          : `- ${link(h.id)} — delegates to external tooling (no in-repo script)`,
+      );
+    }
+    return finish(out);
+  };
+
   const index = () =>
     finish([
       "# Connections — wiring map",
@@ -429,6 +480,7 @@ function renderConnections(graph) {
       "- [The skill and its references](connections/skills-references.md) — the skill and the references under its own `references/` tree.",
       "- [Wiki topics and runtime surfaces](connections/topics-runtime.md) — the runtime surfaces each history topic explicitly covers.",
       "- [Cross-subsystem links](connections/seams.md) — markdown links whose source and target live in different areas: the seams between subsystems.",
+      "- [Hooks and the scripts they run](connections/hooks.md) — each git, release, and agent-guard hook and the in-repo scripts it invokes.",
     ]);
 
   return {
@@ -437,6 +489,7 @@ function renderConnections(graph) {
     [`${CONNECTIONS_DIR_ID}/skills-references.md`]: skillsReferences(),
     [`${CONNECTIONS_DIR_ID}/topics-runtime.md`]: topicsRuntime(),
     [`${CONNECTIONS_DIR_ID}/seams.md`]: seams(),
+    [`${CONNECTIONS_DIR_ID}/hooks.md`]: hooksScripts(),
   };
 }
 

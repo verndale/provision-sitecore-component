@@ -5,6 +5,7 @@
     "topic": 1,
     "plan": 1,
     "covers": 1,
+    "invokes": 1,
     "links-to": 3
   },
   "hubPenalty": 0.5,
