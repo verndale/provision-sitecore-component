@@ -18,6 +18,7 @@ const TYPE_COLORS = {
   "wiki-plan": "#b0b6c4",
   "wiki-index": "#7a8296",
   "root-doc": "#ff8a5c",
+  hook: "#b58b5a",
 };
 const TYPE_LABELS = {
   skill: "Skill",
@@ -31,6 +32,7 @@ const TYPE_LABELS = {
   "wiki-plan": "Wiki plan",
   "wiki-index": "Wiki index",
   "root-doc": "Root doc",
+  hook: "Hook",
 };
 const EDGE_COLORS = {
   "links-to": "rgba(150,156,170,0.22)",
@@ -38,6 +40,7 @@ const EDGE_COLORS = {
   topic: "rgba(143,209,79,0.4)",
   plan: "rgba(91,208,208,0.45)",
   requires: "rgba(242,104,143,0.35)",
+  invokes: "rgba(181,139,90,0.45)",
 };
 const DIM_NODE = "rgba(120,126,140,0.16)";
 const DIM_EDGE = "rgba(120,126,140,0.05)";
