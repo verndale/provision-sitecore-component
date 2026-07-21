@@ -1,3 +1,29 @@
+# v1.1.0 — 2026-07-21
+
+## Summary (AI, bounded)
+- Added skill evaluation scenarios to enhance testing capabilities (35a135b)
+- Introduced a continuous integration (CI) workflow for skill evaluations (35a135b)
+- Merged feature branch implementing evaluation scenarios into mainline (dc9518b)
+- No breaking changes introduced in this release
+
+## Highlights
+- commit: Merge pull request #3 from verndale/feat/eval-scenarios (dc9518b)
+- feat(evals): Add skill evaluation scenarios and CI workflow (35a135b)
+
+## Breaking changes
+- None
+
+## Changes by type
+### Features
+- feat(evals): Add skill evaluation scenarios and CI workflow (35a135b)
+
+### Other (unknown)
+- commit: Merge pull request #3 from verndale/feat/eval-scenarios (dc9518b)
+
+## Full commit list
+- dc9518b commit: Merge pull request #3 from verndale/feat/eval-scenarios
+- 35a135b feat(evals): Add skill evaluation scenarios and CI workflow
+
 # v1.0.0 — 2026-07-21
 
 ## Summary (AI, bounded)

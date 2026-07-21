@@ -1,7 +1,7 @@
 {
   "name": "@verndale/provision-sitecore-component",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Provision Sitecore XM Cloud components from a reviewed manifest: CMS templates, renderings, and bindings via the Authoring GraphQL API, plus the matching front-end TSX scaffold.",
   "packageManager": "pnpm@10.33.0",
   "engines": {
