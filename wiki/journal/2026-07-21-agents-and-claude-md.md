@@ -2,7 +2,7 @@
 date: 2026-07-21
 topics: [repo-tooling]
 plan: plans/2026-07-21-add-agents-md-and-claude-md-issue-2.md
-pr: pending
+pr: https://github.com/verndale/provision-sitecore-component/pull/5
 ---
 # Agent operating docs (AGENTS.md, CLAUDE.md)
 

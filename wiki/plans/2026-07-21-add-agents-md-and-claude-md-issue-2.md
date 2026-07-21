@@ -2,7 +2,8 @@
 status: implemented
 executed: 2026-07-21
 date: 2026-07-21
-evidence: []
+evidence:
+  - "PR #5 https://github.com/verndale/provision-sitecore-component/pull/5 (merged 2026-07-21)"
 source_tool: claude
 source: "/Users/joe.fusco/.claude/plans/create-a-branch-for-temporal-turtle.md"
 topics: [repo-tooling]
