@@ -603,9 +603,11 @@
         "repo-tooling"
       ],
       "aliases": [],
-      "prs": [],
+      "prs": [
+        "7"
+      ],
       "issues": [],
-      "bytes": 3068,
+      "bytes": 3124,
       "degree": 4
     },
     {
@@ -681,9 +683,11 @@
         "sitecore-provisioning"
       ],
       "aliases": [],
-      "prs": [],
+      "prs": [
+        "7"
+      ],
       "issues": [],
-      "bytes": 18864,
+      "bytes": 18957,
       "degree": 4
     },
     {
@@ -694,11 +698,12 @@
       "topics": [],
       "aliases": [],
       "prs": [
+        "7",
         "3",
         "5"
       ],
       "issues": [],
-      "bytes": 1518,
+      "bytes": 1587,
       "degree": 5
     },
     {
@@ -715,10 +720,11 @@
         "CMS template creation"
       ],
       "prs": [
+        "7",
         "3"
       ],
       "issues": [],
-      "bytes": 3780,
+      "bytes": 3945,
       "degree": 14
     },
     {

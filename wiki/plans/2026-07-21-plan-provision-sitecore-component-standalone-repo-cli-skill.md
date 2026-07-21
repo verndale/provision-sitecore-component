@@ -2,7 +2,8 @@
 status: implemented
 executed: 2026-07-21
 date: 2026-07-21
-evidence: []
+evidence:
+  - "PR #7 https://github.com/verndale/provision-sitecore-component/pull/7 (merged 2026-07-21)"
 source_tool: claude
 source: "/Users/joe.fusco/.claude/plans/giid-start-the-mossy-hollerith.md"
 topics: [sitecore-provisioning]
