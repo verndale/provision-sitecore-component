@@ -105,8 +105,25 @@ test("merge sync fills pr: pending in this repo's seeded journal (temp copy)", a
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   fs.cpSync(WIKI, path.join(dir, "wiki"), { recursive: true });
 
-  const journalName = journalFiles.find(
-    (n) => fm.readField(fs.readFileSync(path.join(WIKI, "journal", n), "utf8"), "pr") === "pending",
+  // Seed a controlled `pr: pending` entry in the temp copy rather than hunting
+  // the live wiki for one: the merge-sync automation under test fills every
+  // pending entry, so on a fully-synced tree (e.g. a bot/wiki-sync PR) none
+  // remain and the fill path would never be exercised. Point its `plan:` at an
+  // archived plan so the cascade into plans/INDEX.md is covered too.
+  const journalName = "2026-07-21-fill-fixture.md";
+  fs.writeFileSync(
+    path.join(dir, "wiki", "journal", journalName),
+    [
+      "---",
+      "date: 2026-07-21",
+      "topics: [sitecore-provisioning]",
+      "plan: plans/2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md",
+      "pr: pending",
+      "---",
+      "",
+      "# Fill fixture",
+      "",
+    ].join("\n"),
   );
   const ctx = {
     number: 1,
