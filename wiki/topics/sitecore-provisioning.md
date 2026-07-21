@@ -17,6 +17,7 @@ How one reviewed manifest drives both the CMS side (templates, fields, rendering
 
 ## Decisions
 
+- 2026-07-21 — fix(provision-sitecore-component): Update byte count and sort file lists ([PR #7](https://github.com/verndale/provision-sitecore-component/pull/7))
 - 2026-07-21 — feat(evals): Add skill evaluation scenarios and CI workflow ([PR #3](https://github.com/verndale/provision-sitecore-component/pull/3))
 - 2026-07-21 — Cross-section field collisions report a conflict and continue instead of aborting mid-push; standard-values ops run after all template ops so insert options can name later-declared templates (post-review fixes). ([journal](../journal/2026-07-21-initial-cli-skill-and-repo-tooling.md))
 - 2026-07-21 — Authoring API push over SCS YAML emission (Joe's call at planning): live create-or-update with preflights, no serialization-tree dependency. ([plan](../plans/2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md))

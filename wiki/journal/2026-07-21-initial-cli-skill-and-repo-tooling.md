@@ -2,7 +2,7 @@
 date: 2026-07-21
 topics: [sitecore-provisioning, repo-tooling]
 plan: plans/2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md
-pr: pending
+pr: https://github.com/verndale/provision-sitecore-component/pull/7
 ---
 # Initial CLI, skill, and repo tooling
 
