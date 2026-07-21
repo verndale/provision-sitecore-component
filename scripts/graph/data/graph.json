@@ -770,9 +770,11 @@
       "dir": "wiki/journal",
       "topics": [],
       "aliases": [],
-      "prs": [],
+      "prs": [
+        "13"
+      ],
       "issues": [],
-      "bytes": 2930,
+      "bytes": 2987,
       "degree": 2
     },
     {
@@ -879,9 +881,11 @@
       "dir": "wiki/plans",
       "topics": [],
       "aliases": [],
-      "prs": [],
+      "prs": [
+        "13"
+      ],
       "issues": [],
-      "bytes": 10399,
+      "bytes": 10494,
       "degree": 2
     },
     {
@@ -927,10 +931,11 @@
         "7",
         "3",
         "5",
-        "10"
+        "10",
+        "13"
       ],
       "issues": [],
-      "bytes": 2062,
+      "bytes": 2133,
       "degree": 7
     },
     {

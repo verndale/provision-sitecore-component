@@ -2,7 +2,7 @@
 date: 2026-07-21
 topics: []
 plan: plans/2026-07-21-plan-model-lifecycle-hooks-as-first-class-knowledge-graph-no.md
-pr: pending
+pr: https://github.com/verndale/provision-sitecore-component/pull/13
 ---
 # Lifecycle hooks as first-class knowledge-graph nodes
 
