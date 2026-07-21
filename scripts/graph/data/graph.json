@@ -1,9 +1,9 @@
 {
   "counts": {
-    "nodes": 52,
-    "edges": 92,
+    "nodes": 56,
+    "edges": 106,
     "byType": {
-      "root-doc": 2,
+      "root-doc": 4,
       "automation": 18,
       "skill-readme": 1,
       "reference": 6,
@@ -11,20 +11,44 @@
       "source": 7,
       "test": 8,
       "wiki-index": 3,
-      "wiki-journal": 2,
-      "wiki-plan": 2,
+      "wiki-journal": 3,
+      "wiki-plan": 3,
       "wiki-topic": 2
     },
     "byEdgeType": {
       "covers": 7,
-      "links-to": 34,
-      "plan": 2,
+      "links-to": 47,
+      "plan": 3,
       "references": 6,
       "requires": 39,
       "topic": 4
     }
   },
   "nodes": [
+    {
+      "id": "AGENTS.md",
+      "label": "Agent guide",
+      "type": "root-doc",
+      "dir": ".",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 5693,
+      "degree": 11
+    },
+    {
+      "id": "CLAUDE.md",
+      "label": "CLAUDE.md",
+      "type": "root-doc",
+      "dir": ".",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 88,
+      "degree": 1
+    },
     {
       "id": "CONTRIBUTING.md",
       "label": "Contributing",
@@ -35,7 +59,7 @@
       "prs": [],
       "issues": [],
       "bytes": 1814,
-      "degree": 2
+      "degree": 3
     },
     {
       "id": "README.md",
@@ -47,7 +71,7 @@
       "prs": [],
       "issues": [],
       "bytes": 11099,
-      "degree": 7
+      "degree": 8
     },
     {
       "id": "scripts/evals/check.cjs",
@@ -70,7 +94,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 20517,
+      "bytes": 20543,
       "degree": 4
     },
     {
@@ -287,7 +311,7 @@
       "prs": [],
       "issues": [],
       "bytes": 5857,
-      "degree": 4
+      "degree": 5
     },
     {
       "id": "skills/provision-sitecore-component/references/confluence-import.md",
@@ -299,7 +323,7 @@
       "prs": [],
       "issues": [],
       "bytes": 3884,
-      "degree": 1
+      "degree": 2
     },
     {
       "id": "skills/provision-sitecore-component/references/manifest-contract.md",
@@ -311,7 +335,7 @@
       "prs": [],
       "issues": [],
       "bytes": 6981,
-      "degree": 4
+      "degree": 5
     },
     {
       "id": "skills/provision-sitecore-component/references/retry-contract.md",
@@ -323,7 +347,7 @@
       "prs": [],
       "issues": [],
       "bytes": 7737,
-      "degree": 2
+      "degree": 3
     },
     {
       "id": "skills/provision-sitecore-component/references/tsx-template.md",
@@ -335,7 +359,7 @@
       "prs": [],
       "issues": [],
       "bytes": 3823,
-      "degree": 1
+      "degree": 2
     },
     {
       "id": "skills/provision-sitecore-component/references/type-mapping.md",
@@ -347,7 +371,7 @@
       "prs": [],
       "issues": [],
       "bytes": 3294,
-      "degree": 2
+      "degree": 3
     },
     {
       "id": "skills/provision-sitecore-component/SKILL.md",
@@ -359,7 +383,7 @@
       "prs": [],
       "issues": [],
       "bytes": 7402,
-      "degree": 12
+      "degree": 13
     },
     {
       "id": "src/build-plan.cjs",
@@ -550,8 +574,22 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 2982,
-      "degree": 8
+      "bytes": 3211,
+      "degree": 10
+    },
+    {
+      "id": "wiki/journal/2026-07-21-agents-and-claude-md.md",
+      "label": "Agent operating docs (AGENTS.md, CLAUDE.md)",
+      "type": "wiki-journal",
+      "dir": "wiki/journal",
+      "topics": [
+        "repo-tooling"
+      ],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 2127,
+      "degree": 2
     },
     {
       "id": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
@@ -597,6 +635,22 @@
       "degree": 6
     },
     {
+      "id": "wiki/plans/2026-07-21-add-agents-md-and-claude-md-issue-2.md",
+      "label": "Add AGENTS.md and CLAUDE.md — Issue #2",
+      "type": "wiki-plan",
+      "dir": "wiki/plans",
+      "topics": [
+        "repo-tooling"
+      ],
+      "aliases": [],
+      "prs": [],
+      "issues": [
+        "2"
+      ],
+      "bytes": 8844,
+      "degree": 2
+    },
+    {
       "id": "wiki/plans/2026-07-21-add-skill-eval-scenarios-validator-ci-issue-1.md",
       "label": "Add skill-eval scenarios + validator + CI (issue #1)",
       "type": "wiki-plan",
@@ -639,8 +693,8 @@
         "3"
       ],
       "issues": [],
-      "bytes": 1303,
-      "degree": 4
+      "bytes": 1449,
+      "degree": 5
     },
     {
       "id": "wiki/topics/sitecore-provisioning.md",
@@ -718,6 +772,83 @@
       "source": "wiki/topics/skill-evals.md",
       "target": "test/evals-check.test.cjs",
       "type": "covers"
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "CONTRIBUTING.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "README.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "skills/provision-sitecore-component/references/authoring-api.md",
+      "type": "links-to",
+      "count": 2,
+      "anchors": []
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "skills/provision-sitecore-component/references/confluence-import.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "skills/provision-sitecore-component/references/manifest-contract.md",
+      "type": "links-to",
+      "count": 2,
+      "anchors": []
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "skills/provision-sitecore-component/references/retry-contract.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "skills/provision-sitecore-component/references/tsx-template.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "skills/provision-sitecore-component/references/type-mapping.md",
+      "type": "links-to",
+      "count": 2,
+      "anchors": []
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "skills/provision-sitecore-component/SKILL.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "wiki/INDEX.md",
+      "type": "links-to",
+      "count": 2,
+      "anchors": []
+    },
+    {
+      "source": "CLAUDE.md",
+      "target": "AGENTS.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
     },
     {
       "source": "CONTRIBUTING.md",
@@ -819,6 +950,13 @@
     },
     {
       "source": "wiki/INDEX.md",
+      "target": "wiki/journal/2026-07-21-agents-and-claude-md.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/INDEX.md",
       "target": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
       "type": "links-to",
       "count": 1,
@@ -876,6 +1014,13 @@
     {
       "source": "wiki/MECHANICS.md",
       "target": "wiki/plans/INDEX.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/plans/INDEX.md",
+      "target": "wiki/plans/2026-07-21-add-agents-md-and-claude-md-issue-2.md",
       "type": "links-to",
       "count": 1,
       "anchors": []
@@ -956,6 +1101,11 @@
       "type": "links-to",
       "count": 3,
       "anchors": []
+    },
+    {
+      "source": "wiki/journal/2026-07-21-agents-and-claude-md.md",
+      "target": "wiki/plans/2026-07-21-add-agents-md-and-claude-md-issue-2.md",
+      "type": "plan"
     },
     {
       "source": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
