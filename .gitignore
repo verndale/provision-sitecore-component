@@ -2,9 +2,13 @@
 .env
 /node_modules
 
-# Per-developer IDE discovery dirs (local settings, skill symlinks, MCP config)
+# Per-developer IDE discovery dirs (local settings, skill symlinks, MCP config).
+# The checked-in guard configs are re-included; everything else stays per-dev.
 .cursor/
-.claude/
+.claude/*
+!.claude/settings.json
+.codex/*
+!.codex/hooks.json
 .agents/
 
 # Test scratch output

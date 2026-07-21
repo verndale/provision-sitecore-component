@@ -31,7 +31,7 @@ git clone https://github.com/verndale/provision-sitecore-component
 bash provision-sitecore-component/setup.sh   # or name tools: bash setup.sh claude codex cursor
 ```
 
-`setup.sh` symlinks the skill into each detected tool's user-level skills dir (`~/.claude/skills/`, `~/.codex/skills/`, `~/.cursor/skills/`). Re-running is safe (symlinks are recreated in place; non-symlinks are never clobbered); `--uninstall` removes exactly the links it made. The skill drives this clone's CLI, so keep the clone in place — `git pull` updates it for every tool at once. Contributors additionally run `corepack enable && pnpm install` for the dev tooling (tests, commit/release); the CLI itself needs no install.
+`setup.sh` does three things per detected tool, all idempotent: symlinks the skill into the tool's user-level skills dir (`~/.claude/skills/`, `~/.codex/skills/`, `~/.cursor/skills/`); for Claude Code and Codex, registers the PreToolUse guard (`scripts/hooks/pretooluse-guard.cjs`) in the tool's user hook config (`~/.claude/settings.json`, `~/.codex/hooks.json`) so the skill's hard boundaries are mechanically enforced wherever it runs (Cursor has no hook surface — prose only); and offers a one-time credential bootstrap that writes `~/.config/provision-sitecore-component/.env` (chmod 600, values never echoed). Re-running is safe (symlinks recreated in place, hook entries updated in place; non-symlinks and foreign hook entries are never clobbered); `--uninstall` removes exactly the links and hook entries it made, keeping the credential file. The skill drives this clone's CLI and guard, so keep the clone in place — `git pull` updates it for every tool at once. Contributors additionally run `corepack enable && pnpm install` for the dev tooling (tests, commit/release); the CLI itself needs no install.
 
 ## Quick start
 
@@ -43,7 +43,8 @@ node src/cli.cjs plan <manifest.json>
 node src/cli.cjs check <manifest.json>
 
 # Online, mutating: execute the plan (add-only reconcile), then emit the TSX pair.
-node src/cli.cjs push <manifest.json>
+# Gated: prompts for confirmation on a terminal; non-interactive shells need --yes.
+node src/cli.cjs push <manifest.json> --yes
 ```
 
 Two complete manifests modeled on real CN specs live in the golden fixtures and double as reference examples: [test/fixtures/datasource-card/manifest.json](test/fixtures/datasource-card/manifest.json) (datasource component: two templates, a restricted Droptree, insert options, a placeholder) and [test/fixtures/page-fields/manifest.json](test/fixtures/page-fields/manifest.json) (page-driven component: fields added to an existing page template, rendering without a datasource) — with the exact plan and TSX output each produces frozen next to them under `expected*`.
@@ -54,9 +55,9 @@ Two complete manifests modeled on real CN specs live in the golden fixtures and 
 | --- | --- | --- |
 | `plan` (default) | none | Validate manifest → write `<slug>.plan.json` next to it → emit TSX pair (create-only). |
 | `check` | read-only | Run every preflight query; print the decision each op would take. Never mutates the CMS (all modes regenerate the local `<slug>.plan.json`). |
-| `push` | mutating | Execute ops in order with create-or-update reconcile; then emit TSX like `plan`. |
+| `push` | mutating | Execute ops in order with create-or-update reconcile; then emit TSX like `plan`. Confirmation-gated: interactive y/N on a terminal, `--yes` required non-interactively (the skill passes it only after its step-6 gate approval). |
 
-Flags: `--no-tsx` (skip scaffold emission), `--force-tsx` (overwrite an existing pair), `--config <path>` (explicit config file).
+Flags: `--yes` (confirm `push`; recorded gate approval), `--no-tsx` (skip scaffold emission), `--force-tsx` (overwrite an existing pair), `--config <path>` (explicit config file).
 
 Exit codes: `0` success or clean skip · `1` API/auth/conflict failure (nothing was forced) · `2` invocation, config, or manifest-validation error (each printed as one `ERROR: … Cause: … Next: …` line).
 
@@ -96,7 +97,7 @@ The generated `<slug>.plan.json` is the human-reviewable push artifact: it embed
 | `SITECORE_AUTHORING_TOKEN_URL` | Optional; default `https://auth.sitecorecloud.io/oauth/token` |
 | `SITECORE_AUTHORING_AUDIENCE` | Optional; default `https://api.sitecorecloud.io` |
 
-A repo-root `.env` is honored for unset keys. Values are never echoed into output, plans, or logs. Missing variables fail before any network call. Details and the first-run verification procedure: [references/authoring-api.md](skills/provision-sitecore-component/references/authoring-api.md).
+Resolution order for unset keys: exported env vars → a repo-root `.env` (per-project override) → the per-machine `~/.config/provision-sitecore-component/.env` written by `setup.sh`'s one-time credential bootstrap (chmod 600). Values are never echoed into output, plans, or logs. Missing variables fail before any network call. Details and the first-run verification procedure: [references/authoring-api.md](skills/provision-sitecore-component/references/authoring-api.md).
 
 ## Safety model
 

@@ -34,7 +34,7 @@ Operator docs: [README.md](README.md).
 4. Write the manifest per `references/manifest-contract.md`, then run the CLI in offline mode: `node <tool>/src/cli.cjs plan <manifest>`. Surface the drafted manifest, the written `<slug>.plan.json`, the emitted TSX pair paths, and the collected review questions as one plan artifact for the developer.
 5. Repair manifest-validation failures (CLI exit 2) per the loop in `## Validation loops`.
 6. Gate before any CMS mutation with one `AskUserQuestion`: run `check` first and review, push now, or stop here with manifest + scaffold only. No answer means stop here. The push is a mutation of a shared CMS environment — MUST NOT run `push` without this gate's approval in the current session.
-7. On approval, run `check` and/or `push` per the developer's choice, with the environment variables from `references/authoring-api.md`. Report the per-op reconcile results and every `manualFollowUps` entry verbatim (Available Renderings registration and rendering-parameters templates remain manual in v1).
+7. On approval, run `check` and/or `push --yes` per the developer's choice, with the environment variables from `references/authoring-api.md`. `--yes` is the recorded step-6 approval — the CLI refuses a non-interactive `push` without it, and it MUST NOT be passed before the gate answer. Report the per-op reconcile results and every `manualFollowUps` entry verbatim (Available Renderings registration and rendering-parameters templates remain manual in v1).
 8. Hand off: the component's CMS side and TSX scaffold now exist — direct the developer to `/generate-build-pack` for the Build Pack, then `/implement-build-pack` to fill the scaffold.
 
 ## Inputs and outputs
@@ -55,7 +55,7 @@ Operator docs: [README.md](README.md).
 ## Guardrails
 
 - Normative contracts: [`references/manifest-contract.md`](references/manifest-contract.md) (manifest), [`references/authoring-api.md`](references/authoring-api.md) (mutations and reconcile).
-- MUST NOT run `push` without the step-6 gate approval in the current session; `check` is the only online mode allowed before it.
+- MUST NOT run `push` without the step-6 gate approval in the current session; `check` is the only online mode allowed before it. The CLI enforces this mechanically: non-interactive `push` refuses without `--yes`, and `--yes` may only ever be passed after the gate approval.
 - MUST NOT delete, rename, or retype CMS items or fields, and MUST NOT remove entries from Allowed Controls, `__Masters`, or validation-bar lists — the tool is add-only by contract; treat anything it reports as a conflict or follow-up as manual work, not something to force.
 - MUST NOT overwrite an existing TSX pair without an explicit developer request (`--force-tsx`).
 - MUST NOT invent Source strings, datasource locations, or field types the spec does not state — they are review questions (step 3), and once answered they are written verbatim.

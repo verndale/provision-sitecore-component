@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|shell|local_shell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node scripts/hooks/pretooluse-guard.cjs"
+          }
+        ]
+      },
+      {
+        "matcher": "apply_patch|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node scripts/hooks/pretooluse-guard.cjs"
+          }
+        ]
+      }
+    ]
+  }
+}

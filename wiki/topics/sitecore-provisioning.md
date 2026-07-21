@@ -10,13 +10,14 @@ How one reviewed manifest drives both the CMS side (templates, fields, rendering
 
 - The manifest ([contract](../../skills/provision-sitecore-component/references/manifest-contract.md)) is drafted from the Confluence functional spec by the skill, reviewed by a human, and is the single source for both sides.
 - `plan` is offline and byte-deterministic; the plan JSON embeds the GraphQL documents verbatim with `__PLACEHOLDER__` ids bound from preflights at run time — no hardcoded GUIDs ([src/build-plan.cjs](../../src/build-plan.cjs)).
-- `check` is read-only (a hard guard refuses mutations outside push mode); `push` reconciles add-only — extra CMS fields, type mismatches, and mislocated fields become follow-ups, never deletions or retypes ([src/executor.cjs](../../src/executor.cjs)).
+- `check` is read-only (a hard guard refuses mutations outside push mode); `push` reconciles add-only — extra CMS fields, type mismatches, and mislocated fields become follow-ups, never deletions or retypes ([src/executor.cjs](../../src/executor.cjs)) — and is confirmation-gated at the CLI (TTY y/N, or `--yes` recording the skill's step-6 approval).
 - Required fields attach the standard Required rule (resolved by path) to the Validate Button and Workflow bars; list fields (`__Masters`, Allowed Controls, validation bars) merge append-only with brace/case-insensitive de-duplication.
 - The emitted pair (`Component.types.ts` + `Component.tsx`) matches the eng team's handoff contract and the ai-orchestration sitecore-ai adapter's boundary rules; page-driven components (no datasource) emit a typed contract with a marked TODO for the page-item access ([src/emit-tsx.cjs](../../src/emit-tsx.cjs)).
 - Golden fixtures pin plans and TSX byte-for-byte, modeled on the CN Related Content Card (datasource, two templates, restricted Droptree) and People Detail Masthead (existing page template, rendering without datasource) specs.
 
 ## Decisions
 
+- 2026-07-21 — Guardrails ship with the skill: a shared PreToolUse guard registered user-level for Claude Code and Codex by setup.sh (plus checked-in project configs), a CLI-level push confirmation (`--yes` records the step-6 gate), husky agent-commit blocks, and a per-machine credential file — enforcement travels to consumer repos instead of living only here. ([journal](../journal/2026-07-21-skill-shipped-guardrails.md))
 - 2026-07-21 — fix(provision-sitecore-component): Update byte count and sort file lists ([PR #7](https://github.com/verndale/provision-sitecore-component/pull/7))
 - 2026-07-21 — feat(evals): Add skill evaluation scenarios and CI workflow ([PR #3](https://github.com/verndale/provision-sitecore-component/pull/3))
 - 2026-07-21 — Cross-section field collisions report a conflict and continue instead of aborting mid-push; standard-values ops run after all template ops so insert options can name later-declared templates (post-review fixes). ([journal](../journal/2026-07-21-initial-cli-skill-and-repo-tooling.md))

@@ -23,7 +23,9 @@ OAuth2 client credentials against Sitecore Cloud. Create an automation client fo
 - `SITECORE_AUTHORING_TOKEN_URL` — optional; default `https://auth.sitecorecloud.io/oauth/token`.
 - `SITECORE_AUTHORING_AUDIENCE` — optional; default `https://api.sitecorecloud.io`.
 
-The CLI loads `./.env` for unset keys. Missing variables fail before any network call (exit 2). Values are never echoed into output, plans, or logs.
+The CLI fills unset keys in this order: exported environment variables → `./.env` at the invocation cwd (per-project override) → the per-machine `~/.config/provision-sitecore-component/.env` written by `setup.sh`'s one-time credential bootstrap (chmod 600). Missing variables fail before any network call (exit 2). Values are never echoed into output, plans, or logs.
+
+`push` is confirmation-gated at the CLI: on a terminal it asks y/N before loading credentials; in a non-interactive shell it refuses without `--yes`, which records the skill's step-6 gate approval.
 
 ## Endpoint
 
@@ -67,7 +69,7 @@ The mutation input shapes follow the documented Sitecore examples but this repo 
 1. Run `check` — it exercises every query path and the introspection preflights with zero mutations.
 2. If a query or mutation errors with a schema mismatch, open the environment's GraphQL IDE (`…/sitecore/api/authoring/graphql/playground/`) and compare the failing document in `plan.graphql` against the live schema; consult the Sitecore docs MCP when available.
 3. Fix the document/shape in `src/build-plan.cjs` (or the paths in `plan.systemPaths`/config) — never by hand-editing a plan file that then diverges from the tool.
-4. Re-run `check` until clean, then `push`.
+4. Re-run `check` until clean, then `push --yes` (the gate confirms; `--yes` records the step-6 approval).
 
 ## Failure classes and exits
 
