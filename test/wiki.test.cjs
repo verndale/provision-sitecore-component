@@ -18,9 +18,9 @@ const { classify } = require("../scripts/wiki/lib/substantive.cjs");
 const { buildWarnings } = require("../scripts/wiki/pre-commit-journal.cjs");
 const { run: mergeSync } = require("../scripts/wiki/on-merge-sync.cjs");
 
-const journalFiles = fs.readdirSync(path.join(WIKI, "journal")).filter((f) => f.endsWith(".md"));
-const topicFiles = fs.readdirSync(path.join(WIKI, "topics")).filter((f) => f.endsWith(".md"));
-const planFiles = fs.readdirSync(path.join(WIKI, "plans")).filter((f) => f.endsWith(".md") && f !== "INDEX.md");
+const journalFiles = fs.readdirSync(path.join(WIKI, "journal")).filter((f) => f.endsWith(".md")).sort();
+const topicFiles = fs.readdirSync(path.join(WIKI, "topics")).filter((f) => f.endsWith(".md")).sort();
+const planFiles = fs.readdirSync(path.join(WIKI, "plans")).filter((f) => f.endsWith(".md") && f !== "INDEX.md").sort();
 
 test("journal entries carry the MECHANICS frontmatter", () => {
   assert.ok(journalFiles.length >= 1);
@@ -105,7 +105,9 @@ test("merge sync fills pr: pending in this repo's seeded journal (temp copy)", a
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   fs.cpSync(WIKI, path.join(dir, "wiki"), { recursive: true });
 
-  const journalName = journalFiles[0];
+  const journalName = journalFiles.find(
+    (n) => fm.readField(fs.readFileSync(path.join(WIKI, "journal", n), "utf8"), "pr") === "pending",
+  );
   const ctx = {
     number: 1,
     title: "feat: scaffold provision-sitecore-component",
