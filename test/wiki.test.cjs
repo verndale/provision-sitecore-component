@@ -18,9 +18,9 @@ const { classify } = require("../scripts/wiki/lib/substantive.cjs");
 const { buildWarnings } = require("../scripts/wiki/pre-commit-journal.cjs");
 const { run: mergeSync } = require("../scripts/wiki/on-merge-sync.cjs");
 
-const journalFiles = fs.readdirSync(path.join(WIKI, "journal")).filter((f) => f.endsWith(".md"));
-const topicFiles = fs.readdirSync(path.join(WIKI, "topics")).filter((f) => f.endsWith(".md"));
-const planFiles = fs.readdirSync(path.join(WIKI, "plans")).filter((f) => f.endsWith(".md") && f !== "INDEX.md");
+const journalFiles = fs.readdirSync(path.join(WIKI, "journal")).filter((f) => f.endsWith(".md")).sort();
+const topicFiles = fs.readdirSync(path.join(WIKI, "topics")).filter((f) => f.endsWith(".md")).sort();
+const planFiles = fs.readdirSync(path.join(WIKI, "plans")).filter((f) => f.endsWith(".md") && f !== "INDEX.md").sort();
 
 test("journal entries carry the MECHANICS frontmatter", () => {
   assert.ok(journalFiles.length >= 1);
