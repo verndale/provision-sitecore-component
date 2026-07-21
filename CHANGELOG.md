@@ -1,3 +1,37 @@
+# v1.2.0 — 2026-07-21
+
+## Summary (AI, bounded)
+- Added new agent documentation and updated graph data (commit ccc4e28)
+- Synchronized wiki entries including journal, topics, and plans (commit 466dfe7)
+- Merged pull requests related to documentation and wiki synchronization (commits ea6cb1b, 41ea751)
+- No breaking changes in this release
+
+## Highlights
+- commit: Merge pull request #5 from verndale/docs/agents-md (ea6cb1b)
+- feat(docs): Add agent documentation and update graph data (ccc4e28)
+- commit: Merge pull request #4 from verndale/bot/wiki-sync/3 (41ea751)
+- docs(wiki): sync journal, topics, and plans for #3 (466dfe7)
+
+## Breaking changes
+- None
+
+## Changes by type
+### Features
+- feat(docs): Add agent documentation and update graph data (ccc4e28)
+
+### Docs
+- docs(wiki): sync journal, topics, and plans for #3 (466dfe7)
+
+### Other (unknown)
+- commit: Merge pull request #4 from verndale/bot/wiki-sync/3 (41ea751)
+- commit: Merge pull request #5 from verndale/docs/agents-md (ea6cb1b)
+
+## Full commit list
+- ea6cb1b commit: Merge pull request #5 from verndale/docs/agents-md
+- ccc4e28 feat(docs): Add agent documentation and update graph data
+- 41ea751 commit: Merge pull request #4 from verndale/bot/wiki-sync/3
+- 466dfe7 docs(wiki): sync journal, topics, and plans for #3
+
 # v1.1.0 — 2026-07-21
 
 ## Summary (AI, bounded)
