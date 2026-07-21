@@ -577,9 +577,11 @@
         "skill-evals"
       ],
       "aliases": [],
-      "prs": [],
+      "prs": [
+        "3"
+      ],
       "issues": [],
-      "bytes": 2517,
+      "bytes": 2573,
       "degree": 4
     },
     {
@@ -603,11 +605,13 @@
         "skill-evals"
       ],
       "aliases": [],
-      "prs": [],
+      "prs": [
+        "3"
+      ],
       "issues": [
         "1"
       ],
-      "bytes": 12956,
+      "bytes": 13049,
       "degree": 3
     },
     {
@@ -631,9 +635,11 @@
       "dir": "wiki/plans",
       "topics": [],
       "aliases": [],
-      "prs": [],
+      "prs": [
+        "3"
+      ],
       "issues": [],
-      "bytes": 1234,
+      "bytes": 1303,
       "degree": 4
     },
     {
@@ -649,9 +655,11 @@
         "TSX scaffold",
         "CMS template creation"
       ],
-      "prs": [],
+      "prs": [
+        "3"
+      ],
       "issues": [],
-      "bytes": 3628,
+      "bytes": 3780,
       "degree": 14
     },
     {

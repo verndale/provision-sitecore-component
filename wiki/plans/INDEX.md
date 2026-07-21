@@ -15,6 +15,6 @@ Every agent plan written for this repo, gathered from Claude plan stores, Codex 
 | Date | Plan | Status | Evidence | Topics |
 | --- | --- | --- | --- | --- |
 | 2026-07-21 | [Plan: `provision-sitecore-component` — standalone repo (CLI + skill)](2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md) | implemented | — | sitecore-provisioning |
-| 2026-07-21 | [Add skill-eval scenarios + validator + CI (issue #1)](2026-07-21-add-skill-eval-scenarios-validator-ci-issue-1.md) | implemented | — | skill-evals |
+| 2026-07-21 | [Add skill-eval scenarios + validator + CI (issue #1)](2026-07-21-add-skill-eval-scenarios-validator-ci-issue-1.md) | implemented | [PR #3](https://github.com/verndale/provision-sitecore-component/pull/3) | skill-evals |
 
 Totals: 2 implemented (2 plans).
