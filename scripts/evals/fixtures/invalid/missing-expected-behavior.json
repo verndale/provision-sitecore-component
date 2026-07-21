@@ -1,0 +1,42 @@
+{
+  "coveragePolicy": {
+    "version": 1,
+    "globalMinScenarios": 1,
+    "allowedTags": [
+      "happy-path"
+    ],
+    "requiredSkills": {
+      "provision-sitecore-component": {
+        "minScenarios": 1,
+        "requiredTags": [
+          "happy-path"
+        ]
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "skillFolder": "provision-sitecore-component",
+      "file": "evals/provision-sitecore-component/scenarios/01-missing-expected-behavior.json",
+      "data": {
+        "id": "provision-sitecore-component-missing-expected-behavior",
+        "title": "Missing expected behavior field",
+        "skills": [
+          "provision-sitecore-component"
+        ],
+        "query": "Provision a component from its Confluence spec and produce the offline plan and scaffold.",
+        "files": [
+          "skills/provision-sitecore-component/SKILL.md"
+        ],
+        "must_not": [],
+        "tags": [
+          "happy-path"
+        ],
+        "gap": "Valid fixture seed for required field detection."
+      }
+    }
+  ],
+  "expectedErrors": [
+    "missing required field \"expected_behavior\""
+  ]
+}

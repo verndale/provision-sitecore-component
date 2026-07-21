@@ -1,0 +1,33 @@
+{
+  "id": "provision-sitecore-component-happy-path-datasource",
+  "title": "Datasource component: Confluence spec to offline plan and TSX scaffold",
+  "skills": [
+    "provision-sitecore-component"
+  ],
+  "query": "Provision the Related Content Card from its Confluence functional spec — draft the manifest, run the offline plan, and give me the scaffold. Do not push yet.",
+  "files": [
+    "skills/provision-sitecore-component/SKILL.md",
+    "skills/provision-sitecore-component/references/manifest-contract.md",
+    "skills/provision-sitecore-component/references/confluence-import.md",
+    "skills/provision-sitecore-component/references/type-mapping.md",
+    "skills/provision-sitecore-component/references/tsx-template.md",
+    "test/fixtures/datasource-card/manifest.json",
+    "test/fixtures/datasource-card/build.config.json"
+  ],
+  "expected_behavior": [
+    "Resolves the provisioning config from build.config.json under the sitecoreProvisioning key before drafting anything.",
+    "Fetches the Confluence spec through the Atlassian MCP and extracts the field inventory from the spec's field tables.",
+    "Writes a manifest with a datasource-role template plus its base template, then runs the CLI plan mode offline against it.",
+    "Surfaces the drafted manifest, the written slug plan JSON, the emitted TSX pair paths, and any review questions as one plan artifact.",
+    "Emits the datasource-mode TSX pair create-only and stops at plan plus scaffold without any online call."
+  ],
+  "must_not": [
+    "Run check or push, or make any online CMS call during an offline plan.",
+    "Draft the manifest from memory when the spec is available to fetch."
+  ],
+  "tags": [
+    "happy-path",
+    "datasource"
+  ],
+  "gap": "Protects the offline spec-to-plan path so datasource provisioning stays plan-plus-scaffold only and never reaches online modes unbidden."
+}

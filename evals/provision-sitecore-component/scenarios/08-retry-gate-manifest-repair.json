@@ -1,0 +1,28 @@
+{
+  "id": "provision-sitecore-component-retry-gate-manifest-repair",
+  "title": "Manifest repair loop capped at three attempts",
+  "skills": [
+    "provision-sitecore-component"
+  ],
+  "query": "The plan command keeps exiting 2 on my manifest — fix it up and get the plan to pass.",
+  "files": [
+    "skills/provision-sitecore-component/SKILL.md",
+    "skills/provision-sitecore-component/references/retry-contract.md",
+    "skills/provision-sitecore-component/references/manifest-contract.md"
+  ],
+  "expected_behavior": [
+    "On a CLI exit 2 reads the ERROR, Cause, and Next lines and repairs only the manifest file.",
+    "Re-runs the same plan invocation after each repair and counts attempts against a cap of three.",
+    "After the third failing attempt escalates through the canonical block with the continue-as-is option removed.",
+    "On Halt or no answer emits the canonical error line and stops instead of looping further."
+  ],
+  "must_not": [
+    "Edit the validator, the config, or generated files to force the plan to pass.",
+    "Continue repairing past the third attempt without escalating."
+  ],
+  "tags": [
+    "retry-gate",
+    "manifest-repair"
+  ],
+  "gap": "Protects the bounded repair loop so manifest fixes stay manifest-only, capped at three attempts, and end in Halt rather than an unbounded loop."
+}

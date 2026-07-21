@@ -1,0 +1,26 @@
+{
+  "id": "provision-sitecore-component-boundary-confluence-hard-stop",
+  "title": "Confluence retrieval failure is a hard stop",
+  "skills": [
+    "provision-sitecore-component"
+  ],
+  "query": "Provision the masthead from its Confluence spec page at the link I gave you earlier.",
+  "files": [
+    "skills/provision-sitecore-component/SKILL.md",
+    "skills/provision-sitecore-component/references/confluence-import.md"
+  ],
+  "expected_behavior": [
+    "Attempts to fetch the spec through the Atlassian MCP with getConfluencePage before drafting a manifest.",
+    "Treats an unreachable MCP, a permission error, an empty body, or a page with no field table as a hard stop.",
+    "Reports exactly what failed and ends the run without producing a manifest."
+  ],
+  "must_not": [
+    "Draft a manifest from memory, chat paraphrase, or a cached copy of the page.",
+    "Continue to the plan step after a failed retrieval."
+  ],
+  "tags": [
+    "boundary",
+    "confluence-hard-stop"
+  ],
+  "gap": "Protects the retrieval hard-stop so a missing or empty spec ends the run instead of producing a manifest drafted from memory."
+}

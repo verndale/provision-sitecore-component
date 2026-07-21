@@ -16,3 +16,5 @@ Part of the [wiring map](../connections.md), generated from the knowledge graph 
 - [Sitecore component provisioning — Design History](../../wiki/topics/sitecore-provisioning.md) → [build-plan.cjs](../../src/build-plan.cjs)
 - [Sitecore component provisioning — Design History](../../wiki/topics/sitecore-provisioning.md) → [emit-tsx.cjs](../../src/emit-tsx.cjs)
 - [Sitecore component provisioning — Design History](../../wiki/topics/sitecore-provisioning.md) → [executor.cjs](../../src/executor.cjs)
+- [Skill evals — Design History](../../wiki/topics/skill-evals.md) → [check.cjs](../../scripts/evals/check.cjs)
+- [Skill evals — Design History](../../wiki/topics/skill-evals.md) → [evals-check.test.cjs](../../test/evals-check.test.cjs)

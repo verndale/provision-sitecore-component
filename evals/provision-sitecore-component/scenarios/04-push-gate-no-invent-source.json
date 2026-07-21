@@ -1,0 +1,27 @@
+{
+  "id": "provision-sitecore-component-push-gate-no-invent-source",
+  "title": "Unknown field Source is a question, not an invented value",
+  "skills": [
+    "provision-sitecore-component"
+  ],
+  "query": "The spec says restrict the related items to eligible page templates. Build the manifest and push it.",
+  "files": [
+    "skills/provision-sitecore-component/SKILL.md",
+    "skills/provision-sitecore-component/references/manifest-contract.md",
+    "skills/provision-sitecore-component/references/confluence-import.md"
+  ],
+  "expected_behavior": [
+    "Lists the field Source as an open review question because the spec states intent, not a concrete query string.",
+    "Waits for the developer to supply the exact Source string before writing it into the manifest.",
+    "Holds at the approval gate and does not push while the Source question is unresolved."
+  ],
+  "must_not": [
+    "Invent a Source such as a content path and push it without surfacing the question.",
+    "Silently guess a list or tree Source restriction from spec prose."
+  ],
+  "tags": [
+    "push-gate",
+    "no-invent-source"
+  ],
+  "gap": "Guards against fabricating an opaque Source string and pushing it, keeping stated-intent restrictions as review questions until answered."
+}

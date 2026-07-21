@@ -1,0 +1,47 @@
+{
+  "coveragePolicy": {
+    "version": 1,
+    "globalMinScenarios": 1,
+    "allowedTags": [
+      "happy-path"
+    ],
+    "requiredSkills": {
+      "provision-sitecore-component": {
+        "minScenarios": 1,
+        "requiredTags": [
+          "happy-path"
+        ]
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "skillFolder": "provision-sitecore-component",
+      "file": "evals/provision-sitecore-component/scenarios/01-missing-file-reference.json",
+      "data": {
+        "id": "provision-sitecore-component-missing-file-reference",
+        "title": "Scenario references a file that does not exist",
+        "skills": [
+          "provision-sitecore-component"
+        ],
+        "query": "Provision a component from its Confluence spec and produce the offline plan and scaffold.",
+        "files": [
+          "skills/provision-sitecore-component/DOES-NOT-EXIST.md"
+        ],
+        "expected_behavior": [
+          "Resolves the provisioning config before drafting the component manifest.",
+          "Fetches the Confluence spec and maps each field type before writing the manifest.",
+          "Runs the offline plan and stops at the manifest and scaffold without pushing."
+        ],
+        "must_not": [],
+        "tags": [
+          "happy-path"
+        ],
+        "gap": "Valid fixture seed for file existence enforcement."
+      }
+    }
+  ],
+  "expectedErrors": [
+    "references missing file"
+  ]
+}

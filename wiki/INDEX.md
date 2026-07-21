@@ -19,11 +19,13 @@ Writing protocol (when to capture, templates, automation): [MECHANICS.md](MECHAN
 <!-- One line per topic page: [Title](topics/<slug>.md) — hook. Keep alphabetical by slug. -->
 
 - [Sitecore component provisioning](topics/sitecore-provisioning.md) — one reviewed manifest driving both the CMS items (Authoring API, add-only reconcile) and the front-end TSX handoff scaffold.
+- [Skill evals](topics/skill-evals.md) — behavioral eval scenarios that guard the skill's push gate, repair loop, and boundaries, validated for schema + coverage and gated in CI.
 
 ## Journal
 
 <!-- One line per entry, newest first: - YYYY-MM-DD — [Title](journal/<file>.md) — hook. -->
 
+- 2026-07-21 — [Skill eval scenarios and CI](journal/2026-07-21-skill-eval-scenarios-and-ci.md) — ported ai-orchestration's scenario-eval harness (validator + policy + 8 scenarios) and wired it into CI so a skill-behavior regression fails the build.
 - 2026-07-21 — [Initial CLI, skill, and repo tooling](journal/2026-07-21-initial-cli-skill-and-repo-tooling.md) — the manifest-driven provisioning tool, its skill, tests, and the ai-commit/ai-pr/semantic-release/wiki tooling, in one delivery.
 
 ## Plans
