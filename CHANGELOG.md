@@ -1,3 +1,40 @@
+# v1.2.1 — 2026-07-21
+
+## Summary (AI, bounded)
+- Fixed the provision-sitecore-component by updating byte counts and sorting file lists in tests (e6ebc81)
+- Improved graph data and test logic in the provision-sitecore-component (a30d7f2)
+- Synced wiki documentation including journal, topics, and plans (7b87067)
+- Merged documentation updates related to agents and wiki synchronization (7577a99, 5a7fa36)
+
+## Highlights
+- commit: Merge pull request #7 from verndale/docs/agents-md (7577a99)
+- fix(provision-sitecore-component): Update byte count and sort file lists in tests (e6ebc81)
+- commit: Merge pull request #6 from verndale/bot/wiki-sync/5 (5a7fa36)
+- fix(provision-sitecore-component): Update graph data and improve test logic (a30d7f2)
+- docs(wiki): sync journal, topics, and plans for #5 (7b87067)
+
+## Breaking changes
+- None
+
+## Changes by type
+### Fixes
+- fix(provision-sitecore-component): Update byte count and sort file lists in tests (e6ebc81)
+- fix(provision-sitecore-component): Update graph data and improve test logic (a30d7f2)
+
+### Docs
+- docs(wiki): sync journal, topics, and plans for #5 (7b87067)
+
+### Other (unknown)
+- commit: Merge pull request #6 from verndale/bot/wiki-sync/5 (5a7fa36)
+- commit: Merge pull request #7 from verndale/docs/agents-md (7577a99)
+
+## Full commit list
+- 7577a99 commit: Merge pull request #7 from verndale/docs/agents-md
+- e6ebc81 fix(provision-sitecore-component): Update byte count and sort file lists in tests
+- 5a7fa36 commit: Merge pull request #6 from verndale/bot/wiki-sync/5
+- a30d7f2 fix(provision-sitecore-component): Update graph data and improve test logic
+- 7b87067 docs(wiki): sync journal, topics, and plans for #5
+
 # v1.2.0 — 2026-07-21
 
 ## Summary (AI, bounded)
