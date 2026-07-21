@@ -10,3 +10,6 @@ Part of the [wiring map](../connections.md), generated from the knowledge graph 
   - [cli.cjs](../../src/cli.cjs)
   - [emit-tsx.cjs](../../src/emit-tsx.cjs)
   - [executor.cjs](../../src/executor.cjs)
+- [Skill evals — Design History](../../wiki/topics/skill-evals.md) — 2 runtime surfaces
+  - [check.cjs](../../scripts/evals/check.cjs)
+  - [evals-check.test.cjs](../../test/evals-check.test.cjs)

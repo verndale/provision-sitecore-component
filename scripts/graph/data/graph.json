@@ -1,27 +1,27 @@
 {
   "counts": {
-    "nodes": 47,
-    "edges": 80,
+    "nodes": 52,
+    "edges": 92,
     "byType": {
       "root-doc": 2,
-      "automation": 17,
+      "automation": 18,
       "skill-readme": 1,
       "reference": 6,
       "skill": 1,
       "source": 7,
-      "test": 7,
+      "test": 8,
       "wiki-index": 3,
-      "wiki-journal": 1,
-      "wiki-plan": 1,
-      "wiki-topic": 1
+      "wiki-journal": 2,
+      "wiki-plan": 2,
+      "wiki-topic": 2
     },
     "byEdgeType": {
-      "covers": 5,
-      "links-to": 28,
-      "plan": 1,
+      "covers": 7,
+      "links-to": 34,
+      "plan": 2,
       "references": 6,
-      "requires": 38,
-      "topic": 2
+      "requires": 39,
+      "topic": 4
     }
   },
   "nodes": [
@@ -50,6 +50,18 @@
       "degree": 7
     },
     {
+      "id": "scripts/evals/check.cjs",
+      "label": "check.cjs",
+      "type": "automation",
+      "dir": "scripts/evals",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 24805,
+      "degree": 3
+    },
+    {
       "id": "scripts/graph/build-graph.cjs",
       "label": "build-graph.cjs",
       "type": "automation",
@@ -58,7 +70,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 20511,
+      "bytes": 20517,
       "degree": 4
     },
     {
@@ -434,6 +446,18 @@
       "degree": 4
     },
     {
+      "id": "test/evals-check.test.cjs",
+      "label": "evals-check.test.cjs",
+      "type": "test",
+      "dir": "test",
+      "topics": [],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 7490,
+      "degree": 3
+    },
+    {
       "id": "test/executor.test.cjs",
       "label": "executor.test.cjs",
       "type": "test",
@@ -526,8 +550,8 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 2547,
-      "degree": 6
+      "bytes": 2982,
+      "degree": 8
     },
     {
       "id": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
@@ -545,6 +569,20 @@
       "degree": 4
     },
     {
+      "id": "wiki/journal/2026-07-21-skill-eval-scenarios-and-ci.md",
+      "label": "Skill eval scenarios and CI",
+      "type": "wiki-journal",
+      "dir": "wiki/journal",
+      "topics": [
+        "skill-evals"
+      ],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 2517,
+      "degree": 4
+    },
+    {
       "id": "wiki/MECHANICS.md",
       "label": "Wiki Mechanics",
       "type": "wiki-index",
@@ -555,6 +593,22 @@
       "issues": [],
       "bytes": 8345,
       "degree": 6
+    },
+    {
+      "id": "wiki/plans/2026-07-21-add-skill-eval-scenarios-validator-ci-issue-1.md",
+      "label": "Add skill-eval scenarios + validator + CI (issue #1)",
+      "type": "wiki-plan",
+      "dir": "wiki/plans",
+      "topics": [
+        "skill-evals"
+      ],
+      "aliases": [],
+      "prs": [],
+      "issues": [
+        "1"
+      ],
+      "bytes": 12956,
+      "degree": 3
     },
     {
       "id": "wiki/plans/2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md",
@@ -579,8 +633,8 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 1067,
-      "degree": 3
+      "bytes": 1234,
+      "degree": 4
     },
     {
       "id": "wiki/topics/sitecore-provisioning.md",
@@ -599,6 +653,26 @@
       "issues": [],
       "bytes": 3628,
       "degree": 14
+    },
+    {
+      "id": "wiki/topics/skill-evals.md",
+      "label": "Skill evals — Design History",
+      "type": "wiki-topic",
+      "dir": "wiki/topics",
+      "topics": [],
+      "aliases": [
+        "skill eval scenarios",
+        "evals check",
+        "coverage policy",
+        "scenario schema",
+        "eval harness"
+      ],
+      "prs": [],
+      "issues": [
+        "1"
+      ],
+      "bytes": 3152,
+      "degree": 8
     }
   ],
   "edges": [
@@ -625,6 +699,16 @@
     {
       "source": "wiki/topics/sitecore-provisioning.md",
       "target": "src/executor.cjs",
+      "type": "covers"
+    },
+    {
+      "source": "wiki/topics/skill-evals.md",
+      "target": "scripts/evals/check.cjs",
+      "type": "covers"
+    },
+    {
+      "source": "wiki/topics/skill-evals.md",
+      "target": "test/evals-check.test.cjs",
       "type": "covers"
     },
     {
@@ -734,6 +818,13 @@
     },
     {
       "source": "wiki/INDEX.md",
+      "target": "wiki/journal/2026-07-21-skill-eval-scenarios-and-ci.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/INDEX.md",
       "target": "wiki/MECHANICS.md",
       "type": "links-to",
       "count": 1,
@@ -749,6 +840,13 @@
     {
       "source": "wiki/INDEX.md",
       "target": "wiki/topics/sitecore-provisioning.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/INDEX.md",
+      "target": "wiki/topics/skill-evals.md",
       "type": "links-to",
       "count": 1,
       "anchors": []
@@ -770,6 +868,13 @@
     {
       "source": "wiki/MECHANICS.md",
       "target": "wiki/plans/INDEX.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/plans/INDEX.md",
+      "target": "wiki/plans/2026-07-21-add-skill-eval-scenarios-validator-ci-issue-1.md",
       "type": "links-to",
       "count": 1,
       "anchors": []
@@ -824,8 +929,34 @@
       "anchors": []
     },
     {
+      "source": "wiki/topics/skill-evals.md",
+      "target": "scripts/evals/check.cjs",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/skill-evals.md",
+      "target": "test/evals-check.test.cjs",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/skill-evals.md",
+      "target": "wiki/journal/2026-07-21-skill-eval-scenarios-and-ci.md",
+      "type": "links-to",
+      "count": 3,
+      "anchors": []
+    },
+    {
       "source": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
       "target": "wiki/plans/2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md",
+      "type": "plan"
+    },
+    {
+      "source": "wiki/journal/2026-07-21-skill-eval-scenarios-and-ci.md",
+      "target": "wiki/plans/2026-07-21-add-skill-eval-scenarios-validator-ci-issue-1.md",
       "type": "plan"
     },
     {
@@ -964,6 +1095,11 @@
       "type": "requires"
     },
     {
+      "source": "test/evals-check.test.cjs",
+      "target": "scripts/evals/check.cjs",
+      "type": "requires"
+    },
+    {
       "source": "test/executor.test.cjs",
       "target": "src/build-plan.cjs",
       "type": "requires"
@@ -1051,6 +1187,16 @@
     {
       "source": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
       "target": "wiki/topics/sitecore-provisioning.md",
+      "type": "topic"
+    },
+    {
+      "source": "wiki/journal/2026-07-21-skill-eval-scenarios-and-ci.md",
+      "target": "wiki/topics/skill-evals.md",
+      "type": "topic"
+    },
+    {
+      "source": "wiki/plans/2026-07-21-add-skill-eval-scenarios-validator-ci-issue-1.md",
+      "target": "wiki/topics/skill-evals.md",
       "type": "topic"
     },
     {

@@ -1,0 +1,27 @@
+{
+  "id": "provision-sitecore-component-boundary-missing-env",
+  "title": "Missing authoring env vars fail before any network call",
+  "skills": [
+    "provision-sitecore-component"
+  ],
+  "query": "Run check against this manifest to preflight it before we decide whether to push.",
+  "files": [
+    "skills/provision-sitecore-component/SKILL.md",
+    "skills/provision-sitecore-component/references/authoring-api.md"
+  ],
+  "expected_behavior": [
+    "Loads unset keys from .env and confirms the SITECORE_AUTHORING credentials are present before connecting.",
+    "When a required authoring variable is missing, exits with a config failure before any network request.",
+    "During check issues a read-only preflight that makes zero CMS mutations."
+  ],
+  "must_not": [
+    "Echo the value of any SITECORE_AUTHORING variable into chat, logs, or files.",
+    "Open a network connection when a required credential is absent."
+  ],
+  "tags": [
+    "boundary",
+    "missing-env",
+    "check-only"
+  ],
+  "gap": "Protects the pre-network config gate so missing credentials fail fast and check stays read-only without leaking secret values."
+}

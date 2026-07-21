@@ -1,0 +1,72 @@
+{
+  "coveragePolicy": {
+    "version": 1,
+    "globalMinScenarios": 1,
+    "allowedTags": [
+      "happy-path"
+    ],
+    "requiredSkills": {
+      "provision-sitecore-component": {
+        "minScenarios": 2,
+        "requiredTags": [
+          "happy-path"
+        ]
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "skillFolder": "provision-sitecore-component",
+      "file": "evals/provision-sitecore-component/scenarios/01-first.json",
+      "data": {
+        "id": "provision-sitecore-component-duplicate-id",
+        "title": "First duplicate id scenario",
+        "skills": [
+          "provision-sitecore-component"
+        ],
+        "query": "Provision a component from its Confluence spec and produce the offline plan and scaffold.",
+        "files": [
+          "skills/provision-sitecore-component/SKILL.md"
+        ],
+        "expected_behavior": [
+          "Resolves the provisioning config before drafting the component manifest.",
+          "Fetches the Confluence spec and maps each field type before writing the manifest.",
+          "Runs the offline plan and stops at the manifest and scaffold without pushing."
+        ],
+        "must_not": [],
+        "tags": [
+          "happy-path"
+        ],
+        "gap": "Valid fixture seed for duplicate id detection."
+      }
+    },
+    {
+      "skillFolder": "provision-sitecore-component",
+      "file": "evals/provision-sitecore-component/scenarios/02-second.json",
+      "data": {
+        "id": "provision-sitecore-component-duplicate-id",
+        "title": "Second duplicate id scenario",
+        "skills": [
+          "provision-sitecore-component"
+        ],
+        "query": "Provision a component from its Confluence spec and produce the offline plan and scaffold.",
+        "files": [
+          "skills/provision-sitecore-component/SKILL.md"
+        ],
+        "expected_behavior": [
+          "Resolves the provisioning config before drafting the component manifest.",
+          "Fetches the Confluence spec and maps each field type before writing the manifest.",
+          "Runs the offline plan and stops at the manifest and scaffold without pushing."
+        ],
+        "must_not": [],
+        "tags": [
+          "happy-path"
+        ],
+        "gap": "Valid fixture seed for duplicate id detection."
+      }
+    }
+  ],
+  "expectedErrors": [
+    "duplicate scenario id"
+  ]
+}

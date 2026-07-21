@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "globalMinScenarios": 3,
+  "allowedTags": [
+    "happy-path",
+    "datasource",
+    "page-driven",
+    "push-gate",
+    "session-scoped",
+    "no-invent-source",
+    "boundary",
+    "confluence-hard-stop",
+    "wrong-adapter",
+    "missing-env",
+    "retry-gate",
+    "manifest-repair",
+    "check-only"
+  ],
+  "requiredSkills": {
+    "provision-sitecore-component": {
+      "minScenarios": 6,
+      "requiredTags": [
+        "happy-path",
+        "push-gate",
+        "boundary",
+        "retry-gate"
+      ]
+    }
+  }
+}

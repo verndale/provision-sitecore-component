@@ -13,6 +13,7 @@
   "scripts": {
     "prepare": "husky",
     "test": "node --test --test-reporter=spec test/*.test.cjs",
+    "evals:check": "node scripts/evals/check.cjs",
     "graph:build": "node scripts/graph/build-graph.cjs",
     "graph:view": "node scripts/graph/serve.cjs",
     "lint:commits:last": "commitlint --config node_modules/@verndale/ai-commit/lib/commitlint-preset.cjs --from=HEAD~1 --to=HEAD",

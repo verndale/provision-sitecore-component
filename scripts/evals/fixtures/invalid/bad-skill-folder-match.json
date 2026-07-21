@@ -1,0 +1,47 @@
+{
+  "coveragePolicy": {
+    "version": 1,
+    "globalMinScenarios": 1,
+    "allowedTags": [
+      "happy-path"
+    ],
+    "requiredSkills": {
+      "provision-sitecore-component": {
+        "minScenarios": 1,
+        "requiredTags": [
+          "happy-path"
+        ]
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "skillFolder": "wrong-folder",
+      "file": "evals/wrong-folder/scenarios/01-wrong-folder.json",
+      "data": {
+        "id": "provision-sitecore-component-folder-mismatch",
+        "title": "Scenario lives in the wrong skill folder",
+        "skills": [
+          "provision-sitecore-component"
+        ],
+        "query": "Provision a component from its Confluence spec and produce the offline plan and scaffold.",
+        "files": [
+          "skills/provision-sitecore-component/SKILL.md"
+        ],
+        "expected_behavior": [
+          "Resolves the provisioning config before drafting the component manifest.",
+          "Fetches the Confluence spec and maps each field type before writing the manifest.",
+          "Runs the offline plan and stops at the manifest and scaffold without pushing."
+        ],
+        "must_not": [],
+        "tags": [
+          "happy-path"
+        ],
+        "gap": "Valid fixture seed for folder ownership detection."
+      }
+    }
+  ],
+  "expectedErrors": [
+    "does not match parent folder"
+  ]
+}

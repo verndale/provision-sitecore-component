@@ -1,0 +1,28 @@
+{
+  "id": "provision-sitecore-component-boundary-wrong-adapter",
+  "title": "A non-sitecore-ai stackAdapter is a hard error",
+  "skills": [
+    "provision-sitecore-component"
+  ],
+  "query": "Run the plan for this component using the build.config.json in the wrong-adapter fixture.",
+  "files": [
+    "skills/provision-sitecore-component/SKILL.md",
+    "skills/provision-sitecore-component/references/manifest-contract.md",
+    "test/fixtures/wrong-adapter/build.config.json",
+    "test/fixtures/wrong-adapter/manifest.json"
+  ],
+  "expected_behavior": [
+    "Reads build.config.json and checks the stackAdapter value during config resolution.",
+    "Rejects the optimizely adapter because pipeline repos require the sitecore-ai adapter.",
+    "Exits with a non-zero status and the canonical ERROR, Cause, and Next message shape."
+  ],
+  "must_not": [
+    "Fall back to reading the sitecoreProvisioning key from a non-sitecore-ai config.",
+    "Continue planning against an unsupported stack adapter."
+  ],
+  "tags": [
+    "boundary",
+    "wrong-adapter"
+  ],
+  "gap": "Guards the adapter check so only a sitecore-ai build config is accepted and any other adapter is a hard configuration error."
+}

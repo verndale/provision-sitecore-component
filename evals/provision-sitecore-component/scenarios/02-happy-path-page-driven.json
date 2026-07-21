@@ -1,0 +1,31 @@
+{
+  "id": "provision-sitecore-component-happy-path-page-driven",
+  "title": "Page-driven component: section add on an existing page template",
+  "skills": [
+    "provision-sitecore-component"
+  ],
+  "query": "Provision the People Detail Masthead from its spec — it renders from page fields with no datasource. Draft the manifest and produce the offline plan and scaffold.",
+  "files": [
+    "skills/provision-sitecore-component/SKILL.md",
+    "skills/provision-sitecore-component/references/manifest-contract.md",
+    "skills/provision-sitecore-component/references/tsx-template.md",
+    "skills/provision-sitecore-component/references/type-mapping.md",
+    "test/fixtures/page-fields/manifest.json",
+    "test/fixtures/page-fields/provision.config.json"
+  ],
+  "expected_behavior": [
+    "Reads the flat provision.config.json at the top level because no build.config wrapper key is present.",
+    "Drafts a page-driven manifest that adds a section to the existing page template with a rendering that has no datasource.",
+    "Runs the offline plan and emits the page-driven TSX pair whose fields object is undefined behind an editing guard.",
+    "Represents each non-renderer field as a grep-able provision marker comment rather than inventing a control."
+  ],
+  "must_not": [
+    "Attach a datasource template to a component the spec describes as page-driven.",
+    "Overwrite an existing TSX file without the force-tsx flag."
+  ],
+  "tags": [
+    "happy-path",
+    "page-driven"
+  ],
+  "gap": "Guards the page-driven branch so a no-datasource component keeps an undefined fields object and a section-add plan instead of a fabricated datasource."
+}
