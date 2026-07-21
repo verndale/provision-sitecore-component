@@ -2,7 +2,7 @@
 date: 2026-07-21
 topics: [sitecore-provisioning]
 plan: plans/2026-07-21-ship-guardrails-credential-bootstrap-with-the-skill-claude-c.md
-pr: pending
+pr: https://github.com/verndale/provision-sitecore-component/pull/10
 ---
 # Skill-shipped guardrails (Claude Code + Codex) and credential bootstrap
 

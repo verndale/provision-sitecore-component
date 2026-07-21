@@ -2,7 +2,8 @@
 status: implemented
 executed: 2026-07-21
 date: 2026-07-21
-evidence: []
+evidence:
+  - "PR #10 https://github.com/verndale/provision-sitecore-component/pull/10 (merged 2026-07-21)"
 source_tool: claude
 source: "/Users/joe.fusco/.claude/plans/glowing-toasting-umbrella.md"
 topics: [sitecore-provisioning]
