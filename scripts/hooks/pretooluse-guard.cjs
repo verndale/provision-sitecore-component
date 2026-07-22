@@ -21,6 +21,9 @@ const EDIT_TOOLS = new Set([
   "edit", "write", "multiedit", "notebookedit", "str_replace_editor",
   "apply_patch", "applypatch", "create_file", "edit_file", "write_file",
 ]);
+// Codex has no read tool (reads go through shell, covered by BASH_TOOLS);
+// these are the Claude Read tool plus common harness aliases.
+const READ_TOOLS = new Set(["read", "notebookread", "read_file", "open_file", "view_file"]);
 const PLATFORMS = new Set(["claude", "codex"]);
 
 /** Codex shell tools pass argv arrays (typically ["bash","-lc","<script>"]); Claude passes a string. */
@@ -100,6 +103,12 @@ function evaluate(payload, { platform = null } = {}) {
       if (decision) return decision;
     }
   }
+  if (READ_TOOLS.has(name)) {
+    for (const filePath of filePaths(name, input)) {
+      const decision = core.decideRead(filePath, ctx);
+      if (decision) return decision;
+    }
+  }
   return null;
 }
 
@@ -154,6 +163,7 @@ module.exports = {
   BASH_TOOLS,
   EDIT_TOOLS,
   PLATFORMS,
+  READ_TOOLS,
   evaluate,
   filePaths,
   normalizeCommand,
