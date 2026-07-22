@@ -1,3 +1,37 @@
+# v1.7.0 — 2026-07-22
+
+## Summary (AI, bounded)
+- Added a Read matcher to the pretooluse guard in the provision-sitecore-component (commit ccdfa9b)
+- Synced wiki journal, topics, and plans for issue #18 (commit 17fa377)
+- Merged pull request related to issue-20 read tool environment guard (commit 5cedbb2)
+- Merged pull request for wiki synchronization (commit 650d871)
+
+## Highlights
+- commit: Merge pull request #21 from verndale/claude/issue-20-read-tool-env-guard (5cedbb2)
+- feat(provision-sitecore-component): Add Read matcher to pretooluse guard (ccdfa9b)
+- commit: Merge pull request #19 from verndale/bot/wiki-sync/18 (650d871)
+- docs(wiki): sync journal, topics, and plans for #18 (17fa377)
+
+## Breaking changes
+- None
+
+## Changes by type
+### Features
+- feat(provision-sitecore-component): Add Read matcher to pretooluse guard (ccdfa9b)
+
+### Docs
+- docs(wiki): sync journal, topics, and plans for #18 (17fa377)
+
+### Other (unknown)
+- commit: Merge pull request #19 from verndale/bot/wiki-sync/18 (650d871)
+- commit: Merge pull request #21 from verndale/claude/issue-20-read-tool-env-guard (5cedbb2)
+
+## Full commit list
+- 5cedbb2 commit: Merge pull request #21 from verndale/claude/issue-20-read-tool-env-guard
+- ccdfa9b feat(provision-sitecore-component): Add Read matcher to pretooluse guard
+- 650d871 commit: Merge pull request #19 from verndale/bot/wiki-sync/18
+- 17fa377 docs(wiki): sync journal, topics, and plans for #18
+
 # v1.6.0 — 2026-07-22
 
 ## Summary (AI, bounded)
