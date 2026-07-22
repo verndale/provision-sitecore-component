@@ -1,3 +1,28 @@
+# v1.6.0 — 2026-07-22
+
+## Summary (AI, bounded)
+- Enhanced the PreToolUse guard for Claude and Codex components (commit c70f2cb).
+- Merged pull request related to codex PreToolUse hooks (commit 568118d).
+- No breaking changes introduced in this release.
+
+## Highlights
+- commit: Merge pull request #18 from verndale/codex/issue-17-codex-pretooluse-hooks (568118d)
+- feat(provision-sitecore-component): Enhance PreToolUse guard for Claude and Codex (c70f2cb)
+
+## Breaking changes
+- None
+
+## Changes by type
+### Features
+- feat(provision-sitecore-component): Enhance PreToolUse guard for Claude and Codex (c70f2cb)
+
+### Other (unknown)
+- commit: Merge pull request #18 from verndale/codex/issue-17-codex-pretooluse-hooks (568118d)
+
+## Full commit list
+- 568118d commit: Merge pull request #18 from verndale/codex/issue-17-codex-pretooluse-hooks
+- c70f2cb feat(provision-sitecore-component): Enhance PreToolUse guard for Claude and Codex
+
 # v1.5.0 — 2026-07-22
 
 ## Summary (AI, bounded)
