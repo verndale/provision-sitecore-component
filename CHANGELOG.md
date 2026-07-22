@@ -1,3 +1,37 @@
+# v1.5.0 — 2026-07-22
+
+## Summary (AI, bounded)
+- Enhanced knowledge graph and related documentation in the provision-sitecore-component (commit b1ffa67)
+- Synchronized wiki journal, topics, and plans for issue #13 (commit b7cf3a9)
+- Included merges for graph tooling polish and wiki sync improvements (commits 2c46e68, 74909b4)
+- No breaking changes introduced in this release
+
+## Highlights
+- commit: Merge pull request #16 from verndale/feat/15-graph-tooling-polish (2c46e68)
+- feat(provision-sitecore-component): Enhance knowledge graph and related documentation (b1ffa67)
+- commit: Merge pull request #14 from verndale/bot/wiki-sync/13 (74909b4)
+- docs(wiki): sync journal, topics, and plans for #13 (b7cf3a9)
+
+## Breaking changes
+- None
+
+## Changes by type
+### Features
+- feat(provision-sitecore-component): Enhance knowledge graph and related documentation (b1ffa67)
+
+### Docs
+- docs(wiki): sync journal, topics, and plans for #13 (b7cf3a9)
+
+### Other (unknown)
+- commit: Merge pull request #14 from verndale/bot/wiki-sync/13 (74909b4)
+- commit: Merge pull request #16 from verndale/feat/15-graph-tooling-polish (2c46e68)
+
+## Full commit list
+- 2c46e68 commit: Merge pull request #16 from verndale/feat/15-graph-tooling-polish
+- b1ffa67 feat(provision-sitecore-component): Enhance knowledge graph and related documentation
+- 74909b4 commit: Merge pull request #14 from verndale/bot/wiki-sync/13
+- b7cf3a9 docs(wiki): sync journal, topics, and plans for #13
+
 # v1.4.0 — 2026-07-21
 
 ## Summary (AI, bounded)
