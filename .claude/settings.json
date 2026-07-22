@@ -13,7 +13,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/hooks/pretooluse-guard.cjs\""
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/hooks/pretooluse-guard.cjs\" --platform claude"
           }
         ]
       },
@@ -22,7 +22,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/hooks/pretooluse-guard.cjs\""
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/hooks/pretooluse-guard.cjs\" --platform claude"
           }
         ]
       }

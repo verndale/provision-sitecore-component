@@ -48,6 +48,7 @@ CRED_FILE="$CRED_DIR/.env"
 
 UNINSTALL=0
 TOOLS=()
+CODEX_SELECTED=0
 for a in "$@"; do
   case "$a" in
     --uninstall) UNINSTALL=1 ;;
@@ -150,6 +151,7 @@ credential_bootstrap() {
 }
 
 for tool in "${TOOLS[@]}"; do
+  if [ "$tool" = "codex" ]; then CODEX_SELECTED=1; fi
   dir="$(skills_dir_for "$tool")"
   echo "$tool:"
   if [ "$UNINSTALL" -eq 1 ]; then
@@ -173,6 +175,10 @@ if [ "$UNINSTALL" -eq 1 ]; then
   fi
 else
   credential_bootstrap
+  if [ "$CODEX_SELECTED" -eq 1 ]; then
+    echo "Codex hooks: restart Codex or start a new task, then open /hooks to review and trust the installed definitions."
+    echo "  Codex skips non-managed hooks until their exact current hash is trusted; repeat this review after hook updates."
+  fi
   echo "Done. Restart the tool if it caches skills or hooks (hook configs snapshot at session start)."
   echo "The skill drives this clone's CLI — keep the clone in place (git pull to update everyone's copy)."
 fi

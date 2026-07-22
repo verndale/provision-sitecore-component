@@ -34,7 +34,7 @@ test("the guard the installer registers actually exists", () => {
   assert.ok(fs.existsSync(GUARD_PATH));
 });
 
-test("buildEntries points every hook at the guard with a quoted absolute path", () => {
+test("buildEntries points every hook at the guard with a quoted absolute path and platform", () => {
   for (const tool of ["claude", "codex"]) {
     const entries = buildEntries(tool);
     assert.equal(entries.length, 2);
@@ -42,7 +42,7 @@ test("buildEntries points every hook at the guard with a quoted absolute path", 
       assert.ok(isOurs(entry));
       for (const hook of entry.hooks) {
         assert.equal(hook.type, "command");
-        assert.equal(hook.command, `node "${GUARD_PATH}"`);
+        assert.equal(hook.command, `node "${GUARD_PATH}" --platform ${tool}`);
       }
     }
   }

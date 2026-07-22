@@ -1,7 +1,7 @@
 {
   "counts": {
-    "nodes": 75,
-    "edges": 142,
+    "nodes": 77,
+    "edges": 150,
     "byType": {
       "hook": 7,
       "root-doc": 4,
@@ -12,18 +12,18 @@
       "source": 7,
       "test": 11,
       "wiki-index": 3,
-      "wiki-journal": 5,
-      "wiki-plan": 5,
+      "wiki-journal": 6,
+      "wiki-plan": 6,
       "wiki-topic": 3
     },
     "byEdgeType": {
       "covers": 10,
       "invokes": 7,
-      "links-to": 59,
-      "plan": 5,
+      "links-to": 64,
+      "plan": 6,
       "references": 6,
       "requires": 46,
-      "topic": 9
+      "topic": 11
     }
   },
   "nodes": [
@@ -36,7 +36,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 619,
+      "bytes": 655,
       "degree": 2
     },
     {
@@ -48,7 +48,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 468,
+      "bytes": 551,
       "degree": 2
     },
     {
@@ -120,7 +120,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 6464,
+      "bytes": 6530,
       "degree": 11
     },
     {
@@ -144,7 +144,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 2723,
+      "bytes": 3015,
       "degree": 5
     },
     {
@@ -156,7 +156,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 12168,
+      "bytes": 12723,
       "degree": 8
     },
     {
@@ -228,7 +228,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 12905,
+      "bytes": 13239,
       "degree": 2
     },
     {
@@ -240,7 +240,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 4454,
+      "bytes": 4448,
       "degree": 2
     },
     {
@@ -252,8 +252,8 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 4002,
-      "degree": 4
+      "bytes": 6060,
+      "degree": 5
     },
     {
       "id": "scripts/release/semantic-release-structured-notes.cjs",
@@ -420,7 +420,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 6508,
+      "bytes": 6871,
       "degree": 0
     },
     {
@@ -660,7 +660,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 6013,
+      "bytes": 6045,
       "degree": 1
     },
     {
@@ -672,7 +672,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 18583,
+      "bytes": 22831,
       "degree": 4
     },
     {
@@ -744,8 +744,8 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 4027,
-      "degree": 13
+      "bytes": 4285,
+      "degree": 14
     },
     {
       "id": "wiki/journal/2026-07-21-agents-and-claude-md.md",
@@ -762,6 +762,22 @@
       ],
       "issues": [],
       "bytes": 2200,
+      "degree": 4
+    },
+    {
+      "id": "wiki/journal/2026-07-21-codex-pretooluse-compatibility.md",
+      "label": "Codex PreToolUse live compatibility",
+      "type": "wiki-journal",
+      "dir": "wiki/journal",
+      "topics": [
+        "sitecore-provisioning"
+      ],
+      "aliases": [],
+      "prs": [],
+      "issues": [
+        "17"
+      ],
+      "bytes": 2413,
       "degree": 4
     },
     {
@@ -879,6 +895,20 @@
       "degree": 3
     },
     {
+      "id": "wiki/plans/2026-07-21-fix-codex-pretooluse-enforcement-and-track-the-bug--9937d534aad2.md",
+      "label": "Fix Codex PreToolUse Enforcement and Track the Bug",
+      "type": "wiki-plan",
+      "dir": "wiki/plans",
+      "topics": [
+        "sitecore-provisioning"
+      ],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 3928,
+      "degree": 4
+    },
+    {
       "id": "wiki/plans/2026-07-21-plan-model-lifecycle-hooks-as-first-class-knowledge-graph-no.md",
       "label": "Plan — Model lifecycle hooks as first-class knowledge-graph nodes",
       "type": "wiki-plan",
@@ -939,8 +969,8 @@
         "13"
       ],
       "issues": [],
-      "bytes": 2133,
-      "degree": 7
+      "bytes": 2333,
+      "degree": 8
     },
     {
       "id": "wiki/topics/knowledge-graph.md",
@@ -983,9 +1013,11 @@
         "7",
         "3"
       ],
-      "issues": [],
-      "bytes": 4643,
-      "degree": 17
+      "issues": [
+        "17"
+      ],
+      "bytes": 5419,
+      "degree": 22
     },
     {
       "id": "wiki/topics/skill-evals.md",
@@ -1292,6 +1324,13 @@
     },
     {
       "source": "wiki/INDEX.md",
+      "target": "wiki/journal/2026-07-21-codex-pretooluse-compatibility.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/INDEX.md",
       "target": "wiki/journal/2026-07-21-graph-hook-nodes.md",
       "type": "links-to",
       "count": 1,
@@ -1390,6 +1429,13 @@
     },
     {
       "source": "wiki/plans/INDEX.md",
+      "target": "wiki/plans/2026-07-21-fix-codex-pretooluse-enforcement-and-track-the-bug--9937d534aad2.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/plans/INDEX.md",
       "target": "wiki/plans/2026-07-21-plan-model-lifecycle-hooks-as-first-class-knowledge-graph-no.md",
       "type": "links-to",
       "count": 1,
@@ -1439,6 +1485,13 @@
     },
     {
       "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "scripts/hooks/pretooluse-guard.cjs",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
       "target": "skills/provision-sitecore-component/references/manifest-contract.md",
       "type": "links-to",
       "count": 1,
@@ -1467,6 +1520,13 @@
     },
     {
       "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "wiki/journal/2026-07-21-codex-pretooluse-compatibility.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
       "target": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
       "type": "links-to",
       "count": 2,
@@ -1475,6 +1535,13 @@
     {
       "source": "wiki/topics/sitecore-provisioning.md",
       "target": "wiki/journal/2026-07-21-skill-shipped-guardrails.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "wiki/plans/2026-07-21-fix-codex-pretooluse-enforcement-and-track-the-bug--9937d534aad2.md",
       "type": "links-to",
       "count": 1,
       "anchors": []
@@ -1510,6 +1577,11 @@
     {
       "source": "wiki/journal/2026-07-21-agents-and-claude-md.md",
       "target": "wiki/plans/2026-07-21-add-agents-md-and-claude-md-issue-2.md",
+      "type": "plan"
+    },
+    {
+      "source": "wiki/journal/2026-07-21-codex-pretooluse-compatibility.md",
+      "target": "wiki/plans/2026-07-21-fix-codex-pretooluse-enforcement-and-track-the-bug--9937d534aad2.md",
       "type": "plan"
     },
     {
@@ -1798,6 +1870,11 @@
       "type": "topic"
     },
     {
+      "source": "wiki/journal/2026-07-21-codex-pretooluse-compatibility.md",
+      "target": "wiki/topics/sitecore-provisioning.md",
+      "type": "topic"
+    },
+    {
       "source": "wiki/journal/2026-07-21-graph-hook-nodes.md",
       "target": "wiki/topics/knowledge-graph.md",
       "type": "topic"
@@ -1825,6 +1902,11 @@
     {
       "source": "wiki/plans/2026-07-21-add-skill-eval-scenarios-validator-ci-issue-1.md",
       "target": "wiki/topics/skill-evals.md",
+      "type": "topic"
+    },
+    {
+      "source": "wiki/plans/2026-07-21-fix-codex-pretooluse-enforcement-and-track-the-bug--9937d534aad2.md",
+      "target": "wiki/topics/sitecore-provisioning.md",
       "type": "topic"
     },
     {

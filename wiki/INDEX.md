@@ -26,6 +26,7 @@ Writing protocol (when to capture, templates, automation): [MECHANICS.md](MECHAN
 
 <!-- One line per entry, newest first: - YYYY-MM-DD — [Title](journal/<file>.md) — hook. -->
 
+- 2026-07-21 — [Codex PreToolUse live compatibility](journal/2026-07-21-codex-pretooluse-compatibility.md) — current Codex hook payloads, unsupported ask semantics, exact-hash trust, and git-root launch behavior are reflected in the guard and installer.
 - 2026-07-21 — [Lifecycle hooks as first-class knowledge-graph nodes](journal/2026-07-21-graph-hook-nodes.md) — git, release, and agent PreToolUse hook configs become hook nodes with invokes edges to the scripts they run, surfaced in a generated connections/hooks.md page.
 - 2026-07-21 — [Skill-shipped guardrails (Claude Code + Codex)](journal/2026-07-21-skill-shipped-guardrails.md) — the skill's hard boundaries became mechanical: a shared PreToolUse guard installed by setup.sh for both tools, a CLI push confirmation, husky agent-commit blocks, and a per-machine credential bootstrap.
 - 2026-07-21 — [Agent operating docs (AGENTS.md, CLAUDE.md)](journal/2026-07-21-agents-and-claude-md.md) — a root-level AGENTS.md brief plus a CLAUDE.md that re-exports it, indexed into the knowledge graph as root-doc nodes.

@@ -20,6 +20,7 @@ Part of the [wiring map](../connections.md), generated from the knowledge graph 
 - [provision-sitecore-component](../../README.md) → [Wiki Mechanics](../../wiki/MECHANICS.md)
 - [provision-sitecore-component — operator docs](../../skills/provision-sitecore-component/README.md) → [provision-sitecore-component](../../README.md)
 - [Wiki Mechanics](../../wiki/MECHANICS.md) → [build-graph.cjs](../../scripts/graph/build-graph.cjs)
+- [Sitecore component provisioning — Design History](../../wiki/topics/sitecore-provisioning.md) → [pretooluse-guard.cjs](../../scripts/hooks/pretooluse-guard.cjs)
 - [Sitecore component provisioning — Design History](../../wiki/topics/sitecore-provisioning.md) → [Component manifest contract](../../skills/provision-sitecore-component/references/manifest-contract.md)
 - [Sitecore component provisioning — Design History](../../wiki/topics/sitecore-provisioning.md) → [build-plan.cjs](../../src/build-plan.cjs)
 - [Sitecore component provisioning — Design History](../../wiki/topics/sitecore-provisioning.md) → [emit-tsx.cjs](../../src/emit-tsx.cjs)
