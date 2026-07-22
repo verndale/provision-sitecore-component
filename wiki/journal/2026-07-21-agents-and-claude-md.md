@@ -1,6 +1,6 @@
 ---
 date: 2026-07-21
-topics: [repo-tooling]
+topics: [repo-tooling, knowledge-graph]
 plan: plans/2026-07-21-add-agents-md-and-claude-md-issue-2.md
 pr: https://github.com/verndale/provision-sitecore-component/pull/5
 ---

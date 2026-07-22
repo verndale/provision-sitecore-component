@@ -38,6 +38,7 @@ const EDGE_COLORS = {
   "links-to": "rgba(150,156,170,0.22)",
   references: "rgba(110,168,254,0.28)",
   topic: "rgba(143,209,79,0.4)",
+  covers: "rgba(99,195,164,0.42)",
   plan: "rgba(91,208,208,0.45)",
   requires: "rgba(242,104,143,0.35)",
   invokes: "rgba(181,139,90,0.45)",
