@@ -773,11 +773,13 @@
         "sitecore-provisioning"
       ],
       "aliases": [],
-      "prs": [],
+      "prs": [
+        "18"
+      ],
       "issues": [
         "17"
       ],
-      "bytes": 2413,
+      "bytes": 2470,
       "degree": 4
     },
     {
@@ -903,9 +905,11 @@
         "sitecore-provisioning"
       ],
       "aliases": [],
-      "prs": [],
+      "prs": [
+        "18"
+      ],
       "issues": [],
-      "bytes": 3928,
+      "bytes": 4026,
       "degree": 4
     },
     {
@@ -966,10 +970,11 @@
         "3",
         "5",
         "10",
-        "13"
+        "13",
+        "18"
       ],
       "issues": [],
-      "bytes": 2333,
+      "bytes": 2409,
       "degree": 8
     },
     {
@@ -1009,6 +1014,7 @@
         "CMS template creation"
       ],
       "prs": [
+        "18",
         "10",
         "7",
         "3"
@@ -1016,7 +1022,7 @@
       "issues": [
         "17"
       ],
-      "bytes": 5419,
+      "bytes": 5586,
       "degree": 22
     },
     {

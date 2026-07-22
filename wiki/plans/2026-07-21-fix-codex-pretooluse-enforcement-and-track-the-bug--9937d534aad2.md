@@ -4,6 +4,7 @@ executed: 2026-07-21
 date: 2026-07-21
 evidence:
   - "Issue #17"
+  - "PR #18 https://github.com/verndale/provision-sitecore-component/pull/18 (merged 2026-07-22)"
 source_tool: codex
 source: "codex-session:019f8741-cb50-7f52-9542-a54b0ec7b4bb#372:1:1:9937d534aad2"
 topics: [sitecore-provisioning]

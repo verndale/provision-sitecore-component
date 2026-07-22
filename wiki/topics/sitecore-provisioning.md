@@ -18,6 +18,7 @@ How one reviewed manifest drives both the CMS side (templates, fields, rendering
 
 ## Decisions
 
+- 2026-07-22 — feat(provision-sitecore-component): Enhance PreToolUse guard for Claude  ([PR #18](https://github.com/verndale/provision-sitecore-component/pull/18))
 - 2026-07-21 — Corrected the Codex adapter to the live hook contract: canonical payloads, git-root launch, exact-hash trust guidance, and deny-until-`--yes` because PreToolUse ask is unsupported ([issue #17](https://github.com/verndale/provision-sitecore-component/issues/17), [plan](../plans/2026-07-21-fix-codex-pretooluse-enforcement-and-track-the-bug--9937d534aad2.md), [journal](../journal/2026-07-21-codex-pretooluse-compatibility.md)).
 - 2026-07-21 — feat(provision-sitecore-component): Implement PreToolUse guard for enhan ([PR #10](https://github.com/verndale/provision-sitecore-component/pull/10))
 - 2026-07-21 — Guardrails ship with the skill: a shared PreToolUse guard registered user-level for Claude Code and Codex by setup.sh (plus checked-in project configs), a CLI-level push confirmation (`--yes` records the step-6 gate), husky agent-commit blocks, and a per-machine credential file — enforcement travels to consumer repos instead of living only here. ([journal](../journal/2026-07-21-skill-shipped-guardrails.md))
