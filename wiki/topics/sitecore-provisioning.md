@@ -18,6 +18,7 @@ How one reviewed manifest drives both the CMS side (templates, fields, rendering
 
 ## Decisions
 
+- 2026-07-22 — feat(provision-sitecore-component): Add Read matcher to pretooluse guard ([PR #21](https://github.com/verndale/provision-sitecore-component/pull/21))
 - 2026-07-22 — The harness Read tool is now guarded like Bash readers and edit tools: `decideRead` denies `.env` in tool/provisioning repos and the central credential file everywhere, via a new Claude `Read` matcher (Codex reads go through shell, already covered) ([issue #20](https://github.com/verndale/provision-sitecore-component/issues/20), [plan](../plans/2026-07-22-close-the-read-tool-env-gap-in-the-pretooluse-guard.md), [journal](../journal/2026-07-22-read-tool-env-guard.md)).
 - 2026-07-22 — feat(provision-sitecore-component): Enhance PreToolUse guard for Claude  ([PR #18](https://github.com/verndale/provision-sitecore-component/pull/18))
 - 2026-07-21 — Corrected the Codex adapter to the live hook contract: canonical payloads, git-root launch, exact-hash trust guidance, and deny-until-`--yes` because PreToolUse ask is unsupported ([issue #17](https://github.com/verndale/provision-sitecore-component/issues/17), [plan](../plans/2026-07-21-fix-codex-pretooluse-enforcement-and-track-the-bug--9937d534aad2.md), [journal](../journal/2026-07-21-codex-pretooluse-compatibility.md)).

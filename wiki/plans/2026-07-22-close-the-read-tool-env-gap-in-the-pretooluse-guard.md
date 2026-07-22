@@ -4,6 +4,7 @@ executed: 2026-07-22
 date: 2026-07-22
 evidence:
   - "Issue #20"
+  - "PR #21 https://github.com/verndale/provision-sitecore-component/pull/21 (merged 2026-07-22)"
 source_tool: claude
 source: "/Users/joe.fusco/.claude/plans/what-do-the-hooks-golden-torvalds.md"
 topics: [sitecore-provisioning]
