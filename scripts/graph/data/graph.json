@@ -1,7 +1,7 @@
 {
   "counts": {
-    "nodes": 77,
-    "edges": 150,
+    "nodes": 79,
+    "edges": 157,
     "byType": {
       "hook": 7,
       "root-doc": 4,
@@ -12,18 +12,18 @@
       "source": 7,
       "test": 11,
       "wiki-index": 3,
-      "wiki-journal": 6,
-      "wiki-plan": 6,
+      "wiki-journal": 7,
+      "wiki-plan": 7,
       "wiki-topic": 3
     },
     "byEdgeType": {
       "covers": 10,
       "invokes": 7,
-      "links-to": 64,
-      "plan": 6,
+      "links-to": 68,
+      "plan": 7,
       "references": 6,
       "requires": 46,
-      "topic": 11
+      "topic": 13
     }
   },
   "nodes": [
@@ -36,7 +36,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 655,
+      "bytes": 890,
       "degree": 2
     },
     {
@@ -228,7 +228,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 13239,
+      "bytes": 14135,
       "degree": 2
     },
     {
@@ -240,7 +240,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 4448,
+      "bytes": 4456,
       "degree": 2
     },
     {
@@ -252,7 +252,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 6060,
+      "bytes": 6490,
       "degree": 5
     },
     {
@@ -660,7 +660,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 6045,
+      "bytes": 6202,
       "degree": 1
     },
     {
@@ -672,7 +672,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 22831,
+      "bytes": 24820,
       "degree": 4
     },
     {
@@ -744,8 +744,8 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 4285,
-      "degree": 14
+      "bytes": 4550,
+      "degree": 15
     },
     {
       "id": "wiki/journal/2026-07-21-agents-and-claude-md.md",
@@ -846,6 +846,22 @@
       ],
       "issues": [],
       "bytes": 4801,
+      "degree": 4
+    },
+    {
+      "id": "wiki/journal/2026-07-22-read-tool-env-guard.md",
+      "label": "Read-tool .env guard",
+      "type": "wiki-journal",
+      "dir": "wiki/journal",
+      "topics": [
+        "sitecore-provisioning"
+      ],
+      "aliases": [],
+      "prs": [],
+      "issues": [
+        "20"
+      ],
+      "bytes": 2042,
       "degree": 4
     },
     {
@@ -959,6 +975,20 @@
       "degree": 3
     },
     {
+      "id": "wiki/plans/2026-07-22-close-the-read-tool-env-gap-in-the-pretooluse-guard.md",
+      "label": "Close the Read-tool .env gap in the PreToolUse guard",
+      "type": "wiki-plan",
+      "dir": "wiki/plans",
+      "topics": [
+        "sitecore-provisioning"
+      ],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 6564,
+      "degree": 4
+    },
+    {
       "id": "wiki/plans/INDEX.md",
       "label": "Plan Audit",
       "type": "wiki-index",
@@ -974,8 +1004,8 @@
         "18"
       ],
       "issues": [],
-      "bytes": 2409,
-      "degree": 8
+      "bytes": 2600,
+      "degree": 9
     },
     {
       "id": "wiki/topics/knowledge-graph.md",
@@ -1020,10 +1050,11 @@
         "3"
       ],
       "issues": [
+        "20",
         "17"
       ],
-      "bytes": 5586,
-      "degree": 22
+      "bytes": 6076,
+      "degree": 26
     },
     {
       "id": "wiki/topics/skill-evals.md",
@@ -1365,6 +1396,13 @@
     },
     {
       "source": "wiki/INDEX.md",
+      "target": "wiki/journal/2026-07-22-read-tool-env-guard.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/INDEX.md",
       "target": "wiki/MECHANICS.md",
       "type": "links-to",
       "count": 1,
@@ -1462,6 +1500,13 @@
       "anchors": []
     },
     {
+      "source": "wiki/plans/INDEX.md",
+      "target": "wiki/plans/2026-07-22-close-the-read-tool-env-gap-in-the-pretooluse-guard.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
       "source": "wiki/topics/knowledge-graph.md",
       "target": "wiki/journal/2026-07-21-agents-and-claude-md.md",
       "type": "links-to",
@@ -1547,6 +1592,13 @@
     },
     {
       "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "wiki/journal/2026-07-22-read-tool-env-guard.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
       "target": "wiki/plans/2026-07-21-fix-codex-pretooluse-enforcement-and-track-the-bug--9937d534aad2.md",
       "type": "links-to",
       "count": 1,
@@ -1557,6 +1609,13 @@
       "target": "wiki/plans/2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md",
       "type": "links-to",
       "count": 3,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "wiki/plans/2026-07-22-close-the-read-tool-env-gap-in-the-pretooluse-guard.md",
+      "type": "links-to",
+      "count": 1,
       "anchors": []
     },
     {
@@ -1608,6 +1667,11 @@
     {
       "source": "wiki/journal/2026-07-21-skill-shipped-guardrails.md",
       "target": "wiki/plans/2026-07-21-ship-guardrails-credential-bootstrap-with-the-skill-claude-c.md",
+      "type": "plan"
+    },
+    {
+      "source": "wiki/journal/2026-07-22-read-tool-env-guard.md",
+      "target": "wiki/plans/2026-07-22-close-the-read-tool-env-gap-in-the-pretooluse-guard.md",
       "type": "plan"
     },
     {
@@ -1906,6 +1970,11 @@
       "type": "topic"
     },
     {
+      "source": "wiki/journal/2026-07-22-read-tool-env-guard.md",
+      "target": "wiki/topics/sitecore-provisioning.md",
+      "type": "topic"
+    },
+    {
       "source": "wiki/plans/2026-07-21-add-skill-eval-scenarios-validator-ci-issue-1.md",
       "target": "wiki/topics/skill-evals.md",
       "type": "topic"
@@ -1922,6 +1991,11 @@
     },
     {
       "source": "wiki/plans/2026-07-21-ship-guardrails-credential-bootstrap-with-the-skill-claude-c.md",
+      "target": "wiki/topics/sitecore-provisioning.md",
+      "type": "topic"
+    },
+    {
+      "source": "wiki/plans/2026-07-22-close-the-read-tool-env-gap-in-the-pretooluse-guard.md",
       "target": "wiki/topics/sitecore-provisioning.md",
       "type": "topic"
     }

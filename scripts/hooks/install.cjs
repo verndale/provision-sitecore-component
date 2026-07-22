@@ -22,7 +22,7 @@ const GUARD_SUFFIX = "scripts/hooks/pretooluse-guard.cjs";
 const GUARD_PATH = path.join(REPO_ROOT, "scripts", "hooks", "pretooluse-guard.cjs");
 
 const MATCHERS = {
-  claude: ["Bash", "Edit|MultiEdit|Write|NotebookEdit"],
+  claude: ["Bash", "Edit|MultiEdit|Write|NotebookEdit", "Read"],
   codex: ["^Bash$", "^apply_patch$"],
 };
 

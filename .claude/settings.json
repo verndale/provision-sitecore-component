@@ -25,6 +25,15 @@
             "command": "node \"$CLAUDE_PROJECT_DIR/scripts/hooks/pretooluse-guard.cjs\" --platform claude"
           }
         ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/hooks/pretooluse-guard.cjs\" --platform claude"
+          }
+        ]
       }
     ]
   }

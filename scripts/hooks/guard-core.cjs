@@ -285,6 +285,23 @@ function decideBash(command, ctx) {
   return null;
 }
 
+/** Decide a file READ target (harness Read tool). Returns {decision, reason} or null (allow). */
+function decideRead(filePath, ctx) {
+  if (!filePath) return null;
+  const resolved = path.resolve(ctx.cwd || process.cwd(), String(filePath));
+  // The central credential file is protected in every repo.
+  if (resolved === centralEnvFile()) return deny(REASONS.envRead);
+  // Unlike decideFile, the tool-repo branch falls through to the provisioning
+  // check — intentional: on the read side, stricter is fine.
+  if (ctx.inToolRepo && ctx.toolRepoRoot) {
+    const rel = path.relative(ctx.toolRepoRoot, resolved).split(path.sep).join("/");
+    if (rel === ".env") return deny(REASONS.envRead);
+  }
+  // Exact-basename match keeps .env.example readable everywhere.
+  if (ctx.inProvisioningRepo && path.basename(resolved) === ".env") return deny(REASONS.envRead);
+  return null;
+}
+
 /** Decide a file edit/write target. Returns {decision, reason} or null (allow). */
 function decideFile(filePath, ctx) {
   if (!filePath) return null;
@@ -318,6 +335,7 @@ module.exports = {
   commandTokens,
   decideBash,
   decideFile,
+  decideRead,
   gitSubcommand,
   splitSegments,
 };

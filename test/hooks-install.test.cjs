@@ -35,9 +35,10 @@ test("the guard the installer registers actually exists", () => {
 });
 
 test("buildEntries points every hook at the guard with a quoted absolute path and platform", () => {
-  for (const tool of ["claude", "codex"]) {
+  // Claude adds a Read matcher (Codex has no read tool — reads go through shell).
+  for (const [tool, count] of [["claude", 3], ["codex", 2]]) {
     const entries = buildEntries(tool);
-    assert.equal(entries.length, 2);
+    assert.equal(entries.length, count);
     for (const entry of entries) {
       assert.ok(isOurs(entry));
       for (const hook of entry.hooks) {
@@ -60,7 +61,7 @@ test("mergeHooks preserves unrelated keys and entries, and is idempotent", () =>
   const twice = mergeHooks(once, buildEntries("claude"));
   assert.equal(once.model, "opus");
   assert.equal(once.hooks.SessionStart.length, 1);
-  assert.equal(once.hooks.PreToolUse.length, 3);
+  assert.equal(once.hooks.PreToolUse.length, 4); // 1 unrelated + 3 ours (Bash, edit tools, Read)
   assert.equal(once.hooks.PreToolUse[0].hooks[0].command, "echo unrelated");
   assert.deepEqual(twice, once, "second merge must be a no-op");
   assert.equal(existing.hooks.PreToolUse.length, 1, "input must not be mutated");

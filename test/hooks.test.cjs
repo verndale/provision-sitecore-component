@@ -323,6 +323,37 @@ test("outside this repo, only .env-like targets are policed", () => {
   assert.ok(core.decideFile(core.centralEnvFile(), ctxPlain), "central credential file denied everywhere");
 });
 
+// --- Read rules (harness Read tool) ---
+
+test("decideRead denies .env in tool and provisioning repos, relative and absolute", () => {
+  for (const [ctx, root, label] of [[ctxTool, REPO_ROOT, "tool"], [ctxProv, provDir, "prov"], [ctxBuild, buildDir, "build"]]) {
+    for (const target of [".env", path.join(root, ".env")]) {
+      const decision = core.decideRead(target, ctx);
+      assert.ok(decision, `expected deny for ${target} in ${label} ctx`);
+      assert.equal(decision.decision, "deny");
+      assert.match(decision.reason, /check names any missing variables/);
+    }
+  }
+});
+
+test("decideRead keeps .env.example readable and ignores plain repos", () => {
+  for (const ctx of [ctxTool, ctxProv, ctxBuild, ctxPlain]) {
+    assert.equal(core.decideRead(".env.example", ctx), null, ".env.example must stay readable");
+  }
+  assert.equal(core.decideRead(".env", ctxPlain), null, "plain repos keep their own policy");
+  assert.equal(core.decideRead("src/cli.cjs", ctxTool), null);
+  // Reads never inherit decideFile's generated/vendored/golden denials.
+  assert.equal(core.decideRead("wiki/connections.md", ctxTool), null, "generated files stay readable");
+  assert.equal(core.decideRead(null, ctxTool), null);
+});
+
+test("decideRead denies the central credential file from any repo", () => {
+  for (const ctx of [ctxTool, ctxProv, ctxPlain]) {
+    const decision = core.decideRead(core.centralEnvFile(), ctx);
+    assert.ok(decision && decision.decision === "deny", "central credential file denied everywhere");
+  }
+});
+
 // --- Adapter normalization (Claude + Codex payload shapes) ---
 
 test("adapter: Claude Bash payload", () => {
@@ -341,6 +372,20 @@ test("adapter: Claude Edit payload", () => {
     cwd: REPO_ROOT,
   });
   assert.equal(decision.decision, "deny");
+});
+
+test("adapter: Claude Read payload denies .env in a provisioning repo", () => {
+  const decision = adapter.evaluate({
+    tool_name: "Read",
+    tool_input: { file_path: ".env" },
+    cwd: provDir,
+  });
+  assert.equal(decision.decision, "deny");
+  assert.match(decision.reason, /check names any missing variables/);
+  assert.equal(
+    adapter.evaluate({ tool_name: "Read", tool_input: { file_path: ".env.example" }, cwd: provDir }),
+    null
+  );
 });
 
 test("adapter: Codex argv shell payload ([bash,-lc,script])", () => {
@@ -437,7 +482,7 @@ test("adapter: Codex apply_patch payload (changes object)", () => {
 
 test("adapter: non-PreToolUse events and unknown tools pass through", () => {
   assert.equal(adapter.evaluate({ hook_event_name: "PostToolUse", tool_name: "Bash", tool_input: { command: "git commit -m x" }, cwd: REPO_ROOT }), null);
-  assert.equal(adapter.evaluate({ tool_name: "Read", tool_input: { file_path: ".env" }, cwd: REPO_ROOT }), null);
+  assert.equal(adapter.evaluate({ tool_name: "Glob", tool_input: { pattern: ".env" }, cwd: REPO_ROOT }), null);
   assert.equal(adapter.evaluate({ tool_name: "Bash", tool_input: {}, cwd: REPO_ROOT }), null);
 });
 
@@ -528,7 +573,7 @@ test(".claude/settings.json registers the guard and the .env permission denies",
   }
   const entries = settings.hooks.PreToolUse;
   assert.ok(entries.some((e) => new RegExp(`^(?:${e.matcher})$`).test("Bash")), "no matcher covers Bash");
-  for (const tool of ["Edit", "Write"]) {
+  for (const tool of ["Edit", "Write", "Read"]) {
     assert.ok(entries.some((e) => new RegExp(`^(?:${e.matcher})$`).test(tool)), `no matcher covers ${tool}`);
   }
   for (const entry of entries) {
