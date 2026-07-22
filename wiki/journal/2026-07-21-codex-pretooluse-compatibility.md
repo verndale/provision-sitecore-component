@@ -2,7 +2,7 @@
 date: 2026-07-21
 topics: [sitecore-provisioning]
 plan: plans/2026-07-21-fix-codex-pretooluse-enforcement-and-track-the-bug--9937d534aad2.md
-pr: pending
+pr: https://github.com/verndale/provision-sitecore-component/pull/18
 ---
 # Codex PreToolUse live compatibility
 
