@@ -35,6 +35,8 @@ const REASONS = {
     "Version control here is deliver-and-handoff: leave an uncommitted working tree plus a suggested Conventional Commits message; the repo owner commits, pushes, merges, tags, and releases (AGENTS.md, Hard boundaries).",
   pushGate:
     "provision-sitecore-component push mutates a shared Sitecore CMS environment. Approve only if the SKILL.md step-6 gate (one AskUserQuestion) was answered with approval in THIS session; the CLI additionally requires --yes or an interactive confirm (SKILL.md, Guardrails).",
+  pushGateCodex:
+    "provision-sitecore-component push mutates a shared Sitecore CMS environment. Codex cannot request approval from PreToolUse: complete the SKILL.md step-6 gate in THIS session, then rerun the CLI with --yes as the recorded approval (SKILL.md, Guardrails).",
   envRead:
     "Agents never need .env values: node src/cli.cjs check names any missing variables without exposing them (authoring-api.md, Authentication). Secret values must not enter the transcript.",
   secrets:
@@ -53,8 +55,8 @@ function deny(reason) {
   return { decision: "deny", reason };
 }
 
-function ask(reason) {
-  return { decision: "ask", reason };
+function ask(reason, confirmed = false) {
+  return { decision: "ask", reason, confirmed };
 }
 
 function centralEnvFile() {
@@ -204,7 +206,7 @@ function decidePush(segment, tokens, prog) {
       i += 1;
       continue;
     }
-    return token === "push" ? ask(REASONS.pushGate) : null;
+    return token === "push" ? ask(REASONS.pushGate, tokens.includes("--yes")) : null;
   }
   return null;
 }

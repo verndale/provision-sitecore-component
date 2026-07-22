@@ -23,7 +23,7 @@ const GUARD_PATH = path.join(REPO_ROOT, "scripts", "hooks", "pretooluse-guard.cj
 
 const MATCHERS = {
   claude: ["Bash", "Edit|MultiEdit|Write|NotebookEdit"],
-  codex: ["Bash|shell|local_shell", "apply_patch|Edit|Write"],
+  codex: ["^Bash$", "^apply_patch$"],
 };
 
 function targetFor(tool, home = os.homedir()) {
@@ -35,7 +35,7 @@ function targetFor(tool, home = os.homedir()) {
 function buildEntries(tool, guardPath = GUARD_PATH) {
   return MATCHERS[tool].map((matcher) => ({
     matcher,
-    hooks: [{ type: "command", command: `node "${guardPath}"` }],
+    hooks: [{ type: "command", command: `node "${guardPath}" --platform ${tool}` }],
   }));
 }
 

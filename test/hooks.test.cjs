@@ -22,6 +22,7 @@ const installer = require("../scripts/hooks/install.cjs");
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const GUARD = path.join(REPO_ROOT, "scripts", "hooks", "pretooluse-guard.cjs");
+const SETUP = path.join(REPO_ROOT, "setup.sh");
 
 function makeDir(prefix, files = {}) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
@@ -329,7 +330,7 @@ test("adapter: Claude Bash payload", () => {
     tool_name: "Bash",
     tool_input: { command: "git commit -m x" },
     cwd: REPO_ROOT,
-  });
+  }, { platform: "claude" });
   assert.equal(decision.decision, "deny");
 });
 
@@ -348,6 +349,50 @@ test("adapter: Codex argv shell payload ([bash,-lc,script])", () => {
     tool_input: { command: ["bash", "-lc", "node src/cli.cjs push m.json"] },
     cwd: plainDir,
   });
+  assert.equal(decision.decision, "deny");
+  assert.match(decision.reason, /Codex cannot request approval/);
+});
+
+test("adapter: canonical Codex Bash payload denies push without --yes", () => {
+  const decision = adapter.evaluate({
+    hook_event_name: "PreToolUse",
+    tool_name: "Bash",
+    tool_input: { command: "node src/cli.cjs push m.json" },
+    cwd: plainDir,
+    model: "gpt-test",
+  });
+  assert.equal(decision.decision, "deny");
+  assert.match(decision.reason, /step-6/);
+});
+
+test("adapter: Codex allows the CLI push after --yes records gate approval", () => {
+  const decision = adapter.evaluate({
+    hook_event_name: "PreToolUse",
+    tool_name: "Bash",
+    tool_input: { command: "node src/cli.cjs push m.json --yes" },
+    cwd: plainDir,
+    model: "gpt-test",
+  });
+  assert.equal(decision, null);
+});
+
+test("adapter: Codex denies direct executor push bypasses", () => {
+  const decision = adapter.evaluate({
+    hook_event_name: "PreToolUse",
+    tool_name: "Bash",
+    tool_input: { command: "node -e \"require('./src/executor.cjs').runPlan(plan,{mode:'push'})\"" },
+    cwd: plainDir,
+    model: "gpt-test",
+  });
+  assert.equal(decision.decision, "deny");
+});
+
+test("adapter: Claude keeps the interactive push ask", () => {
+  const decision = adapter.evaluate({
+    tool_name: "Bash",
+    tool_input: { command: "node src/cli.cjs push m.json --yes" },
+    cwd: plainDir,
+  }, { platform: "claude" });
   assert.equal(decision.decision, "ask");
 });
 
@@ -369,6 +414,18 @@ test("adapter: Codex apply_patch payload (patch text)", () => {
   assert.equal(decision.decision, "deny");
 });
 
+test("adapter: canonical Codex apply_patch payload reads tool_input.command", () => {
+  const decision = adapter.evaluate({
+    hook_event_name: "PreToolUse",
+    tool_name: "apply_patch",
+    tool_input: { command: "*** Begin Patch\n*** Update File: wiki/connections.md\n*** End Patch" },
+    cwd: REPO_ROOT,
+    model: "gpt-test",
+  });
+  assert.equal(decision.decision, "deny");
+  assert.match(decision.reason, /graph:build/);
+});
+
 test("adapter: Codex apply_patch payload (changes object)", () => {
   const decision = adapter.evaluate({
     tool_name: "apply_patch",
@@ -386,8 +443,8 @@ test("adapter: non-PreToolUse events and unknown tools pass through", () => {
 
 // --- Adapter end-to-end (spawn the real script) ---
 
-function runGuard(payload) {
-  return spawnSync(process.execPath, [GUARD], {
+function runGuard(payload, args = []) {
+  return spawnSync(process.execPath, [GUARD, ...args], {
     input: typeof payload === "string" ? payload : JSON.stringify(payload),
     encoding: "utf8",
   });
@@ -400,6 +457,29 @@ test("spawned guard emits permissionDecision JSON on deny", () => {
   assert.equal(parsed.hookSpecificOutput.hookEventName, "PreToolUse");
   assert.equal(parsed.hookSpecificOutput.permissionDecision, "deny");
   assert.ok(parsed.hookSpecificOutput.permissionDecisionReason.length > 0);
+});
+
+test("spawned guard maps Codex push ask to deny and honors --yes", () => {
+  const base = { tool_name: "Bash", cwd: plainDir, model: "gpt-test" };
+  const denied = runGuard({ ...base, tool_input: { command: "node src/cli.cjs push m.json" } }, ["--platform", "codex"]);
+  assert.equal(denied.status, 0);
+  const parsed = JSON.parse(denied.stdout);
+  assert.equal(parsed.hookSpecificOutput.permissionDecision, "deny");
+  assert.match(parsed.hookSpecificOutput.permissionDecisionReason, /step-6/);
+
+  const allowed = runGuard({ ...base, tool_input: { command: "node src/cli.cjs push m.json --yes" } }, ["--platform", "codex"]);
+  assert.equal(allowed.status, 0);
+  assert.equal(allowed.stdout, "");
+});
+
+test("spawned guard preserves Claude push ask", () => {
+  const run = runGuard(
+    { tool_name: "Bash", tool_input: { command: "node src/cli.cjs push m.json --yes" }, cwd: plainDir },
+    ["--platform", "claude"]
+  );
+  assert.equal(run.status, 0);
+  const parsed = JSON.parse(run.stdout);
+  assert.equal(parsed.hookSpecificOutput.permissionDecision, "ask");
 });
 
 test("spawned guard stays silent on allow", () => {
@@ -455,6 +535,7 @@ test(".claude/settings.json registers the guard and the .env permission denies",
     for (const hook of entry.hooks) {
       assert.match(hook.command, /scripts\/hooks\/pretooluse-guard\.cjs/);
       assert.match(hook.command, /\$CLAUDE_PROJECT_DIR/);
+      assert.match(hook.command, /--platform claude/);
     }
   }
 });
@@ -466,9 +547,39 @@ test(".codex/hooks.json registers the guard for shell and file-edit matchers", (
   for (const entry of entries) {
     for (const hook of entry.hooks) {
       assert.match(hook.command, /scripts\/hooks\/pretooluse-guard\.cjs/);
+      assert.match(hook.command, /git rev-parse --show-toplevel/);
+      assert.match(hook.command, /--platform codex/);
     }
   }
-  assert.ok(entries.some((e) => /apply_patch/.test(e.matcher)), "no matcher covers apply_patch");
+  assert.deepEqual(entries.map((e) => e.matcher), ["^Bash$", "^apply_patch$"]);
+});
+
+test("checked-in Codex hook resolves the guard from a repo subdirectory", () => {
+  const config = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, ".codex", "hooks.json"), "utf8"));
+  const command = config.hooks.PreToolUse[0].hooks[0].command;
+  const run = spawnSync(command, {
+    cwd: path.join(REPO_ROOT, "test"),
+    input: JSON.stringify({
+      hook_event_name: "PreToolUse",
+      tool_name: "Bash",
+      tool_input: { command: "git commit -m x" },
+      cwd: path.join(REPO_ROOT, "test"),
+      model: "gpt-test",
+    }),
+    encoding: "utf8",
+    shell: true,
+  });
+  assert.equal(run.status, 0, run.stderr);
+  const parsed = JSON.parse(run.stdout);
+  assert.equal(parsed.hookSpecificOutput.permissionDecision, "deny");
+  assert.match(parsed.hookSpecificOutput.permissionDecisionReason, /deliver-and-handoff/);
+});
+
+test("setup explains Codex restart and exact-hash hook trust", () => {
+  const setup = fs.readFileSync(SETUP, "utf8");
+  assert.match(setup, /\/hooks/);
+  assert.match(setup, /review and trust/);
+  assert.match(setup, /new task|restart/);
 });
 
 test("checked-in configs and the setup.sh installer share one matcher list (no drift)", () => {
