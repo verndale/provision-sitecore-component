@@ -18,6 +18,7 @@ Writing protocol (when to capture, templates, automation): [MECHANICS.md](MECHAN
 
 <!-- One line per topic page: [Title](topics/<slug>.md) — hook. Keep alphabetical by slug. -->
 
+- [Knowledge graph](topics/knowledge-graph.md) — the repo's typed node/edge self-model, rendered into the connections wiring map and interactive viewer and gated fresh in CI.
 - [Sitecore component provisioning](topics/sitecore-provisioning.md) — one reviewed manifest driving both the CMS items (Authoring API, add-only reconcile) and the front-end TSX handoff scaffold.
 - [Skill evals](topics/skill-evals.md) — behavioral eval scenarios that guard the skill's push gate, repair loop, and boundaries, validated for schema + coverage and gated in CI.
 

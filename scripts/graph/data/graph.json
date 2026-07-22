@@ -1,7 +1,7 @@
 {
   "counts": {
-    "nodes": 74,
-    "edges": 131,
+    "nodes": 75,
+    "edges": 142,
     "byType": {
       "hook": 7,
       "root-doc": 4,
@@ -14,16 +14,16 @@
       "wiki-index": 3,
       "wiki-journal": 5,
       "wiki-plan": 5,
-      "wiki-topic": 2
+      "wiki-topic": 3
     },
     "byEdgeType": {
-      "covers": 7,
+      "covers": 10,
       "invokes": 7,
-      "links-to": 54,
+      "links-to": 59,
       "plan": 5,
       "references": 6,
       "requires": 46,
-      "topic": 6
+      "topic": 9
     }
   },
   "nodes": [
@@ -181,7 +181,7 @@
       "prs": [],
       "issues": [],
       "bytes": 23451,
-      "degree": 5
+      "degree": 6
     },
     {
       "id": "scripts/graph/routing.cjs",
@@ -193,7 +193,7 @@
       "prs": [],
       "issues": [],
       "bytes": 11971,
-      "degree": 2
+      "degree": 3
     },
     {
       "id": "scripts/graph/serve.cjs",
@@ -205,7 +205,7 @@
       "prs": [],
       "issues": [],
       "bytes": 1871,
-      "degree": 0
+      "degree": 1
     },
     {
       "id": "scripts/hooks/agent-commit-guard.cjs",
@@ -744,8 +744,8 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 3850,
-      "degree": 12
+      "bytes": 4027,
+      "degree": 13
     },
     {
       "id": "wiki/journal/2026-07-21-agents-and-claude-md.md",
@@ -753,29 +753,32 @@
       "type": "wiki-journal",
       "dir": "wiki/journal",
       "topics": [
-        "repo-tooling"
+        "repo-tooling",
+        "knowledge-graph"
       ],
       "aliases": [],
       "prs": [
         "5"
       ],
       "issues": [],
-      "bytes": 2183,
-      "degree": 2
+      "bytes": 2200,
+      "degree": 4
     },
     {
       "id": "wiki/journal/2026-07-21-graph-hook-nodes.md",
       "label": "Lifecycle hooks as first-class knowledge-graph nodes",
       "type": "wiki-journal",
       "dir": "wiki/journal",
-      "topics": [],
+      "topics": [
+        "knowledge-graph"
+      ],
       "aliases": [],
       "prs": [
         "13"
       ],
       "issues": [],
-      "bytes": 2987,
-      "degree": 2
+      "bytes": 3002,
+      "degree": 4
     },
     {
       "id": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
@@ -784,15 +787,16 @@
       "dir": "wiki/journal",
       "topics": [
         "sitecore-provisioning",
-        "repo-tooling"
+        "repo-tooling",
+        "knowledge-graph"
       ],
       "aliases": [],
       "prs": [
         "7"
       ],
       "issues": [],
-      "bytes": 3124,
-      "degree": 4
+      "bytes": 3141,
+      "degree": 6
     },
     {
       "id": "wiki/journal/2026-07-21-skill-eval-scenarios-and-ci.md",
@@ -886,7 +890,7 @@
       ],
       "issues": [],
       "bytes": 10494,
-      "degree": 2
+      "degree": 3
     },
     {
       "id": "wiki/plans/2026-07-21-plan-provision-sitecore-component-standalone-repo-cli-skill.md",
@@ -939,6 +943,29 @@
       "degree": 7
     },
     {
+      "id": "wiki/topics/knowledge-graph.md",
+      "label": "Knowledge graph — Design History",
+      "type": "wiki-topic",
+      "dir": "wiki/topics",
+      "topics": [],
+      "aliases": [
+        "knowledge graph",
+        "graph build",
+        "connections wiring map",
+        "node/edge graph",
+        "graph viewer",
+        "build-graph"
+      ],
+      "prs": [
+        "13",
+        "5",
+        "7"
+      ],
+      "issues": [],
+      "bytes": 3707,
+      "degree": 11
+    },
+    {
       "id": "wiki/topics/sitecore-provisioning.md",
       "label": "Sitecore component provisioning — Design History",
       "type": "wiki-topic",
@@ -982,6 +1009,21 @@
     }
   ],
   "edges": [
+    {
+      "source": "wiki/topics/knowledge-graph.md",
+      "target": "scripts/graph/build-graph.cjs",
+      "type": "covers"
+    },
+    {
+      "source": "wiki/topics/knowledge-graph.md",
+      "target": "scripts/graph/routing.cjs",
+      "type": "covers"
+    },
+    {
+      "source": "wiki/topics/knowledge-graph.md",
+      "target": "scripts/graph/serve.cjs",
+      "type": "covers"
+    },
     {
       "source": "wiki/topics/sitecore-provisioning.md",
       "target": "skills/provision-sitecore-component/SKILL.md",
@@ -1292,6 +1334,13 @@
     },
     {
       "source": "wiki/INDEX.md",
+      "target": "wiki/topics/knowledge-graph.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/INDEX.md",
       "target": "wiki/topics/sitecore-provisioning.md",
       "type": "links-to",
       "count": 1,
@@ -1356,6 +1405,34 @@
     {
       "source": "wiki/plans/INDEX.md",
       "target": "wiki/plans/2026-07-21-ship-guardrails-credential-bootstrap-with-the-skill-claude-c.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/knowledge-graph.md",
+      "target": "wiki/journal/2026-07-21-agents-and-claude-md.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/knowledge-graph.md",
+      "target": "wiki/journal/2026-07-21-graph-hook-nodes.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/knowledge-graph.md",
+      "target": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/knowledge-graph.md",
+      "target": "wiki/plans/2026-07-21-plan-model-lifecycle-hooks-as-first-class-knowledge-graph-no.md",
       "type": "links-to",
       "count": 1,
       "anchors": []
@@ -1714,6 +1791,21 @@
       "source": "test/wiki.test.cjs",
       "target": "scripts/wiki/pre-commit-journal.cjs",
       "type": "requires"
+    },
+    {
+      "source": "wiki/journal/2026-07-21-agents-and-claude-md.md",
+      "target": "wiki/topics/knowledge-graph.md",
+      "type": "topic"
+    },
+    {
+      "source": "wiki/journal/2026-07-21-graph-hook-nodes.md",
+      "target": "wiki/topics/knowledge-graph.md",
+      "type": "topic"
+    },
+    {
+      "source": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
+      "target": "wiki/topics/knowledge-graph.md",
+      "type": "topic"
     },
     {
       "source": "wiki/journal/2026-07-21-initial-cli-skill-and-repo-tooling.md",
