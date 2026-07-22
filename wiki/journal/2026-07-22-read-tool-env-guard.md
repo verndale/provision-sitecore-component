@@ -2,7 +2,7 @@
 date: 2026-07-22
 topics: [sitecore-provisioning]
 plan: plans/2026-07-22-close-the-read-tool-env-gap-in-the-pretooluse-guard.md
-pr: pending
+pr: https://github.com/verndale/provision-sitecore-component/pull/21
 ---
 # Read-tool .env guard
 
