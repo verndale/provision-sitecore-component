@@ -1,3 +1,37 @@
+# v1.8.0 — 2026-07-23
+
+## Summary (AI, bounded)
+- Enforced rules to prevent hand-editing of generated plans in the provision-sitecore-component (commit b66b6de).
+- Synchronized wiki content including journal, topics, and plans for issue #21 (commit e5b8817).
+- Included merges for pull requests related to plan artifact edit guard and wiki synchronization (commits 6ccc217, c20ddcd).
+- No breaking changes introduced in this release.
+
+## Highlights
+- commit: Merge pull request #24 from verndale/claude/issue-23-plan-artifact-edit-guard (6ccc217)
+- feat(provision-sitecore-component): Enforce rules against hand-editing generated plan (b66b6de)
+- commit: Merge pull request #22 from verndale/bot/wiki-sync/21 (c20ddcd)
+- docs(wiki): sync journal, topics, and plans for #21 (e5b8817)
+
+## Breaking changes
+- None
+
+## Changes by type
+### Features
+- feat(provision-sitecore-component): Enforce rules against hand-editing generated plan (b66b6de)
+
+### Docs
+- docs(wiki): sync journal, topics, and plans for #21 (e5b8817)
+
+### Other (unknown)
+- commit: Merge pull request #22 from verndale/bot/wiki-sync/21 (c20ddcd)
+- commit: Merge pull request #24 from verndale/claude/issue-23-plan-artifact-edit-guard (6ccc217)
+
+## Full commit list
+- 6ccc217 commit: Merge pull request #24 from verndale/claude/issue-23-plan-artifact-edit-guard
+- b66b6de feat(provision-sitecore-component): Enforce rules against hand-editing generated plan
+- c20ddcd commit: Merge pull request #22 from verndale/bot/wiki-sync/21
+- e5b8817 docs(wiki): sync journal, topics, and plans for #21
+
 # v1.7.0 — 2026-07-22
 
 ## Summary (AI, bounded)
