@@ -58,6 +58,7 @@ Operator docs: [README.md](README.md).
 - MUST NOT run `push` without the step-6 gate approval in the current session; `check` is the only online mode allowed before it. The CLI enforces this mechanically: non-interactive `push` refuses without `--yes`, and `--yes` may only ever be passed after the gate approval.
 - MUST NOT delete, rename, or retype CMS items or fields, and MUST NOT remove entries from Allowed Controls, `__Masters`, or validation-bar lists — the tool is add-only by contract; treat anything it reports as a conflict or follow-up as manual work, not something to force.
 - MUST NOT overwrite an existing TSX pair without an explicit developer request (`--force-tsx`).
+- MUST NOT hand-edit a generated `<slug>.plan.json` — every CLI run rewrites it from the manifest, and it is part of the step-6 gate review artifact; fix the manifest and re-run `plan`.
 - MUST NOT invent Source strings, datasource locations, or field types the spec does not state — they are review questions (step 3), and once answered they are written verbatim.
 - MUST NOT echo the values of `SITECORE_AUTHORING_*` environment variables into chat, logs, or files.
 - Scope is the datasource/page templates, rendering + bindings, insert options, and placeholder settings. Site registration (Available Renderings) and rendering-parameters templates are reported as manual follow-ups — MUST NOT improvise them via ad-hoc mutations.

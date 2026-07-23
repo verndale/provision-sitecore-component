@@ -21,5 +21,6 @@ Every agent plan written for this repo, gathered from Claude plan stores, Codex 
 | 2026-07-21 | [Plan — Model lifecycle hooks as first-class knowledge-graph nodes](2026-07-21-plan-model-lifecycle-hooks-as-first-class-knowledge-graph-no.md) | implemented | [PR #13](https://github.com/verndale/provision-sitecore-component/pull/13) | — |
 | 2026-07-21 | [Fix Codex PreToolUse Enforcement and Track the Bug](2026-07-21-fix-codex-pretooluse-enforcement-and-track-the-bug--9937d534aad2.md) | implemented | Issue #17, [PR #18](https://github.com/verndale/provision-sitecore-component/pull/18) | sitecore-provisioning |
 | 2026-07-22 | [Close the Read-tool `.env` gap in the PreToolUse guard](2026-07-22-close-the-read-tool-env-gap-in-the-pretooluse-guard.md) | implemented | Issue #20, [PR #21](https://github.com/verndale/provision-sitecore-component/pull/21) | sitecore-provisioning |
+| 2026-07-22 | [Deny hand-edits to generated `<slug>.plan.json` plan artifacts](2026-07-22-deny-hand-edits-to-generated-slug-plan-json-plan-artifacts.md) | implemented | Issue #23 | sitecore-provisioning |
 
-Totals: 7 implemented (7 plans).
+Totals: 8 implemented (8 plans).

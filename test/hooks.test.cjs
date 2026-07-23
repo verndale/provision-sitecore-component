@@ -281,6 +281,9 @@ const FILES_DENIED = [
   ["test/fixtures/page-fields/expected/PeopleDetailMasthead.tsx", /regenerated with the tool/],
   // A golden named anything under the CONTRIBUTING expected* glob, not just expected-plan.json.
   ["test/fixtures/datasource-card/expected-check.json", /regenerated with the tool/],
+  // Generated plan artifacts: <slug>.plan.json anywhere in the repo, nested included.
+  ["hero-banner.plan.json", /re-run plan|never hand-edit the plan file/],
+  ["components/promo/promo.plan.json", /never hand-edit the plan file/],
 ];
 
 for (const [rel, reasonRe] of FILES_DENIED) {
@@ -308,6 +311,9 @@ const FILES_ALLOWED = [
   "skills/provision-sitecore-component/references/manifest-contract.md",
   "skills/provision-sitecore-component/SKILL.md",
   "/etc/hosts",
+  // endsWith(".plan.json") boundary: hyphen and bare names stay editable.
+  "my-plan.json",
+  "plan.json",
 ];
 
 for (const rel of FILES_ALLOWED) {
@@ -321,6 +327,20 @@ test("outside this repo, only .env-like targets are policed", () => {
   assert.ok(core.decideFile(".env", ctxProv));
   assert.equal(core.decideFile(".env", ctxPlain), null);
   assert.ok(core.decideFile(core.centralEnvFile(), ctxPlain), "central credential file denied everywhere");
+});
+
+test("plan artifacts are protected in provisioning repos, not plain ones", () => {
+  for (const ctx of [ctxProv, ctxBuild]) {
+    const decision = core.decideFile("hero.plan.json", ctx);
+    assert.ok(decision && decision.decision === "deny", "plan artifact edits denied in provisioning repos");
+    assert.match(decision.reason, /never hand-edit the plan file/);
+  }
+  assert.equal(core.decideFile("hero.plan.json", ctxPlain), null, "plain repos keep their own policy");
+  assert.equal(core.decideFile("my-plan.json", ctxProv), null, "hyphen names stay editable");
+  // decideRead never inherits the rule — plans must stay readable for gate review.
+  assert.equal(core.decideRead("hero.plan.json", ctxProv), null);
+  assert.equal(core.decideRead("hero.plan.json", ctxBuild), null);
+  assert.equal(core.decideRead("hero.plan.json", ctxTool), null);
 });
 
 // --- Read rules (harness Read tool) ---
@@ -372,6 +392,16 @@ test("adapter: Claude Edit payload", () => {
     cwd: REPO_ROOT,
   });
   assert.equal(decision.decision, "deny");
+});
+
+test("adapter: Claude Edit payload denies a plan artifact in a provisioning repo", () => {
+  const decision = adapter.evaluate({
+    tool_name: "Edit",
+    tool_input: { file_path: "hero.plan.json" },
+    cwd: provDir,
+  });
+  assert.equal(decision.decision, "deny");
+  assert.match(decision.reason, /never hand-edit the plan file/);
 });
 
 test("adapter: Claude Read payload denies .env in a provisioning repo", () => {
