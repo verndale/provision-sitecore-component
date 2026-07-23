@@ -18,6 +18,7 @@ How one reviewed manifest drives both the CMS side (templates, fields, rendering
 
 ## Decisions
 
+- 2026-07-23 — feat(provision-sitecore-component): Enforce rules against hand-editing g ([PR #24](https://github.com/verndale/provision-sitecore-component/pull/24))
 - 2026-07-22 — Generated `<slug>.plan.json` artifacts are deny-on-edit in tool/provisioning repos (reads stay open): protects the step-6 gate review artifact from honest-agent drift — explicitly not a push bypass, since every CLI run rebuilds the plan from the manifest ([issue #23](https://github.com/verndale/provision-sitecore-component/issues/23), [plan](../plans/2026-07-22-deny-hand-edits-to-generated-slug-plan-json-plan-artifacts.md), [journal](../journal/2026-07-22-plan-artifact-edit-guard.md)).
 - 2026-07-22 — feat(provision-sitecore-component): Add Read matcher to pretooluse guard ([PR #21](https://github.com/verndale/provision-sitecore-component/pull/21))
 - 2026-07-22 — The harness Read tool is now guarded like Bash readers and edit tools: `decideRead` denies `.env` in tool/provisioning repos and the central credential file everywhere, via a new Claude `Read` matcher (Codex reads go through shell, already covered) ([issue #20](https://github.com/verndale/provision-sitecore-component/issues/20), [plan](../plans/2026-07-22-close-the-read-tool-env-gap-in-the-pretooluse-guard.md), [journal](../journal/2026-07-22-read-tool-env-guard.md)).
