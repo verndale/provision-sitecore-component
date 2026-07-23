@@ -1,7 +1,7 @@
 {
   "counts": {
-    "nodes": 79,
-    "edges": 157,
+    "nodes": 81,
+    "edges": 164,
     "byType": {
       "hook": 7,
       "root-doc": 4,
@@ -12,18 +12,18 @@
       "source": 7,
       "test": 11,
       "wiki-index": 3,
-      "wiki-journal": 7,
-      "wiki-plan": 7,
+      "wiki-journal": 8,
+      "wiki-plan": 8,
       "wiki-topic": 3
     },
     "byEdgeType": {
       "covers": 10,
       "invokes": 7,
-      "links-to": 68,
-      "plan": 7,
+      "links-to": 72,
+      "plan": 8,
       "references": 6,
       "requires": 46,
-      "topic": 13
+      "topic": 15
     }
   },
   "nodes": [
@@ -120,7 +120,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 6530,
+      "bytes": 6632,
       "degree": 11
     },
     {
@@ -228,7 +228,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 14135,
+      "bytes": 14719,
       "degree": 2
     },
     {
@@ -516,7 +516,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 7700,
+      "bytes": 7888,
       "degree": 13
     },
     {
@@ -672,7 +672,7 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 24820,
+      "bytes": 26357,
       "degree": 4
     },
     {
@@ -744,8 +744,8 @@
       "aliases": [],
       "prs": [],
       "issues": [],
-      "bytes": 4550,
-      "degree": 15
+      "bytes": 4813,
+      "degree": 16
     },
     {
       "id": "wiki/journal/2026-07-21-agents-and-claude-md.md",
@@ -846,6 +846,22 @@
       ],
       "issues": [],
       "bytes": 4801,
+      "degree": 4
+    },
+    {
+      "id": "wiki/journal/2026-07-22-plan-artifact-edit-guard.md",
+      "label": "Plan-artifact edit guard",
+      "type": "wiki-journal",
+      "dir": "wiki/journal",
+      "topics": [
+        "sitecore-provisioning"
+      ],
+      "aliases": [],
+      "prs": [],
+      "issues": [
+        "23"
+      ],
+      "bytes": 2043,
       "degree": 4
     },
     {
@@ -993,6 +1009,20 @@
       "degree": 4
     },
     {
+      "id": "wiki/plans/2026-07-22-deny-hand-edits-to-generated-slug-plan-json-plan-artifacts.md",
+      "label": "Deny hand-edits to generated <slug>.plan.json plan artifacts",
+      "type": "wiki-plan",
+      "dir": "wiki/plans",
+      "topics": [
+        "sitecore-provisioning"
+      ],
+      "aliases": [],
+      "prs": [],
+      "issues": [],
+      "bytes": 5537,
+      "degree": 4
+    },
+    {
       "id": "wiki/plans/INDEX.md",
       "label": "Plan Audit",
       "type": "wiki-index",
@@ -1009,8 +1039,8 @@
         "21"
       ],
       "issues": [],
-      "bytes": 2676,
-      "degree": 9
+      "bytes": 2882,
+      "degree": 10
     },
     {
       "id": "wiki/topics/knowledge-graph.md",
@@ -1056,11 +1086,12 @@
         "3"
       ],
       "issues": [
+        "23",
         "20",
         "17"
       ],
-      "bytes": 6243,
-      "degree": 26
+      "bytes": 6753,
+      "degree": 30
     },
     {
       "id": "wiki/topics/skill-evals.md",
@@ -1402,6 +1433,13 @@
     },
     {
       "source": "wiki/INDEX.md",
+      "target": "wiki/journal/2026-07-22-plan-artifact-edit-guard.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/INDEX.md",
       "target": "wiki/journal/2026-07-22-read-tool-env-guard.md",
       "type": "links-to",
       "count": 1,
@@ -1513,6 +1551,13 @@
       "anchors": []
     },
     {
+      "source": "wiki/plans/INDEX.md",
+      "target": "wiki/plans/2026-07-22-deny-hand-edits-to-generated-slug-plan-json-plan-artifacts.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
       "source": "wiki/topics/knowledge-graph.md",
       "target": "wiki/journal/2026-07-21-agents-and-claude-md.md",
       "type": "links-to",
@@ -1598,6 +1643,13 @@
     },
     {
       "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "wiki/journal/2026-07-22-plan-artifact-edit-guard.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
       "target": "wiki/journal/2026-07-22-read-tool-env-guard.md",
       "type": "links-to",
       "count": 1,
@@ -1620,6 +1672,13 @@
     {
       "source": "wiki/topics/sitecore-provisioning.md",
       "target": "wiki/plans/2026-07-22-close-the-read-tool-env-gap-in-the-pretooluse-guard.md",
+      "type": "links-to",
+      "count": 1,
+      "anchors": []
+    },
+    {
+      "source": "wiki/topics/sitecore-provisioning.md",
+      "target": "wiki/plans/2026-07-22-deny-hand-edits-to-generated-slug-plan-json-plan-artifacts.md",
       "type": "links-to",
       "count": 1,
       "anchors": []
@@ -1673,6 +1732,11 @@
     {
       "source": "wiki/journal/2026-07-21-skill-shipped-guardrails.md",
       "target": "wiki/plans/2026-07-21-ship-guardrails-credential-bootstrap-with-the-skill-claude-c.md",
+      "type": "plan"
+    },
+    {
+      "source": "wiki/journal/2026-07-22-plan-artifact-edit-guard.md",
+      "target": "wiki/plans/2026-07-22-deny-hand-edits-to-generated-slug-plan-json-plan-artifacts.md",
       "type": "plan"
     },
     {
@@ -1976,6 +2040,11 @@
       "type": "topic"
     },
     {
+      "source": "wiki/journal/2026-07-22-plan-artifact-edit-guard.md",
+      "target": "wiki/topics/sitecore-provisioning.md",
+      "type": "topic"
+    },
+    {
       "source": "wiki/journal/2026-07-22-read-tool-env-guard.md",
       "target": "wiki/topics/sitecore-provisioning.md",
       "type": "topic"
@@ -2002,6 +2071,11 @@
     },
     {
       "source": "wiki/plans/2026-07-22-close-the-read-tool-env-gap-in-the-pretooluse-guard.md",
+      "target": "wiki/topics/sitecore-provisioning.md",
+      "type": "topic"
+    },
+    {
+      "source": "wiki/plans/2026-07-22-deny-hand-edits-to-generated-slug-plan-json-plan-artifacts.md",
       "target": "wiki/topics/sitecore-provisioning.md",
       "type": "topic"
     }
