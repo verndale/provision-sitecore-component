@@ -2,7 +2,7 @@
 date: 2026-07-22
 topics: [sitecore-provisioning]
 plan: plans/2026-07-22-deny-hand-edits-to-generated-slug-plan-json-plan-artifacts.md
-pr: pending
+pr: https://github.com/verndale/provision-sitecore-component/pull/24
 ---
 # Plan-artifact edit guard
 
